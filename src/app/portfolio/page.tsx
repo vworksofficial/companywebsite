@@ -3,11 +3,11 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PORTFOLIO_ITEMS, PORTFOLIO_CATEGORIES } from '@/lib/constants';
 import { cn } from '@/lib/utils';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Building } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function PortfolioPage() {
@@ -94,34 +94,42 @@ export default function PortfolioPage() {
       <section className="py-16 md:py-24">
         <div className="container mx-auto">
           {filteredItems.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-12">
               {filteredItems.map((item) => (
-                <Card key={item.slug} className="group overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
-                  <div className="relative h-56 w-full">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      data-ai-hint={item.imageHint}
-                    />
+                <Card key={item.slug} className="group grid md:grid-cols-2 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                  {/* Left Column - Text */}
+                  <div className="p-8 flex flex-col justify-center">
+                      <div>
+                          <span className="text-xs font-semibold uppercase text-primary tracking-wider">{item.category}</span>
+                          <div className="flex items-center gap-4 my-4">
+                              {/* Client Logo Placeholder */}
+                              <div className="bg-muted p-3 rounded-lg">
+                                  <Building className="h-6 w-6 text-muted-foreground" />
+                              </div>
+                              <h3 className="font-headline text-2xl font-bold">{item.title}</h3>
+                          </div>
+                          <p className="text-muted-foreground text-sm mb-6">
+                              {item.description}
+                          </p>
+                      </div>
+                      {item.link && (
+                          <div className="mt-auto">
+                              <Button asChild variant="link" className="px-0 text-primary font-bold">
+                                  <Link href={item.link} target="_blank">View Project <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                              </Button>
+                          </div>
+                      )}
                   </div>
-                  <CardHeader>
-                    <span className="text-xs font-semibold uppercase text-primary tracking-wider">{item.category}</span>
-                    <CardTitle className="font-headline text-xl mt-1">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <p className="text-muted-foreground text-sm">
-                      {item.description}
-                    </p>
-                  </CardContent>
-                  {item.link && (
-                    <div className="p-6 pt-0">
-                      <Button asChild variant="link" className="px-0 text-primary">
-                        <Link href={item.link} target="_blank">View Project <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                      </Button>
-                    </div>
-                  )}
+                  {/* Right Column - Image */}
+                  <div className="relative min-h-[300px] md:min-h-0 order-first md:order-last">
+                      <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          data-ai-hint={item.imageHint}
+                      />
+                  </div>
                 </Card>
               ))}
             </div>
