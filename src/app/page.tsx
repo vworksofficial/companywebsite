@@ -11,13 +11,13 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="py-20 md:py-32 bg-background">
+      <section className="py-20 md:py-32 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="font-headline text-2xl md:text-3xl font-bold text-primary">
+            <h1 className="font-headline text-2xl md:text-3xl font-bold">
               Your Partner to Leap Together
             </h1>
-            <p className="mt-6 max-w-xl text-sm text-muted-foreground">
+            <p className="mt-6 max-w-xl text-sm text-primary-foreground/90">
               Kami Bantu Brand Anda Ditemukan, Dikenal, dan Dipilih. Vworks.id menghadirkan solusi digital marketing mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis secara berkelanjutan.
             </p>
             <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
