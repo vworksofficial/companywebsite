@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="py-20 md:py-28 bg-primary text-primary-foreground bg-hero-texture">
+      <section className="py-16 md:py-24 bg-primary text-primary-foreground bg-hero-texture">
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-4xl md:text-5xl font-bold leading-tight">
