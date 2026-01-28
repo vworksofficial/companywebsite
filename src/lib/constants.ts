@@ -18,9 +18,10 @@ type Service = {
 
 export const NAV_LINKS: NavLink[] = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About Us' },
   { href: '/services', label: 'Services' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/about', label: 'About Us' },
+  { href: '/career', label: 'Career' },
 ];
 
 export const SERVICES: Service[] = [
