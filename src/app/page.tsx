@@ -18,7 +18,7 @@ export default function Home() {
               Your Partner to Leap Together
             </h1>
             <p className="mt-6 max-w-xl text-sm text-primary-foreground/90">
-              Kami Bantu Brand Anda Ditemukan, Dikenal, dan Dipilih. Vworks.id menghadirkan solusi digital marketing mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis secara berkelanjutan.
+              Kami bantu brand Anda ditemukan, dikenal, dan dipilih. Vworks.id menghadirkan solusi digital marketing mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis secara berkelanjutan.
             </p>
             <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
               <Link href="/contact">Get Your Free Consultation <ArrowRight className="ml-2 h-5 w-5" /></Link>
