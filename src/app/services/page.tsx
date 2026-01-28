@@ -59,9 +59,12 @@ export default function ServicesPage() {
             <Button
               onClick={() => setSelectedCategory(null)}
               variant={!selectedCategory ? 'secondary' : 'ghost'}
-              className={cn('border border-primary-foreground/30', {
-                'hover:bg-white/20 text-white': selectedCategory,
-              })}
+              className={cn(
+                'rounded-full',
+                !selectedCategory
+                  ? ''
+                  : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
+              )}
             >
               Semua Layanan
             </Button>
@@ -72,9 +75,12 @@ export default function ServicesPage() {
                   key={category.category}
                   onClick={() => setSelectedCategory(category.category)}
                   variant={isActive ? 'secondary' : 'ghost'}
-                  className={cn('border border-primary-foreground/30', {
-                    'hover:bg-white/20 text-white': !isActive,
-                  })}
+                  className={cn(
+                    'rounded-full',
+                    isActive
+                      ? ''
+                      : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
+                  )}
                 >
                   <category.icon className="mr-2 h-4 w-4" />
                   {category.category}

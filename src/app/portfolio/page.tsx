@@ -39,9 +39,12 @@ export default function PortfolioPage() {
             <Button
               onClick={() => setSelectedCategory(null)}
               variant={!selectedCategory ? 'secondary' : 'ghost'}
-              className={cn('border border-primary-foreground/30', {
-                'hover:bg-white/20 text-white': selectedCategory,
-              })}
+              className={cn(
+                'rounded-full',
+                !selectedCategory
+                  ? ''
+                  : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
+              )}
             >
               All Projects
             </Button>
@@ -52,9 +55,12 @@ export default function PortfolioPage() {
                   key={category.slug}
                   onClick={() => setSelectedCategory(category.name)}
                   variant={isActive ? 'secondary' : 'ghost'}
-                  className={cn('border border-primary-foreground/30', {
-                    'hover:bg-white/20 text-white': !isActive,
-                  })}
+                  className={cn(
+                    'rounded-full',
+                    isActive
+                      ? ''
+                      : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
+                  )}
                 >
                   <category.icon className="mr-2 h-4 w-4" />
                   {category.name}
