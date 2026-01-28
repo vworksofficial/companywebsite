@@ -51,69 +51,69 @@ export const SERVICES: Service[] = [
   {
     slug: 'search-engine-optimization',
     title: 'SEO',
-    description: 'Boost your visibility on search engines and attract organic traffic.',
-    longDescription: "Our SEO strategies go beyond keywords. We focus on building a strong online foundation for your brand, driving qualified leads to your website. We analyze your market, optimize your site's technical performance, and create high-quality content that resonates with both users and search engines.",
+    description: 'Tingkatkan visibilitas Anda di mesin pencari dan tarik lalu lintas organik.',
+    longDescription: "Strategi SEO kami lebih dari sekadar kata kunci. Kami fokus membangun fondasi online yang kuat untuk merek Anda, mendorong prospek berkualitas ke situs web Anda. Kami menganalisis pasar Anda, mengoptimalkan kinerja teknis situs Anda, dan membuat konten berkualitas tinggi yang sesuai dengan pengguna dan mesin pencari.",
     benefits: [
-      "Increased organic search visibility",
-      "Higher quality lead generation",
-      "Improved brand credibility and trust",
-      "Measurable and sustainable results"
+      "Peningkatan visibilitas pencarian organik",
+      "Perolehan prospek yang lebih berkualitas",
+      "Peningkatan kredibilitas dan kepercayaan merek",
+      "Hasil yang terukur dan berkelanjutan"
     ],
     icon: LineChart,
     image: 'vworks-seo',
   },
   {
     slug: 'social-media-marketing',
-    title: 'Social Media Marketing',
-    description: 'Engage your audience and build a strong brand presence on social media.',
-    longDescription: "We create and manage impactful social media campaigns that foster community and drive engagement. From content creation to audience interaction, we handle all aspects of your social media to build a loyal following and convert followers into customers.",
+    title: 'Pemasaran Media Sosial',
+    description: 'Libatkan audiens Anda dan bangun kehadiran merek yang kuat di media sosial.',
+    longDescription: "Kami membuat dan mengelola kampanye media sosial yang berdampak yang membina komunitas dan mendorong keterlibatan. Dari pembuatan konten hingga interaksi audiens, kami menangani semua aspek media sosial Anda untuk membangun pengikut setia dan mengubah pengikut menjadi pelanggan.",
     benefits: [
-      "Enhanced brand awareness and reach",
-      "Direct engagement with your target audience",
-      "Increased website traffic from social platforms",
-      "Valuable insights into customer behavior"
+      "Peningkatan kesadaran dan jangkauan merek",
+      "Keterlibatan langsung dengan audiens target Anda",
+      "Peningkatan lalu lintas situs web dari platform sosial",
+      "Wawasan berharga tentang perilaku pelanggan"
     ],
     icon: Megaphone,
     image: 'vworks-smm',
   },
   {
     slug: 'content-marketing',
-    title: 'Content Marketing',
-    description: 'Tell your story and provide value with compelling, high-quality content.',
-    longDescription: "Content is king, and we are the kingmakers. Our team of writers and strategists develops compelling content that educates, entertains, and inspires your audience. We create blog posts, articles, videos, and more to establish your authority and drive conversions.",
+    title: 'Pemasaran Konten',
+    description: 'Ceritakan kisah Anda dan berikan nilai dengan konten yang menarik dan berkualitas tinggi.',
+    longDescription: "Konten adalah raja, dan kami adalah pembuatnya. Tim penulis dan ahli strategi kami mengembangkan konten menarik yang mendidik, menghibur, dan menginspirasi audiens Anda. Kami membuat postingan blog, artikel, video, dan lainnya untuk membangun otoritas Anda dan mendorong konversi.",
     benefits: [
-      "Establishes your brand as an industry leader",
-      "Builds lasting relationships with your audience",
-      "Improves SEO performance and organic traffic",
-      "Supports all other digital marketing efforts"
+      "Membangun merek Anda sebagai pemimpin industri",
+      "Membangun hubungan jangka panjang dengan audiens Anda",
+      "Meningkatkan kinerja SEO dan lalu lintas organik",
+      "Mendukung semua upaya pemasaran digital lainnya"
     ],
     icon: PenSquare,
     image: 'vworks-content',
   },
   {
     slug: 'paid-advertising',
-    title: 'Paid Advertising',
-    description: 'Get immediate results and target specific audiences with paid ad campaigns.',
-    longDescription: "Our data-driven paid advertising campaigns are designed for maximum ROI. We utilize platforms like Google Ads and social media advertising to reach your ideal customers at the right time, with the right message, ensuring every dollar of your ad spend is optimized for performance.",
+    title: 'Iklan Berbayar',
+    description: 'Dapatkan hasil cepat dan targetkan audiens spesifik dengan kampanye iklan berbayar.',
+    longDescription: "Kampanye iklan berbayar berbasis data kami dirancang untuk ROI maksimum. Kami memanfaatkan platform seperti Google Ads dan iklan media sosial untuk menjangkau pelanggan ideal Anda pada waktu yang tepat, dengan pesan yang tepat, memastikan setiap dolar dari pengeluaran iklan Anda dioptimalkan untuk kinerja.",
     benefits: [
-      "Immediate and highly targeted traffic",
-      "Full control over your budget and ad spend",
-      "A/B testing for continuous optimization",
-      "Detailed performance tracking and reporting"
+      "Lalu lintas yang cepat dan sangat bertarget",
+      "Kontrol penuh atas anggaran dan pengeluaran iklan Anda",
+      "Pengujian A/B untuk optimisasi berkelanjutan",
+      "Pelacakan dan pelaporan kinerja yang terperinci"
     ],
     icon: Target,
     image: 'vworks-ads',
   },
   {
     slug: 'website-development',
-    title: 'Website Development',
-    description: 'Create a fast, responsive, and user-friendly website that converts visitors.',
-    longDescription: "Your website is your digital storefront. We build beautiful, responsive, and high-performing websites that provide an exceptional user experience. From e-commerce platforms to corporate sites, we ensure your website is a powerful tool for business growth.",
+    title: 'Pengembangan Situs Web',
+    description: 'Buat situs web yang cepat, responsif, dan ramah pengguna yang dapat mengubah pengunjung.',
+    longDescription: "Situs web Anda adalah etalase digital Anda. Kami membangun situs web yang indah, responsif, dan berkinerja tinggi yang memberikan pengalaman pengguna yang luar biasa. Dari platform e-commerce hingga situs perusahaan, kami memastikan situs web Anda adalah alat yang ampuh untuk pertumbuhan bisnis.",
     benefits: [
-      "A professional and modern online presence",
-      "Optimized for all devices (mobile-first)",
-      "Fast loading speeds for better user experience and SEO",
-      "Easy-to-manage content management systems"
+      "Kehadiran online yang profesional dan modern",
+      "Dioptimalkan untuk semua perangkat (mobile-first)",
+      "Kecepatan muat yang cepat untuk pengalaman pengguna dan SEO yang lebih baik",
+      "Sistem manajemen konten yang mudah dikelola"
     ],
     icon: Code,
     image: 'vworks-webdev',

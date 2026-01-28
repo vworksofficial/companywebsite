@@ -115,9 +115,9 @@ export default function Home() {
       <section id="services" className="py-16 md:py-24 bg-background">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Our Core Services</h2>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Layanan Utama Kami</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              We provide a complete suite of digital marketing solutions tailored to your business needs.
+              Kami menyediakan rangkaian lengkap solusi pemasaran digital yang disesuaikan dengan kebutuhan bisnis Anda.
             </p>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -147,7 +147,7 @@ export default function Home() {
                     </div>
                     <p className="mt-4 text-muted-foreground">{service.description}</p>
                     <Button asChild variant="link" className="mt-4 px-0 text-primary">
-                      <Link href={`/services/${service.slug}`}>Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                      <Link href={`/services/${service.slug}`}>Pelajari Selengkapnya <ArrowRight className="ml-2 h-4 w-4" /></Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -160,26 +160,26 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-card">
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div className="max-w-lg">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Who We Are</h2>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Siapa Kami</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              VWORKS.ID is a team of passionate digital experts committed to helping your business thrive in the online world. We believe in building partnerships, not just client lists.
+              VWORKS.ID adalah tim ahli digital yang bersemangat untuk membantu bisnis Anda berkembang di dunia online. Kami percaya dalam membangun kemitraan, bukan hanya daftar klien.
             </p>
             <ul className="mt-6 space-y-3 text-muted-foreground">
               <li className="flex items-center gap-3">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span><span className="font-bold text-foreground">Professional:</span> Upholding the highest standards in every project.</span>
+                <span><span className="font-bold text-foreground">Profesional:</span> Menjunjung tinggi standar tertinggi di setiap proyek.</span>
               </li>
               <li className="flex items-center gap-3">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span><span className="font-bold text-foreground">Transparent:</span> Clear communication and honest reporting.</span>
+                <span><span className="font-bold text-foreground">Transparan:</span> Komunikasi yang jelas dan pelaporan yang jujur.</span>
               </li>
               <li className="flex items-center gap-3">
                 <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span><span className="font-bold text-foreground">Growth-Oriented:</span> Focused on strategies that scale your business.</span>
+                <span><span className="font-bold text-foreground">Berorientasi Pertumbuhan:</span> Fokus pada strategi yang menskalakan bisnis Anda.</span>
               </li>
             </ul>
             <Button asChild size="lg" variant="outline" className="mt-8 border-primary text-primary hover:bg-primary/10 hover:text-primary">
-              <Link href="/about">More About Our Mission</Link>
+              <Link href="/about">Lebih Lanjut Tentang Misi Kami</Link>
             </Button>
           </div>
           <div>
@@ -197,12 +197,12 @@ export default function Home() {
 
       <section className="py-16 md:py-24 bg-primary text-primary-foreground">
         <div className="container text-center">
-          <h2 className="text-3xl md:text-4xl font-headline font-bold">Ready to Grow Your Business?</h2>
+          <h2 className="text-3xl md:text-4xl font-headline font-bold">Siap Mengembangkan Bisnis Anda?</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
-            Let's discuss how our digital strategies can be tailored to meet your unique goals.
+            Mari diskusikan bagaimana strategi digital kami dapat disesuaikan untuk memenuhi tujuan unik Anda.
           </p>
           <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105">
-            <Link href="/contact">Start a Project With Us <ArrowRight className="ml-2 h-5 w-5" /></Link>
+            <Link href="/contact">Mulai Proyek Bersama Kami <ArrowRight className="ml-2 h-5 w-5" /></Link>
           </Button>
         </div>
       </section>
