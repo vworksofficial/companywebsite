@@ -27,7 +27,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="font-headline font-semibold text-foreground mb-4">Quick Links</h3>
+            <h3 className="font-headline font-semibold text-foreground mb-4">Tautan Cepat</h3>
             <ul className="space-y-2">
               {NAV_LINKS.map(link => (
                 <li key={link.href}>
@@ -38,14 +38,14 @@ export default function Footer() {
               ))}
                <li>
                   <Link href="/contact" className="text-sm text-muted-foreground hover:text-primary">
-                    Contact
+                    Kontak
                   </Link>
                 </li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-headline font-semibold text-foreground mb-4">Services</h3>
+            <h3 className="font-headline font-semibold text-foreground mb-4">Layanan</h3>
             <ul className="space-y-2">
               {SERVICES.map(service => (
                 <li key={service.slug}>
@@ -58,7 +58,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-headline font-semibold text-foreground mb-4">Contact Us</h3>
+            <h3 className="font-headline font-semibold text-foreground mb-4">Hubungi Kami</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>123 Digital Avenue, Webville, 12345</li>
               <li>Email: contact@vworks.com</li>

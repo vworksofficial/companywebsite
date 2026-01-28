@@ -38,7 +38,7 @@ export default function Header() {
             </Link>
           ))}
            <Button asChild>
-              <Link href="/contact">Contact Us</Link>
+              <Link href="/contact">Hubungi Kami</Link>
           </Button>
         </nav>
 
@@ -80,7 +80,7 @@ export default function Header() {
                   ))}
                 </nav>
                 <Button asChild className="mt-8 w-full" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Link href="/contact">Contact Us</Link>
+                    <Link href="/contact">Hubungi Kami</Link>
                 </Button>
               </div>
             </SheetContent>

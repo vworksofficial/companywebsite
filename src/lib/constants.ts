@@ -39,12 +39,12 @@ export type Article = {
 };
 
 export const NAV_LINKS: NavLink[] = [
-  { href: '/', label: 'Home' },
-  { href: '/services', label: 'Services' },
-  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/', label: 'Beranda' },
+  { href: '/services', label: 'Layanan' },
+  { href: '/portfolio', label: 'Portofolio' },
   { href: '/artikel', label: 'Artikel' },
-  { href: '/about', label: 'About Us' },
-  { href: '/career', label: 'Career' },
+  { href: '/about', label: 'Tentang Kami' },
+  { href: '/career', label: 'Karir' },
 ];
 
 export const SERVICES: Service[] = [
