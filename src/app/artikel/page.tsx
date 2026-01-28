@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { ARTICLES, PORTFOLIO_CATEGORIES } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
@@ -33,42 +32,58 @@ export default function ArtikelPage() {
 
   return (
     <>
-      <section className="bg-primary text-primary-foreground py-20 md:py-28">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-headline">Wawasan Digital</h1>
-          <p className="mt-4 max-w-2xl mx-auto text-sm text-primary-foreground/90">
-            Jelajahi artikel, tips, dan tren terbaru seputar dunia digital marketing untuk mendorong bisnis Anda.
-          </p>
+      <section className="border-b">
+        <div className="grid md:grid-cols-10 min-h-[400px]">
+          <div className="md:col-span-7 bg-primary text-primary-foreground flex flex-col justify-center px-8 py-16 md:p-20">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl md:text-5xl font-bold font-headline">Wawasan Digital</h1>
+              <p className="mt-4 text-sm text-primary-foreground/90">
+                Jelajahi artikel, tips, dan tren terbaru seputar dunia digital marketing untuk mendorong bisnis Anda.
+              </p>
+            </div>
+          </div>
+          
+          <div className="md:col-span-3 bg-card text-card-foreground flex flex-col justify-center p-8 md:p-12">
+            <h3 className="font-headline text-lg font-semibold mb-6">Telusuri per Kategori</h3>
+            <nav>
+              <ul className="space-y-4">
+                <li>
+                  <button
+                    onClick={() => setSelectedCategory(null)}
+                    className={cn(
+                      'w-full text-left text-base hover:text-primary transition-colors',
+                      !selectedCategory ? 'font-bold text-primary' : 'font-medium text-muted-foreground'
+                    )}
+                  >
+                    Semua Kategori
+                  </button>
+                </li>
+                {categoryDetails.map((category) => {
+                  if (!category) return null;
+                  const isActive = selectedCategory === category.name;
+                  return (
+                    <li key={category.slug}>
+                      <button
+                        onClick={() => setSelectedCategory(category.name)}
+                        className={cn(
+                          'w-full text-left text-base hover:text-primary transition-colors flex items-center gap-3',
+                          isActive ? 'font-bold text-primary' : 'font-medium text-muted-foreground'
+                        )}
+                      >
+                        <category.icon className="h-4 w-4 flex-shrink-0" />
+                        <span>{category.name}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          </div>
         </div>
       </section>
 
       <section className="py-16 md:py-24">
         <div className="container mx-auto">
-          <div className="mb-12 flex flex-wrap items-center justify-center gap-2">
-            <Button
-              onClick={() => setSelectedCategory(null)}
-              variant={!selectedCategory ? 'secondary' : 'outline'}
-              className="rounded-full"
-            >
-              Semua Kategori
-            </Button>
-            {categoryDetails.map((category) => {
-              if (!category) return null;
-              const isActive = selectedCategory === category.name;
-              return (
-                <Button
-                  key={category.slug}
-                  onClick={() => setSelectedCategory(category.name)}
-                  variant={isActive ? 'secondary' : 'outline'}
-                  className="rounded-full"
-                >
-                  <category.icon className="mr-2 h-4 w-4" />
-                  {category.name}
-                </Button>
-              );
-            })}
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredArticles.map((article) => (
               <Card key={article.slug} className="group flex flex-col overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
