@@ -38,7 +38,9 @@ export default function Home() {
                   data-ai-hint={heroImage.imageHint}
                 />
               )}
-              <div className="absolute -top-5 -right-5 w-full h-full bg-accent/30 rounded-lg z-0 transform transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-3"></div>
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-accent/20 rounded-full z-0 transition-all duration-500 ease-in-out group-hover:scale-110"></div>
+              <div className="absolute bottom-10 -left-10 w-40 h-40 border-8 border-primary/20 rounded-lg z-0 transform rotate-12 transition-all duration-500 ease-in-out group-hover:rotate-6 group-hover:scale-105"></div>
+              <div className="absolute -bottom-8 right-12 w-24 h-24 bg-primary/10 rounded-full z-0 transition-all duration-500 ease-in-out group-hover:translate-x-4"></div>
             </div>
           </div>
         </div>
