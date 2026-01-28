@@ -44,7 +44,11 @@ export default function ArtikelPage() {
   const otherArticles = filteredArticles.slice(1);
   
   const FilterControlsSkeleton = () => (
-    <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+    <div className="grid md:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
+      <div className="space-y-2">
+        <Skeleton className="h-6 w-3/4" />
+        <Skeleton className="h-4 w-full" />
+      </div>
       <Skeleton className="h-10 w-full" />
       <Skeleton className="h-10 w-full" />
     </div>
@@ -55,7 +59,11 @@ export default function ArtikelPage() {
       <section className="py-8 border-b bg-card">
         <div className="container mx-auto">
            {isClient ? (
-              <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
+                <div>
+                  <h2 className="font-headline text-xl font-bold text-primary">Blog & Artikel</h2>
+                  <p className="text-muted-foreground text-sm">Perluas wawasan digital Anda bersama kami</p>
+                </div>
                 <div>
                   <Select onValueChange={(value) => setSelectedCategory(value === 'all' ? null : value)} value={selectedCategory || 'all'}>
                     <SelectTrigger className="w-full">
