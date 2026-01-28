@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator';
 export default function ServicesPage() {
   return (
     <>
-      <section className="bg-primary text-primary-foreground py-20 md:py-28">
+      <section className="bg-primary text-primary-foreground py-16 md:py-20 bg-hero-texture">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">Layanan & Harga</h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
