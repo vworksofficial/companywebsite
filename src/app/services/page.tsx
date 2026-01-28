@@ -84,12 +84,8 @@ export default function ServicesPage() {
               const CategoryIcon = pkg.categoryIcon;
 
               return (
-                <Card key={pkg.name} className="relative flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-300 w-full overflow-visible">
+                <Card key={pkg.name} className="flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-300 w-full">
                   
-                  <div className="absolute top-0 right-4 -translate-y-1/2 bg-accent text-accent-foreground px-4 py-2 rounded-lg shadow-lg">
-                      <p className="text-xl font-bold">{pkg.price}</p>
-                  </div>
-
                   <CardHeader className="flex-grow-0 pt-8">
                     <div className="flex items-center gap-2 text-sm font-semibold text-primary mb-2">
                        <CategoryIcon className="h-5 w-5 flex-shrink-0" />
@@ -133,7 +129,10 @@ export default function ServicesPage() {
                       )}
                     </div>
                   </CardContent>
-                  <CardFooter className="pt-4 mt-auto">
+                  <CardFooter className="pt-4 mt-auto flex flex-col gap-4">
+                    <div className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg text-center">
+                        <p className="text-xl font-bold">{pkg.price}</p>
+                    </div>
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                       <Link href="/contact">Pesan Sekarang</Link>
                     </Button>
