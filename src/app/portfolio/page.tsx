@@ -64,7 +64,7 @@ export default function PortfolioPage() {
                         : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
                     )}
                     >
-                    All Projects
+                    Semua Project
                     </Button>
                     {PORTFOLIO_CATEGORIES.map((category) => {
                     const isActive = selectedCategory === category.name;
