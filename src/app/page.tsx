@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, CheckCircle2, Target, Eye } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SERVICES } from '@/lib/constants';
+import { SERVICES, PRICING_DATA } from '@/lib/constants';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Home() {
@@ -46,13 +46,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-8 bg-card border-y">
+      <section className="py-8 bg-primary/95 border-y border-primary-foreground/10">
         <div className="container mx-auto">
-          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
-            {SERVICES.map((service) => (
-              <div key={service.slug} className="flex items-center gap-2 text-muted-foreground font-semibold text-sm">
-                <service.icon className="h-5 w-5 text-primary" />
-                <span>{service.title}</span>
+          <div className="flex flex-wrap justify-center items-center gap-3">
+            {PRICING_DATA.map((category) => (
+              <div key={category.category} className="flex items-center gap-2 rounded-full border border-primary-foreground/30 bg-black/20 px-4 py-2 text-sm font-semibold text-primary-foreground">
+                <category.icon className="h-4 w-4" />
+                <span>{category.category}</span>
               </div>
             ))}
           </div>
