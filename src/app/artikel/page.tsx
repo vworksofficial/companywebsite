@@ -36,7 +36,7 @@ export default function ArtikelPage() {
       <section className="bg-primary text-primary-foreground py-20 md:py-28">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">Wawasan Digital</h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
+          <p className="mt-4 max-w-2xl mx-auto text-sm text-primary-foreground/90">
             Jelajahi artikel, tips, dan tren terbaru seputar dunia digital marketing untuk mendorong bisnis Anda.
           </p>
         </div>
