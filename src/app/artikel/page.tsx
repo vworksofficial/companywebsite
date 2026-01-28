@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -11,10 +11,16 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ArtikelPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const categoryStyles: { [key: string]: string } = {
     'Web Development': 'bg-sky-100 text-sky-900 border-sky-200',
@@ -37,35 +43,46 @@ export default function ArtikelPage() {
   const featuredArticle = filteredArticles[0];
   const otherArticles = filteredArticles.slice(1);
   
+  const FilterControlsSkeleton = () => (
+    <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+      <Skeleton className="h-10 w-full" />
+      <Skeleton className="h-10 w-full" />
+    </div>
+  );
+
   return (
     <>
       <section className="py-8 border-b bg-card">
         <div className="container mx-auto">
-           <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
-              <div>
-                <Select onValueChange={(value) => setSelectedCategory(value === 'all' ? null : value)} value={selectedCategory || 'all'}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Pilih Kategori" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Semua Kategori</SelectItem>
-                    {allCategories.map((category) => (
-                      <SelectItem key={category} value={category}>{category}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+           {isClient ? (
+              <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                <div>
+                  <Select onValueChange={(value) => setSelectedCategory(value === 'all' ? null : value)} value={selectedCategory || 'all'}>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Pilih Kategori" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Semua Kategori</SelectItem>
+                      {allCategories.map((category) => (
+                        <SelectItem key={category} value={category}>{category}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    placeholder="Cari judul artikel..."
+                    className="pl-10"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input
-                  type="text"
-                  placeholder="Cari judul artikel..."
-                  className="pl-10"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-              </div>
-            </div>
+           ) : (
+             <FilterControlsSkeleton />
+           )}
         </div>
       </section>
 
