@@ -25,7 +25,7 @@ export default function Home() {
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-4xl md:text-5xl font-bold leading-tight">
-              Your Partner to Leap Together
+              Partner Anda untuk Melompat Bersama
             </h1>
             <p className="mt-6 max-w-xl text-base text-primary-foreground/90">
               Kami bantu brand Anda ditemukan, dikenal, dan dipilih. VWORKS.ID menghadirkan solusi digital marketing mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis secara berkelanjutan.
@@ -55,8 +55,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-background border-y">
-        <div className="container mx-auto py-4">
+      <section className="bg-background border-y py-4">
+        <div className="container mx-auto">
           <div className="flex flex-wrap justify-center items-center gap-3">
             {PRICING_DATA.map((category) => (
               <div key={category.category} className="flex items-center gap-2 rounded-full border bg-card px-4 py-2 text-sm font-semibold text-muted-foreground">
@@ -72,7 +72,7 @@ export default function Home() {
         <div className="container">
           <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
           <div className="w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-            <ul className="flex items-center animate-marquee">
+            <ul className="flex items-center animate-marquee flex-nowrap">
               {[...DUMMY_LOGOS, ...DUMMY_LOGOS].map((logo, index) => (
                 <li key={`${logo.name}-${index}`} className="mx-8 flex-shrink-0">
                   <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
