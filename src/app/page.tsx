@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
@@ -11,7 +12,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="py-28 md:py-40 bg-primary text-primary-foreground">
+      <section className="py-20 md:py-28 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-3xl md:text-4xl font-bold">
