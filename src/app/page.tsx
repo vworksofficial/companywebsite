@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="py-20 md:py-32 bg-primary text-primary-foreground">
+      <section className="py-28 md:py-40 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-3xl md:text-4xl font-bold">
@@ -24,18 +24,21 @@ export default function Home() {
               <Link href="/contact">Get Your Free Consultation <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
-          <div className="flex justify-center">
-            {heroImage && (
-              <Image
-                src={heroImage.imageUrl}
-                alt={heroImage.description}
-                width={600}
-                height={500}
-                className="rounded-lg shadow-xl"
-                priority
-                data-ai-hint={heroImage.imageHint}
-              />
-            )}
+          <div className="flex items-center justify-center">
+            <div className="relative group">
+              {heroImage && (
+                <Image
+                  src={heroImage.imageUrl}
+                  alt={heroImage.description}
+                  width={600}
+                  height={500}
+                  className="rounded-lg shadow-xl relative z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
+                  priority
+                  data-ai-hint={heroImage.imageHint}
+                />
+              )}
+              <div className="absolute -top-5 -right-5 w-full h-full bg-accent/30 rounded-lg z-0 transform transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-3"></div>
+            </div>
           </div>
         </div>
       </section>
