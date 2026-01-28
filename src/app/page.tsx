@@ -14,7 +14,7 @@ export default function Home() {
       <section className="py-20 md:py-32 bg-background">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="font-headline text-4xl md:text-6xl font-bold text-primary">
+            <h1 className="font-headline text-2xl md:text-3xl font-bold text-primary">
               Your Partner to Leap Together
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
