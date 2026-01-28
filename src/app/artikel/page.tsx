@@ -166,7 +166,11 @@ export default function ArtikelPage() {
                     <p className="text-muted-foreground text-sm">{article.excerpt}</p>
                   </CardContent>
                   <CardFooter>
-                    <p className="text-xs text-muted-foreground">{article.date}</p>
+                    <Button asChild variant="link" className="px-0">
+                      <Link href={`/artikel/${article.slug}`}>
+                        Lanjutkan membaca <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
                   </CardFooter>
                 </Card>
               ))}
