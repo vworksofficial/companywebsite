@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { NAV_LINKS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
@@ -51,20 +51,15 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[300px] sm:w-[350px]">
-              <div className="p-4">
-                <div className="flex items-center justify-between">
-                    <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Image src="https://i.imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={28} height={28} />
-                        <span className="font-headline text-xl font-bold">VWORKS.ID</span>
-                    </Link>
-                    <SheetTrigger asChild>
-                        <Button variant="ghost" size="icon">
-                            <X className="h-6 w-6" />
-                            <span className="sr-only">Close menu</span>
-                        </Button>
-                    </SheetTrigger>
-                </div>
-                <nav className="mt-8 flex flex-col gap-6">
+              <SheetHeader>
+                <SheetTitle className="sr-only">Menu</SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col h-full">
+                <Link href="/" className="flex items-center gap-2 mb-8" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Image src="https://i.imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={28} height={28} />
+                    <span className="font-headline text-xl font-bold">VWORKS.ID</span>
+                </Link>
+                <nav className="flex flex-col gap-6">
                   {NAV_LINKS.map((link) => (
                     <Link
                       key={link.href}
@@ -79,7 +74,7 @@ export default function Header() {
                     </Link>
                   ))}
                 </nav>
-                <Button asChild className="mt-8 w-full" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button asChild className="mt-auto" onClick={() => setIsMobileMenuOpen(false)}>
                     <Link href="/contact">Hubungi Kami</Link>
                 </Button>
               </div>
