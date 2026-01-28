@@ -57,7 +57,7 @@ export default function ServicesPage() {
         <div className="container mx-auto space-y-16">
           {PRICING_DATA.map((category) => (
             <div key={category.category} id={toSlug(category.category)} className="scroll-mt-24">
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center justify-center gap-4 mb-8">
                 <div className="bg-primary/10 p-3 rounded-full">
                   <category.icon className="h-7 w-7 text-primary" />
                 </div>
