@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { PRICING_DATA } from '@/lib/constants';
 import { Check, X } from 'lucide-react';
@@ -7,8 +8,11 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 export default function ServicesPage() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
   const allPackages = PRICING_DATA.flatMap(category => 
     category.packages.map(pkg => ({
       ...pkg,
@@ -16,6 +20,10 @@ export default function ServicesPage() {
       categoryIcon: category.icon,
     }))
   );
+
+  const filteredPackages = selectedCategory
+    ? allPackages.filter(pkg => pkg.categoryName === selectedCategory)
+    : allPackages;
 
   return (
     <>
@@ -36,13 +44,41 @@ export default function ServicesPage() {
           <p className="mt-4 max-w-2xl mx-auto text-sm text-primary-foreground/90">
             Solusi digital yang transparan dan terukur untuk membantu bisnis Anda bertumbuh. Temukan paket yang paling sesuai dengan kebutuhan Anda.
           </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            <Button
+              onClick={() => setSelectedCategory(null)}
+              variant={!selectedCategory ? 'secondary' : 'ghost'}
+              className={cn({
+                'hover:bg-white/20 text-white': selectedCategory,
+              })}
+            >
+              Semua Layanan
+            </Button>
+            {PRICING_DATA.map((category) => {
+              const isActive = selectedCategory === category.category;
+              return (
+                <Button
+                  key={category.category}
+                  onClick={() => setSelectedCategory(category.category)}
+                  variant={isActive ? 'secondary' : 'ghost'}
+                  className={cn({
+                    'hover:bg-white/20 text-white': !isActive,
+                  })}
+                >
+                  <category.icon className="mr-2 h-4 w-4" />
+                  {category.category}
+                </Button>
+              );
+            })}
+          </div>
         </div>
       </section>
       
       <section className="py-16 md:py-24">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allPackages.map((pkg) => {
+            {filteredPackages.map((pkg) => {
               const includes = pkg.includes.split(',').map(item => item.trim()).filter(Boolean);
               const excludes = pkg.excludes.split(',').map(item => item.trim()).filter(Boolean);
               const CategoryIcon = pkg.categoryIcon;
