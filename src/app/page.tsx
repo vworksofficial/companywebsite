@@ -1,7 +1,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Target, Eye } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SERVICES } from '@/lib/constants';
@@ -40,6 +40,64 @@ export default function Home() {
               )}
               <div className="absolute -top-5 -right-5 w-full h-full bg-accent/30 rounded-lg z-0 transform transition-all duration-500 ease-in-out group-hover:scale-105 group-hover:rotate-3"></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="vision-mission" className="py-16 md:py-24 bg-card">
+        <div className="container mx-auto grid md:grid-cols-5 gap-12 items-start">
+          <div className="md:col-span-2">
+            <Card className="h-full">
+              <CardHeader>
+                <div className="flex items-center gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full text-primary">
+                    <Eye className="h-6 w-6" />
+                  </div>
+                  <CardTitle className="font-headline text-2xl md:text-3xl text-primary">Visi</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">
+                  Menjadi digital agency yang terpercaya dan berdampak dalam membantu brand, UMKM, dan institusi berkembang melalui strategi digital yang efektif, terukur, dan berkelanjutan.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+          <div className="md:col-span-3">
+             <Card className="h-full">
+              <CardHeader>
+                <div className="flex items-center gap-4">
+                   <div className="bg-primary/10 p-3 rounded-full text-primary">
+                    <Target className="h-6 w-6" />
+                  </div>
+                  <CardTitle className="font-headline text-2xl md:text-3xl text-primary">Misi</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                    <span className="text-muted-foreground">Menyediakan layanan digital marketing yang strategis, kreatif, dan berbasis data untuk meningkatkan visibilitas, leads, dan penjualan klien.</span>
+                  </li>
+                   <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                    <span className="text-muted-foreground">Membangun kemitraan jangka panjang dengan klien melalui komunikasi yang transparan dan hasil kerja yang profesional.</span>
+                  </li>
+                   <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                    <span className="text-muted-foreground">Menghadirkan solusi digital yang relevan dengan perkembangan teknologi dan perilaku pasar.</span>
+                  </li>
+                   <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                    <span className="text-muted-foreground">Mengembangkan tim yang adaptif, kolaboratif, dan terus bertumbuh dalam ekosistem digital.</span>
+                  </li>
+                   <li className="flex items-start gap-3">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                    <span className="text-muted-foreground">Membantu bisnis lokal dan institusi pendidikan memanfaatkan potensi digital secara optimal.</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
