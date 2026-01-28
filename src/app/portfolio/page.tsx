@@ -121,7 +121,7 @@ export default function PortfolioPage() {
                       )}
                   </div>
                   {/* Right Column - Image */}
-                  <div className="relative min-h-[300px] md:min-h-0 order-first md:order-last">
+                  <div className="relative aspect-square order-first md:order-last">
                       <Image
                           src={item.image}
                           alt={item.title}
