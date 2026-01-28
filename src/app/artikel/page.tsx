@@ -44,7 +44,7 @@ export default function ArtikelPage() {
   const otherArticles = filteredArticles.slice(1);
   
   const FilterControlsSkeleton = () => (
-    <div className="grid md:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
+    <div className="grid md:grid-cols-3 gap-8 items-center">
       <div className="space-y-2">
         <Skeleton className="h-6 w-3/4" />
         <Skeleton className="h-4 w-full" />
@@ -59,7 +59,7 @@ export default function ArtikelPage() {
       <section className="py-4 border-b bg-card">
         <div className="container mx-auto">
            {isClient ? (
-              <div className="grid md:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-8 items-center">
                 <div>
                   <h2 className="font-headline text-xl font-bold text-primary">Blog & Artikel</h2>
                   <p className="text-muted-foreground text-sm">Perluas wawasan digital Anda bersama kami</p>
