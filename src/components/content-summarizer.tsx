@@ -15,7 +15,7 @@ export default function ContentSummarizer() {
         <MessageCircle
           className="h-full w-full text-green-500 transition-colors group-hover:text-green-600"
           fill="currentColor"
-          strokeWidth={1}
+          strokeWidth={0}
         />
         <Phone
           className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 text-white"
