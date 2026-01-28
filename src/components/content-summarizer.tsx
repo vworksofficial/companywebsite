@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { MessageCircle } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 export default function ContentSummarizer() {
   return (
@@ -12,7 +12,7 @@ export default function ContentSummarizer() {
       aria-label="Chat on WhatsApp"
     >
       <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
-        <MessageCircle className="h-7 w-7" />
+        <Phone className="h-7 w-7" />
       </a>
     </Button>
   );
