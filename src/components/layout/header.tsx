@@ -36,13 +36,10 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
+           <Button asChild>
+              <Link href="/contact">Contact Us</Link>
+          </Button>
         </nav>
-
-        <div className="hidden md:flex items-center gap-2">
-            <Button asChild>
-                <Link href="/contact">Contact Us</Link>
-            </Button>
-        </div>
 
         <div className="md:hidden">
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
