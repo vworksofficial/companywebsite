@@ -19,8 +19,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params: { slug } }: ArticlePageProps) {
-  const article = ARTICLES.find((a) => a.slug === slug);
+export async function generateMetadata({ params }: ArticlePageProps) {
+  const article = ARTICLES.find((a) => a.slug === params.slug);
 
   if (!article) {
     return {
@@ -34,7 +34,8 @@ export async function generateMetadata({ params: { slug } }: ArticlePageProps) {
   };
 }
 
-export default function ArticlePage({ params: { slug } }: ArticlePageProps) {
+export default function ArticlePage({ params }: ArticlePageProps) {
+  const { slug } = params;
   const article = ARTICLES.find((a) => a.slug === slug);
 
   if (!article) {

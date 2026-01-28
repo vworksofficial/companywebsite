@@ -19,8 +19,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params: { slug } }: ServicePageProps) {
-  const service = SERVICES.find((s) => s.slug === slug);
+export async function generateMetadata({ params }: ServicePageProps) {
+  const service = SERVICES.find((s) => s.slug === params.slug);
 
   if (!service) {
     return {
@@ -35,7 +35,8 @@ export async function generateMetadata({ params: { slug } }: ServicePageProps) {
 }
 
 
-export default function ServicePage({ params: { slug } }: ServicePageProps) {
+export default function ServicePage({ params }: ServicePageProps) {
+  const { slug } = params;
   const service = SERVICES.find((s) => s.slug === slug);
 
   if (!service) {
