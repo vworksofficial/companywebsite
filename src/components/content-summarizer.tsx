@@ -12,19 +12,20 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { summarizeContent } from '@/ai/flows/content-summarization';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function ContentSummarizer() {
   const [summary, setSummary] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     // Reset summary when the path changes, so it refetches for the new page
     setSummary('');
     setIsLoading(false);
-  }, [pathname]);
+  }, [pathname, searchParams]);
 
   const handleSummarize = async () => {
     // Avoid re-fetching if summary is already available or if it's loading
