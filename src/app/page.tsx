@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="py-16 md:py-20 bg-primary text-primary-foreground bg-hero-texture">
+      <section className="py-12 md:py-16 bg-primary text-primary-foreground bg-hero-texture">
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-4xl md:text-5xl font-bold leading-tight">
@@ -72,16 +72,16 @@ export default function Home() {
         <div className="container">
           <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
           <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-            <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 animate-marquee">
+            <ul className="flex items-center animate-marquee">
               {DUMMY_LOGOS.map((logo) => (
-                <li key={logo.name}>
+                <li key={logo.name} className="mx-8">
                   <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
                 </li>
               ))}
             </ul>
-            <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 animate-marquee" aria-hidden="true">
+            <ul className="flex items-center animate-marquee" aria-hidden="true">
               {DUMMY_LOGOS.map((logo) => (
-                <li key={logo.name}>
+                <li key={logo.name} className="mx-8">
                   <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
                 </li>
               ))}
