@@ -104,7 +104,7 @@ export default function ServicePage({ params: { slug } }: ServicePageProps) {
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-headline font-bold text-primary">Explore Other Services</h2>
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-              {SERVICES.filter(s => s.slug !== service.slug).map(otherService => (
+              {SERVICES.filter(s => s.slug !== slug).map(otherService => (
                 <Link key={otherService.slug} href={`/services/${otherService.slug}`}>
                   <div className="group flex flex-col items-center justify-center p-4 border rounded-lg h-full hover:bg-primary/5 hover:shadow-lg transition-all">
                       <div className="bg-primary/10 p-3 rounded-full text-primary mb-2 group-hover:scale-110 transition-transform">
