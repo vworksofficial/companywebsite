@@ -8,10 +8,13 @@ import { ARTICLES } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function ArtikelPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const categoryStyles: { [key: string]: string } = {
     'Web Development': 'bg-sky-100 text-sky-900 border-sky-200',
@@ -23,42 +26,45 @@ export default function ArtikelPage() {
     'Keuangan': 'bg-slate-100 text-slate-900 border-slate-200',
   };
 
-  const filteredArticles = selectedCategory
-    ? ARTICLES.filter(item => item.category === selectedCategory)
-    : ARTICLES;
+  const allCategories = [...new Set(ARTICLES.map(a => a.category))];
+
+  const filteredArticles = ARTICLES.filter(article => {
+    const matchesCategory = selectedCategory ? article.category === selectedCategory : true;
+    const matchesSearch = searchTerm ? article.title.toLowerCase().includes(searchTerm.toLowerCase()) : true;
+    return matchesCategory && matchesSearch;
+  });
 
   const featuredArticle = filteredArticles[0];
   const otherArticles = filteredArticles.slice(1);
   
-  const allCategories = [...new Set(ARTICLES.map(a => a.category))];
-  
   return (
     <>
-      <section className="py-6 border-b bg-card">
+      <section className="py-8 border-b bg-card">
         <div className="container mx-auto">
-           <div className="flex flex-wrap items-center justify-center gap-2">
-              <Button
-                onClick={() => setSelectedCategory(null)}
-                variant={!selectedCategory ? 'default' : 'outline'}
-                size="sm"
-                className="rounded-full"
-              >
-                Semua Kategori
-              </Button>
-              {allCategories.map((category) => {
-                const isActive = selectedCategory === category;
-                return (
-                  <Button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    variant={isActive ? 'default' : 'outline'}
-                    size="sm"
-                    className="rounded-full"
-                  >
-                    {category}
-                  </Button>
-                );
-              })}
+           <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+              <div>
+                <Select onValueChange={(value) => setSelectedCategory(value === 'all' ? null : value)} value={selectedCategory || 'all'}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Pilih Kategori" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Semua Kategori</SelectItem>
+                    {allCategories.map((category) => (
+                      <SelectItem key={category} value={category}>{category}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Cari judul artikel..."
+                  className="pl-10"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
             </div>
         </div>
       </section>
@@ -147,7 +153,7 @@ export default function ArtikelPage() {
       {filteredArticles.length === 0 && (
           <section className="py-16 md:py-24">
             <div className="container mx-auto text-center">
-                <p className="text-lg text-muted-foreground">Tidak ada artikel yang ditemukan untuk kategori ini.</p>
+                <p className="text-lg text-muted-foreground">Tidak ada artikel yang ditemukan untuk kriteria pencarian ini.</p>
             </div>
           </section>
       )}
