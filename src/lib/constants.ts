@@ -19,7 +19,7 @@ type Service = {
 export type PortfolioItem = {
   slug: string;
   title: string;
-  category: 'Website' | 'Social Media' | 'Branding';
+  category: 'Web Development' | 'Social Media Management' | 'Branding & Design' | 'SEO';
   description: string;
   image: string;
   imageHint: string;
@@ -265,9 +265,10 @@ export const PRICING_DATA: PricingCategory[] = [
 ];
 
 export const PORTFOLIO_CATEGORIES = [
-  { slug: 'website', name: 'Website', icon: Code },
-  { slug: 'social-media', name: 'Social Media', icon: Megaphone },
-  { slug: 'branding', name: 'Branding', icon: Palette },
+  { slug: 'web-development', name: 'Web Development', icon: Code },
+  { slug: 'social-media-management', name: 'Social Media Management', icon: Megaphone },
+  { slug: 'branding-design', name: 'Branding & Design', icon: Palette },
+  { slug: 'seo', name: 'SEO', icon: LineChart },
 ];
 
 
@@ -275,7 +276,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     slug: 'corporate-web-revamp',
     title: 'Corporate Website Revamp',
-    category: 'Website',
+    category: 'Web Development',
     description: 'A complete overhaul of a corporate website to improve user experience, mobile responsiveness, and lead generation.',
     image: 'https://picsum.photos/seed/portfolio1/500/400',
     imageHint: 'corporate website',
@@ -283,7 +284,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     slug: 'smm-campaign-fashion',
     title: 'Fashion Brand SMM Campaign',
-    category: 'Social Media',
+    category: 'Social Media Management',
     description: 'Managed a 3-month social media campaign for a new fashion brand, resulting in a 200% increase in followers and high engagement rates.',
     image: 'https://picsum.photos/seed/portfolio2/500/400',
     imageHint: 'fashion social media',
@@ -291,7 +292,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     slug: 'startup-branding-kit',
     title: 'Tech Startup Branding Kit',
-    category: 'Branding',
+    category: 'Branding & Design',
     description: 'Developed a full branding package for a tech startup, including logo design, color palette, typography, and brand guidelines.',
     image: 'https://picsum.photos/seed/portfolio3/500/400',
     imageHint: 'startup branding',
@@ -299,7 +300,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     slug: 'ecommerce-store-launch',
     title: 'E-commerce Store Launch',
-    category: 'Website',
+    category: 'Web Development',
     description: 'Built a full-featured e-commerce store on Shopify, including custom theme development and payment gateway integration.',
     image: 'https://picsum.photos/seed/portfolio4/500/400',
     imageHint: 'ecommerce store',
@@ -307,7 +308,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
    {
     slug: 'restaurant-logo-design',
     title: 'Restaurant Logo & Menu Design',
-    category: 'Branding',
+    category: 'Branding & Design',
     description: 'Created a memorable logo and a beautifully designed menu for a new local restaurant, enhancing its brand identity.',
     image: 'https://picsum.photos/seed/portfolio5/500/400',
     imageHint: 'restaurant menu',
@@ -315,9 +316,17 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     slug: 'health-app-social-media',
     title: 'Health App Social Content',
-    category: 'Social Media',
+    category: 'Social Media Management',
     description: 'Produced engaging video and static content for a health and wellness app, growing their Instagram presence significantly.',
     image: 'https://picsum.photos/seed/portfolio6/500/400',
     imageHint: 'health app',
+  },
+  {
+    slug: 'local-business-seo',
+    title: 'Local Business SEO Success',
+    category: 'SEO',
+    description: 'Improved local search rankings for a small business, driving a 50% increase in foot traffic through targeted SEO strategies.',
+    image: 'https://picsum.photos/seed/portfolio7/500/400',
+    imageHint: 'local business',
   },
 ];
