@@ -1,6 +1,6 @@
 'use client';
 
-import { MessageCircle, Phone } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 export default function ContentSummarizer() {
   return (
@@ -12,15 +12,12 @@ export default function ContentSummarizer() {
       aria-label="Chat on WhatsApp"
     >
       <div className="relative h-full w-full">
-        <MessageCircle
-          className="h-full w-full text-green-500 transition-colors group-hover:text-green-600"
-          fill="currentColor"
-          strokeWidth={0}
-        />
-        <Phone
-          className="absolute left-1/2 top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 text-white"
-          strokeWidth={2.5}
-        />
+        <div className="flex h-full w-full items-center justify-center rounded-full rounded-bl-none bg-green-500 transition-colors group-hover:bg-green-600">
+          <Phone
+            className="h-7 w-7 text-white"
+            strokeWidth={2.5}
+          />
+        </div>
       </div>
     </a>
   );
