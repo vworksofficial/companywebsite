@@ -11,28 +11,32 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative h-[60vh] md:h-[70vh] w-full">
-        {heroImage && (
-          <Image
-            src={heroImage.imageUrl}
-            alt={heroImage.description}
-            fill
-            className="object-cover"
-            priority
-            data-ai-hint={heroImage.imageHint}
-          />
-        )}
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-4">
-          <h1 className="font-headline text-4xl md:text-6xl font-bold tracking-tight drop-shadow-md">
-            Vworks Digital Hub
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg md:text-xl text-primary-foreground/90 drop-shadow-sm">
-            Driving Growth Through Digital Excellence. We craft bespoke strategies that deliver real results.
-          </p>
-          <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105">
-            <Link href="/contact">Get Your Free Consultation <ArrowRight className="ml-2 h-5 w-5" /></Link>
-          </Button>
+      <section className="py-20 md:py-32 bg-background">
+        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="font-headline text-4xl md:text-6xl font-bold text-primary">
+              Vworks Digital Hub
+            </h1>
+            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+              Driving Growth Through Digital Excellence. We craft bespoke strategies that deliver real results.
+            </p>
+            <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
+              <Link href="/contact">Get Your Free Consultation <ArrowRight className="ml-2 h-5 w-5" /></Link>
+            </Button>
+          </div>
+          <div className="flex justify-center">
+            {heroImage && (
+              <Image
+                src={heroImage.imageUrl}
+                alt={heroImage.description}
+                width={600}
+                height={500}
+                className="rounded-lg shadow-xl"
+                priority
+                data-ai-hint={heroImage.imageHint}
+              />
+            )}
+          </div>
         </div>
       </section>
 
