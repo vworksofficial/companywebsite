@@ -55,8 +55,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-8 bg-background border-y">
-        <div className="container mx-auto">
+      <section className="bg-background border-y">
+        <div className="container mx-auto py-4">
           <div className="flex flex-wrap justify-center items-center gap-3">
             {PRICING_DATA.map((category) => (
               <div key={category.category} className="flex items-center gap-2 rounded-full border bg-card px-4 py-2 text-sm font-semibold text-muted-foreground">
