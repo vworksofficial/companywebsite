@@ -122,13 +122,13 @@ export default function PortfolioPage() {
                       )}
                       <div className="p-6 flex flex-col justify-center flex-grow">
                         <div>
-                            <div className="flex items-center gap-4 my-4">
-                                {/* Client Logo Placeholder */}
-                                <div className="bg-muted p-3 rounded-lg">
-                                    <Building className="h-6 w-6 text-muted-foreground" />
-                                </div>
-                                <h3 className="font-headline text-2xl font-bold">{item.title}</h3>
+                            {/* Row 1: Logo */}
+                            <div className="bg-muted p-3 rounded-lg w-fit mb-4">
+                                <Building className="h-6 w-6 text-muted-foreground" />
                             </div>
+                            {/* Row 2: Company Name */}
+                            <h3 className="font-headline text-2xl font-bold mb-2">{item.title}</h3>
+                            {/* Row 3: Description */}
                             <p className="text-muted-foreground text-sm mb-6">
                                 {item.description}
                             </p>
