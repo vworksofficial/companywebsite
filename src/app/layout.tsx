@@ -4,6 +4,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import ContentSummarizer from '@/components/content-summarizer';
+import { SquiggleDecorations } from '@/components/decorations/squiggles';
 
 export const metadata: Metadata = {
   title: 'Vworks Digital Hub - Driving Growth Through Digital Excellence',
@@ -23,7 +24,8 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <div className="flex min-h-screen flex-col">
+        <div className="relative flex min-h-screen flex-col overflow-x-hidden">
+          <SquiggleDecorations />
           <Header />
           <main className="flex-grow">{children}</main>
           <Footer />
