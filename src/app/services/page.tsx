@@ -49,7 +49,7 @@ export default function ServicesPage() {
             <Button
               onClick={() => setSelectedCategory(null)}
               variant={!selectedCategory ? 'secondary' : 'ghost'}
-              className={cn({
+              className={cn('border border-primary-foreground/30', {
                 'hover:bg-white/20 text-white': selectedCategory,
               })}
             >
@@ -62,7 +62,7 @@ export default function ServicesPage() {
                   key={category.category}
                   onClick={() => setSelectedCategory(category.category)}
                   variant={isActive ? 'secondary' : 'ghost'}
-                  className={cn({
+                  className={cn('border border-primary-foreground/30', {
                     'hover:bg-white/20 text-white': !isActive,
                   })}
                 >
