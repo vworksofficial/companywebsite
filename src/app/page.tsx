@@ -17,7 +17,7 @@ export default function Home() {
             <h1 className="font-headline text-2xl md:text-3xl font-bold text-primary">
               Your Partner to Leap Together
             </h1>
-            <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+            <p className="mt-6 max-w-xl text-sm text-muted-foreground">
               Driving Growth Through Digital Excellence. We craft bespoke strategies that deliver real results.
             </p>
             <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
