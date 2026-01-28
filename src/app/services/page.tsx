@@ -41,18 +41,18 @@ export default function ServicesPage() {
                 </div>
                 <h2 className="text-3xl font-bold font-headline text-primary">{category.category}</h2>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
+              <div className="flex flex-wrap justify-center gap-6">
                 {category.packages.map((pkg) => {
                   const includes = pkg.includes.split(',').map(item => item.trim()).filter(Boolean);
                   const excludes = pkg.excludes.split(',').map(item => item.trim()).filter(Boolean);
                   return (
-                    <Card key={pkg.name} className="flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                      <CardHeader>
+                    <Card key={pkg.name} className="flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-300 w-full max-w-sm">
+                      <CardHeader className="flex-grow-0">
                         <CardTitle className="font-headline text-xl">{pkg.name}</CardTitle>
                         <CardDescription>{pkg.title}</CardDescription>
                       </CardHeader>
                       <CardContent className="flex flex-col flex-grow">
-                        <div>
+                        <div className="flex-grow-0">
                           <p className="text-3xl font-bold text-primary">{pkg.price}</p>
                           <p className="text-sm text-muted-foreground mt-1">{pkg.description}</p>
                         </div>
