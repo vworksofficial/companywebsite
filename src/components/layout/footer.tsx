@@ -16,7 +16,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground text-sm">
-              Driving Growth Through Digital Excellence.
+              Your Partner to Leap Together
             </p>
             <div className="flex space-x-4 mt-6">
               <Link href="#" className="text-muted-foreground hover:text-primary"><Twitter /></Link>
