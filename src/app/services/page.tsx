@@ -13,6 +13,16 @@ import { cn } from '@/lib/utils';
 export default function ServicesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  const categoryStyles: { [key: string]: string } = {
+    'Web Development': 'bg-sky-100 text-sky-900',
+    'Digital Ads Service': 'bg-amber-100 text-amber-900',
+    'Social Media Management': 'bg-rose-100 text-rose-900',
+    'Branding & Design': 'bg-purple-100 text-purple-900',
+    'SEO & Artikel': 'bg-emerald-100 text-emerald-900',
+    'Content Creator': 'bg-pink-100 text-pink-900',
+    'Keuangan': 'bg-slate-200 text-slate-900',
+  };
+
   const allPackages = PRICING_DATA.flatMap(category => 
     category.packages.map(pkg => ({
       ...pkg,
@@ -84,13 +94,15 @@ export default function ServicesPage() {
               const CategoryIcon = pkg.categoryIcon;
 
               return (
-                <Card key={pkg.name} className="flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-300 w-full">
-                  
-                  <CardHeader className="flex-grow-0 pt-8">
-                    <div className="flex items-center gap-2 text-sm font-semibold text-primary mb-2">
-                       <CategoryIcon className="h-5 w-5 flex-shrink-0" />
-                       <span>{pkg.categoryName}</span>
+                <Card key={pkg.name} className="flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden">
+                  <div className={cn('p-3', categoryStyles[pkg.categoryName] || 'bg-gray-100')}>
+                    <div className="flex items-center gap-2 text-sm font-semibold">
+                        <CategoryIcon className="h-5 w-5 flex-shrink-0" />
+                        <span>{pkg.categoryName}</span>
                     </div>
+                  </div>
+                  
+                  <CardHeader className="flex-grow-0 pt-6">
                     <CardTitle className="font-headline text-xl">{pkg.name}</CardTitle>
                     <CardDescription>{pkg.title}</CardDescription>
                   </CardHeader>
