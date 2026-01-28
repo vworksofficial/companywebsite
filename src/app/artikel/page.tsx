@@ -36,7 +36,7 @@ export default function ArtikelPage() {
         <div className="grid md:grid-cols-10 min-h-[400px]">
           <div className="md:col-span-7 bg-primary text-primary-foreground flex flex-col justify-center px-8 py-16 md:p-20">
             <div className="max-w-2xl">
-              <h1 className="text-4xl md:text-5xl font-bold font-headline">Wawasan Digital</h1>
+              <h1 className="text-4xl md:text-5xl font-bold font-headline">Perluas Wawasan Digital Anda</h1>
               <p className="mt-4 text-sm text-primary-foreground/90">
                 Jelajahi artikel, tips, dan tren terbaru seputar dunia digital marketing untuk mendorong bisnis Anda.
               </p>
