@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="py-16 md:py-24 bg-primary text-primary-foreground bg-hero-texture">
+      <section className="py-16 md:py-20 bg-primary text-primary-foreground bg-hero-texture">
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-4xl md:text-5xl font-bold leading-tight">
@@ -22,7 +22,7 @@ export default function Home() {
               Kami bantu brand Anda ditemukan, dikenal, dan dipilih. VWORKS.ID menghadirkan solusi digital marketing mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis secara berkelanjutan.
             </p>
             <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link href="/contact">Get Your Free Consultation <ArrowRight className="ml-2 h-5 w-5" /></Link>
+              <Link href="/contact">Dapatkan Konsultasi Gratis <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
           <div className="flex items-center justify-center">
@@ -42,6 +42,19 @@ export default function Home() {
               <div className="absolute bottom-10 -left-10 w-40 h-40 border-8 border-primary/20 rounded-lg z-0 transform rotate-12 transition-all duration-500 ease-in-out group-hover:rotate-6 group-hover:scale-105"></div>
               <div className="absolute -bottom-8 right-12 w-24 h-24 bg-primary/10 rounded-full z-0 transition-all duration-500 ease-in-out group-hover:translate-x-4"></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-8 bg-card border-y">
+        <div className="container mx-auto">
+          <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4">
+            {SERVICES.map((service) => (
+              <div key={service.slug} className="flex items-center gap-2 text-muted-foreground font-semibold text-sm">
+                <service.icon className="h-5 w-5 text-primary" />
+                <span>{service.title}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -161,7 +174,7 @@ export default function Home() {
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div className="max-w-lg">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Siapa Kami</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-sm text-muted-foreground">
               VWORKS.ID adalah tim ahli digital yang bersemangat untuk membantu bisnis Anda berkembang di dunia online. Kami percaya dalam membangun kemitraan, bukan hanya daftar klien.
             </p>
             <ul className="mt-6 space-y-3 text-muted-foreground">
@@ -198,7 +211,7 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-primary text-primary-foreground">
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-headline font-bold">Siap Mengembangkan Bisnis Anda?</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
+          <p className="mt-4 max-w-2xl mx-auto text-base text-primary-foreground/90">
             Mari diskusikan bagaimana strategi digital kami dapat disesuaikan untuk memenuhi tujuan unik Anda.
           </p>
           <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90 transition-transform hover:scale-105">
