@@ -1,4 +1,4 @@
-import { LineChart, Megaphone, PenSquare, Target, Code, LucideIcon, Bot } from 'lucide-react';
+import { LineChart, Megaphone, PenSquare, Target, Code, LucideIcon, Palette, Video, Landmark } from 'lucide-react';
 
 type NavLink = {
   href: string;
@@ -96,4 +96,160 @@ export const SERVICES: Service[] = [
     icon: Code,
     image: 'vworks-webdev',
   },
+];
+
+type PricingPackage = {
+  name: string;
+  title: string;
+  price: string;
+  description: string;
+  includes: string;
+  excludes: string;
+};
+
+type PricingCategory = {
+  category: string;
+  icon: LucideIcon;
+  packages: PricingPackage[];
+};
+
+export const PRICING_DATA: PricingCategory[] = [
+    {
+        category: 'Web Development',
+        icon: Code,
+        packages: [
+            {
+                name: 'Vworks Web Dev',
+                title: 'Landing Page',
+                price: 'Rp 1.000.000',
+                description: 'Termasuk Domain & Hosting (1 Tahun)',
+                includes: 'Setup Domain/Hosting, Desain UI/UX, Mobile Responsive',
+                excludes: 'Perpanjangan tahun ke-2, Maintenance konten rutin'
+            },
+            {
+                name: 'Vworks Corp Web',
+                title: 'Website Corporation',
+                price: 'Rp 2.500.000',
+                description: 'Profil perusahaan lengkap & desain responsif',
+                includes: 'Integrasi Sosmed, SEO Basic, Email Bisnis',
+                excludes: 'Pembuatan aset foto/video produk'
+            }
+        ]
+    },
+    {
+        category: 'Digital Ads Service',
+        icon: Target,
+        packages: [
+            {
+                name: 'Vworks Ads',
+                title: 'Multi-Platform Ads',
+                price: 'Rp 300.000',
+                description: 'TikTok, FB, Shopee, Marketplace, Google',
+                includes: 'Riset Audience, Setup Campaign, Monitoring',
+                excludes: 'Saldo Iklan (Ad Spend), Materi konten (Creative)'
+            }
+        ]
+    },
+    {
+        category: 'Social Media Management',
+        icon: Megaphone,
+        packages: [
+            {
+                name: 'Vworks Social Starter',
+                title: 'Paket Basic (20 Content)',
+                price: 'Rp 600.000',
+                description: '20 Feed Instagram/FB per bulan',
+                includes: 'Desain Konten, Copywriting, Hashtag Research',
+                excludes: 'Balas komentar/DM, Saldo Ads'
+            },
+            {
+                name: 'Vworks Social Pro',
+                title: 'Paket Premium (40 Content)',
+                price: 'Rp 1.000.000',
+                description: '40 Feed Instagram/FB per bulan',
+                includes: 'Desain Konten, Admin Posting, Copywriting',
+                excludes: 'Photoshoot produk (jika di luar kota)'
+            }
+        ]
+    },
+    {
+        category: 'Branding & Design',
+        icon: Palette,
+        packages: [
+            {
+                name: 'Vworks Brand Pro',
+                title: 'Logo & Company Profile',
+                price: 'Rp 750.000',
+                description: 'Paket identitas visual lengkap (Bundle)',
+                includes: 'File Master (AI/PDF/PNG), Brand Guidelines',
+                excludes: 'Cetak fisik (Percetakan)'
+            }
+        ]
+    },
+    {
+        category: 'SEO & Artikel',
+        icon: LineChart,
+        packages: [
+            {
+                name: 'Vworks SEO Starter',
+                title: 'SEO Optimization Basic (30 Art)',
+                price: 'Rp 700.000',
+                description: 'Harga Promo (Normal: 850.000)',
+                includes: 'Riset Keyword, Artikel 500+ kata, Posting',
+                excludes: 'Backlink berbayar (PBN), Perbaikan teknis web'
+            },
+            {
+                name: 'Vworks SEO Pro',
+                title: 'SEO Optimization Premium (60 Art)',
+                price: 'Rp 1.300.000',
+                description: 'Harga Promo (Normal: 1.700.000)',
+                includes: 'Riset Keyword, Optimasi On-Page, Laporan bulanan',
+                excludes: 'Maintenance server website'
+            }
+        ]
+    },
+    {
+        category: 'Content Creator',
+        icon: Video,
+        packages: [
+            {
+                name: 'Video Keranjang Kuning',
+                title: 'Video Keranjang Kuning',
+                price: 'Rp 40.000 /konten',
+                description: 'Produk dikirim pelanggan (biaya ditanggung pelanggan)',
+                includes: 'Editing Video, Talent (Internal), Scripting',
+                excludes: 'Biaya kirim & balik produk'
+            },
+            {
+                name: 'Vworks Tiktok Branding',
+                title: 'Video Hiburan/Branding',
+                price: 'Rp 50.000 /konten',
+                description: 'Fokus pada engagement dan kreativitas',
+                includes: 'Konsep Kreatif, Editing, Audio Tren',
+                excludes: 'Biaya kirim & balik produk, Talent eksternal'
+            }
+        ]
+    },
+    {
+        category: 'Keuangan',
+        icon: Landmark,
+        packages: [
+            {
+                name: 'Vworks Finpro',
+                title: 'Akuntansi dan Perpajakan',
+                price: 'Rp 2.000.000/bulan',
+                description: 'Layanan Pengelolaan transaksi keuangan dan pelaporan pajak',
+                includes: 'Laporan laba rugi dan Neraca',
+                excludes: ''
+            },
+            {
+                name: 'Vworks Finpro Lite',
+                title: 'Akuntansi',
+                price: 'Rp 1.000.000/bulan',
+                description: 'Layanan Pengelolaan transaksi keuangan',
+                includes: '',
+                excludes: ''
+            }
+        ]
+    }
 ];
