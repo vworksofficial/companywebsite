@@ -25,9 +25,9 @@ const Squiggle = ({ className }: { className?: string }) => {
 export function SquiggleDecorations() {
   return (
     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-      <Squiggle className="absolute -left-20 top-80 text-primary/5 scale-[200%]" />
-      <Squiggle className="absolute -right-20 bottom-80 text-accent/10 scale-[200%] rotate-12" />
-      <Squiggle className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary/5 scale-[400%] rotate-45" />
+      <Squiggle className="absolute -left-20 top-80 text-primary/10 scale-[200%]" />
+      <Squiggle className="absolute -right-20 bottom-80 text-accent/20 scale-[200%] rotate-12" />
+      <Squiggle className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-primary/10 scale-[400%] rotate-45" />
     </div>
   );
 }
