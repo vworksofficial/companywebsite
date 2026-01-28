@@ -116,7 +116,7 @@ export default function Home() {
         <div className="container">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Layanan Utama Kami</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-sm text-muted-foreground">
               Kami menyediakan rangkaian lengkap solusi pemasaran digital yang disesuaikan dengan kebutuhan bisnis Anda.
             </p>
           </div>
