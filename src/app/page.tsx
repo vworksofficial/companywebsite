@@ -71,17 +71,10 @@ export default function Home() {
       <section className="bg-background pt-4 pb-16">
         <div className="container">
           <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
-          <div className="w-full flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-            <ul className="flex items-center animate-marquee flex-shrink-0">
-              {DUMMY_LOGOS.map((logo, index) => (
-                <li key={`${logo.name}-${index}`} className="mx-8">
-                  <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
-                </li>
-              ))}
-            </ul>
-            <ul className="flex items-center animate-marquee flex-shrink-0" aria-hidden="true">
-              {DUMMY_LOGOS.map((logo, index) => (
-                <li key={`${logo.name}-${index}-2`} className="mx-8">
+          <div className="w-full flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+            <ul className="flex items-center animate-marquee">
+              {[...DUMMY_LOGOS, ...DUMMY_LOGOS].map((logo, index) => (
+                <li key={`${logo.name}-${index}`} className="mx-8 flex-shrink-0">
                   <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
                 </li>
               ))}
@@ -128,26 +121,26 @@ export default function Home() {
                 </div>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-4">
+                <ul className="space-y-4 text-sm">
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground text-sm">Menyediakan layanan digital marketing yang strategis, kreatif, dan berbasis data untuk meningkatkan visibilitas, leads, dan penjualan klien.</span>
+                    <span className="text-muted-foreground">Menyediakan layanan digital marketing yang strategis, kreatif, dan berbasis data untuk meningkatkan visibilitas, leads, dan penjualan klien.</span>
                   </li>
                    <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground text-sm">Membangun kemitraan jangka panjang dengan klien melalui komunikasi yang transparan dan hasil kerja yang profesional.</span>
+                    <span className="text-muted-foreground">Membangun kemitraan jangka panjang dengan klien melalui komunikasi yang transparan dan hasil kerja yang profesional.</span>
                   </li>
                    <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground text-sm">Menghadirkan solusi digital yang relevan dengan perkembangan teknologi dan perilaku pasar.</span>
+                    <span className="text-muted-foreground">Menghadirkan solusi digital yang relevan dengan perkembangan teknologi dan perilaku pasar.</span>
                   </li>
                    <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground text-sm">Mengembangkan tim yang adaptif, kolaboratif, dan terus bertumbuh dalam ekosistem digital.</span>
+                    <span className="text-muted-foreground">Mengembangkan tim yang adaptif, kolaboratif, dan terus bertumbuh dalam ekosistem digital.</span>
                   </li>
                    <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground text-sm">Membantu bisnis lokal dan institusi pendidikan memanfaatkan potensi digital secara optimal.</span>
+                    <span className="text-muted-foreground">Membantu bisnis lokal dan institusi pendidikan memanfaatkan potensi digital secara optimal.</span>
                   </li>
                 </ul>
               </CardContent>
