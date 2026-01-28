@@ -15,11 +15,11 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-primary text-primary-foreground">
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="font-headline text-3xl md:text-4xl font-bold">
+            <h1 className="font-headline text-4xl md:text-5xl font-bold">
               Your Partner to Leap Together
             </h1>
-            <p className="mt-6 max-w-xl text-sm text-primary-foreground/90">
-              Kami bantu brand Anda ditemukan, dikenal, dan dipilih. Vworks.id menghadirkan solusi digital marketing mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis secara berkelanjutan.
+            <p className="mt-6 max-w-xl text-base text-primary-foreground/90">
+              Kami bantu brand Anda ditemukan, dikenal, dan dipilih. VWORKS.ID menghadirkan solusi digital marketing mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis secara berkelanjutan.
             </p>
             <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
               <Link href="/contact">Get Your Free Consultation <ArrowRight className="ml-2 h-5 w-5" /></Link>
@@ -94,7 +94,7 @@ export default function Home() {
           <div className="max-w-lg">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Who We Are</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Vworks is a team of passionate digital experts committed to helping your business thrive in the online world. We believe in building partnerships, not just client lists.
+              VWORKS.ID is a team of passionate digital experts committed to helping your business thrive in the online world. We believe in building partnerships, not just client lists.
             </p>
             <ul className="mt-6 space-y-3 text-muted-foreground">
               <li className="flex items-center gap-3">

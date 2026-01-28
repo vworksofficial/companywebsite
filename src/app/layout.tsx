@@ -7,8 +7,8 @@ import ContentSummarizer from '@/components/content-summarizer';
 import { SquiggleDecorations } from '@/components/decorations/squiggles';
 
 export const metadata: Metadata = {
-  title: 'Vworks Digital Hub - Driving Growth Through Digital Excellence',
-  description: 'Vworks Digital Hub offers expert SEO, SMM, Content Marketing, Paid Ads, and Web Development services to elevate your brand.',
+  title: 'VWORKS.ID - Driving Growth Through Digital Excellence',
+  description: 'VWORKS.ID offers expert SEO, SMM, Content Marketing, Paid Ads, and Web Development services to elevate your brand.',
 };
 
 export default function RootLayout({

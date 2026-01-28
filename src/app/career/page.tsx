@@ -9,7 +9,7 @@ export default function CareerPage() {
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">Join Our Team</h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
-            We are always looking for passionate talent to join Vworks Digital Hub.
+            We are always looking for passionate talent to join VWORKS.ID.
           </p>
         </div>
       </section>

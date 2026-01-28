@@ -20,7 +20,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
           <Image src="https://i.imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={28} height={28} />
           <span className="font-headline text-xl font-bold text-foreground">
-            Vworks
+            VWORKS.ID
           </span>
         </Link>
 
@@ -55,7 +55,7 @@ export default function Header() {
                 <div className="flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
                         <Image src="https://i.imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={28} height={28} />
-                        <span className="font-headline text-xl font-bold">Vworks</span>
+                        <span className="font-headline text-xl font-bold">VWORKS.ID</span>
                     </Link>
                     <SheetTrigger asChild>
                         <Button variant="ghost" size="icon">

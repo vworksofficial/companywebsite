@@ -27,7 +27,7 @@ export default function AboutPage() {
     <>
       <section className="bg-primary text-primary-foreground py-20 md:py-28">
         <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-headline">About Vworks Digital Hub</h1>
+          <h1 className="text-4xl md:text-5xl font-bold font-headline">About VWORKS.ID</h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
             Learn about our journey, our values, and the mission that drives us to deliver digital excellence.
           </p>
@@ -39,7 +39,7 @@ export default function AboutPage() {
           <div className="order-2 md:order-1">
             <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Story</h2>
             <p className="text-muted-foreground mb-4">
-              Vworks Digital Hub was founded with a simple yet powerful idea: to create a digital marketing agency that truly partners with its clients. We saw a gap between what businesses needed and what traditional agencies offered. Too often, we saw cookie-cutter solutions and a lack of transparency.
+              VWORKS.ID was founded with a simple yet powerful idea: to create a digital marketing agency that truly partners with its clients. We saw a gap between what businesses needed and what traditional agencies offered. Too often, we saw cookie-cutter solutions and a lack of transparency.
             </p>
             <p className="text-muted-foreground">
               We set out to be different. Our approach is built on a foundation of bespoke strategies, deep industry expertise, and a genuine commitment to our clients' growth. We are a collective of passionate marketers, designers, and developers united by a single purpose: to help you navigate the complexities of the digital world and achieve lasting success.

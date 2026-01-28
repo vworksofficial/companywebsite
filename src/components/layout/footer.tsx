@@ -12,7 +12,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Image src="https://i.imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={32} height={32} />
               <span className="font-headline text-2xl font-bold text-foreground">
-                Vworks
+                VWORKS.ID
               </span>
             </Link>
             <p className="text-muted-foreground text-sm">
@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Vworks Digital Hub. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} VWORKS.ID. All rights reserved.</p>
         </div>
       </div>
     </footer>
