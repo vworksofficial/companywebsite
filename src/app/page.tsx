@@ -71,10 +71,17 @@ export default function Home() {
       <section className="bg-background pt-4 pb-16">
         <div className="container">
           <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
-          <div className="w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-            <ul className="flex items-center animate-marquee flex-nowrap">
-              {[...DUMMY_LOGOS, ...DUMMY_LOGOS].map((logo, index) => (
-                <li key={`${logo.name}-${index}`} className="mx-8 flex-shrink-0">
+          <div className="w-full flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+            <ul className="flex items-center animate-marquee flex-shrink-0">
+              {DUMMY_LOGOS.map((logo, index) => (
+                <li key={`${logo.name}-${index}`} className="mx-8">
+                  <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
+                </li>
+              ))}
+            </ul>
+            <ul className="flex items-center animate-marquee flex-shrink-0" aria-hidden="true">
+              {DUMMY_LOGOS.map((logo, index) => (
+                <li key={`${logo.name}-${index}-2`} className="mx-8">
                   <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
                 </li>
               ))}
