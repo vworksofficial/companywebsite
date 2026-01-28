@@ -6,12 +6,24 @@ import { Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
+import Image from 'next/image';
 
 export default function ServicesPage() {
   return (
     <>
-      <section className="bg-primary text-primary-foreground py-16 md:py-20 bg-hero-texture">
-        <div className="container mx-auto text-center">
+      <section className="relative text-primary-foreground py-16 md:py-20 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop"
+            alt="Digital marketing team working"
+            fill
+            className="object-cover"
+            data-ai-hint="team meeting"
+            priority
+          />
+          <div className="absolute inset-0 bg-primary/80 backdrop-blur-sm"></div>
+        </div>
+        <div className="container mx-auto text-center relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">Layanan & Harga</h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
             Solusi digital yang transparan dan terukur untuk membantu bisnis Anda bertumbuh. Temukan paket yang paling sesuai dengan kebutuhan Anda.
