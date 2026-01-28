@@ -94,7 +94,7 @@ export default function PortfolioPage() {
       <section className="py-16 md:py-24">
         <div className="container mx-auto">
           {filteredItems.length > 0 ? (
-            <div className="grid grid-cols-1 gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {filteredItems.map((item) => (
                 <Card key={item.slug} className="group grid md:grid-cols-2 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 md:aspect-square">
                   {/* Left Column - Text */}
