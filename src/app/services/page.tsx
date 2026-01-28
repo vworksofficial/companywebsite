@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 // Function to generate a URL-friendly slug
 const toSlug = (text: string) => {
@@ -63,12 +64,19 @@ export default function ServicesPage() {
                 </div>
                 <h2 className="text-3xl font-bold font-headline text-primary">{category.category}</h2>
               </div>
-              <div className="flex flex-wrap justify-center gap-6">
+              <div
+                className={cn(
+                  'gap-6',
+                  category.packages.length > 1
+                    ? 'grid grid-cols-1 md:grid-cols-2 justify-items-center'
+                    : 'flex justify-center'
+                )}
+              >
                 {category.packages.map((pkg) => {
                   const includes = pkg.includes.split(',').map(item => item.trim()).filter(Boolean);
                   const excludes = pkg.excludes.split(',').map(item => item.trim()).filter(Boolean);
                   return (
-                    <Card key={pkg.name} className="flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-300 w-full max-w-sm">
+                    <Card key={pkg.name} className="flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-300 w-full max-w-sm h-full">
                       <CardHeader className="flex-grow-0">
                         <CardTitle className="font-headline text-xl">{pkg.name}</CardTitle>
                         <CardDescription>{pkg.title}</CardDescription>
