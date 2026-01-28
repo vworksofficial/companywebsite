@@ -33,7 +33,7 @@ export default function ServicesPage() {
         </div>
         <div className="container mx-auto text-center relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">Layanan & Harga</h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
+          <p className="mt-4 max-w-2xl mx-auto text-sm text-primary-foreground/90">
             Solusi digital yang transparan dan terukur untuk membantu bisnis Anda bertumbuh. Temukan paket yang paling sesuai dengan kebutuhan Anda.
           </p>
         </div>
