@@ -15,7 +15,7 @@ export default function Home() {
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-4xl md:text-6xl font-bold text-primary">
-              Vworks Digital Hub
+              Your Partner to Leap Together
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
               Driving Growth Through Digital Excellence. We craft bespoke strategies that deliver real results.
