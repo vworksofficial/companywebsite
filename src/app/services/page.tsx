@@ -10,7 +10,7 @@ export default function ServicesPage() {
   return (
     <>
       <section className="bg-primary text-primary-foreground py-20 md:py-28">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">Our Services</h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
             A comprehensive suite of digital marketing solutions designed to elevate your brand and drive growth.
@@ -18,7 +18,7 @@ export default function ServicesPage() {
         </div>
       </section>
       <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((service) => {
                const serviceImage = PlaceHolderImages.find(img => img.id === service.image);

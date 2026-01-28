@@ -26,7 +26,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="bg-primary text-primary-foreground py-20 md:py-28">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">About Vworks Digital Hub</h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
             Learn about our journey, our values, and the mission that drives us to deliver digital excellence.
@@ -35,7 +35,7 @@ export default function AboutPage() {
       </section>
 
       <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+        <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
             <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Story</h2>
             <p className="text-muted-foreground mb-4">
@@ -59,7 +59,7 @@ export default function AboutPage() {
       </section>
       
       <section className="bg-card py-16 md:py-24">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+        <div className="container mx-auto grid md:grid-cols-2 gap-8 items-center">
            <div>
             <h2 className="text-3xl font-bold font-headline text-primary mb-2">Our Vision</h2>
             <p className="text-muted-foreground mb-6">
@@ -76,7 +76,7 @@ export default function AboutPage() {
       </section>
 
       <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Our Core Values</h2>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -102,7 +102,7 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-primary text-primary-foreground py-16 md:py-20">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto text-center">
           <h2 className="text-3xl font-headline font-bold">Ready to Work With a Team That Cares?</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
             Let's start a conversation about your business goals and how we can help you achieve them.

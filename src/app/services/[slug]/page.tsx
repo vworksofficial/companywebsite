@@ -47,7 +47,7 @@ export default function ServicePage({ params }: ServicePageProps) {
   return (
     <>
       <section className="bg-primary text-primary-foreground py-20">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold font-headline">{service.title}</h1>
             <p className="mt-4 text-lg text-primary-foreground/90">{service.description}</p>
@@ -56,7 +56,7 @@ export default function ServicePage({ params }: ServicePageProps) {
       </section>
       
       <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 grid md:grid-cols-3 gap-12">
+        <div className="container mx-auto grid md:grid-cols-3 gap-12">
           <div className="md:col-span-2">
             <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Approach</h2>
             <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground">
@@ -101,7 +101,7 @@ export default function ServicePage({ params }: ServicePageProps) {
       </section>
 
       <section className="py-16 md:py-20 bg-card">
-          <div className="container mx-auto px-4 text-center">
+          <div className="container mx-auto text-center">
             <h2 className="text-3xl font-headline font-bold text-primary">Explore Other Services</h2>
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
               {SERVICES.filter(s => s.slug !== service.slug).map(otherService => (
