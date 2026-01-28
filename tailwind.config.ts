@@ -15,6 +15,17 @@ export default {
         "2xl": "1400px",
       },
     },
+    fontSize: {
+      sm: '0.875rem',    // 14px
+      base: '1rem',       // 16px (Base for body)
+      lg: '1.25rem',      // 20px
+      xl: '1.618rem',     // ~26px (base * 1.618)
+      '2xl': '2.0rem',    // 32px
+      '3xl': '2.618rem',    // ~42px (xl * 1.618)
+      '4xl': '3.25rem',   // 52px
+      '5xl': '4.236rem',    // ~68px (3xl * 1.618)
+      '6xl': '5.5rem',      // ~88px
+    },
     extend: {
       fontFamily: {
         body: ['"PT Sans"', 'sans-serif'],
