@@ -1,3 +1,40 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "vworks-hero",
+      "description": "A modern office environment with people collaborating.",
+      "imageUrl": "https://images.unsplash.com/photo-1553877522-43269d4ea984?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxvZmZpY2UlMjBjb2xsYWJvcmF0aW9ufGVufDB8fHx8MTc2OTUyNDQ4OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "office collaboration"
+    },
+    {
+      "id": "vworks-seo",
+      "description": "A person analyzing charts and graphs on a computer screen.",
+      "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkYXRhJTIwYW5hbHlzaXN8ZW58MHx8fHwxNzY5NTAxNDAxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data analysis"
+    },
+    {
+      "id": "vworks-smm",
+      "description": "A smartphone displaying social media notifications and engagement.",
+      "imageUrl": "https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzb2NpYWwlMjBtZWRpYXxlbnwwfHx8fDE3Njk0OTY2OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "social media"
+    },
+    {
+      "id": "vworks-content",
+      "description": "A person writing on a laptop in a creative space.",
+      "imageUrl": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjcmVhdGl2ZSUyMHdyaXRpbmd8ZW58MHx8fHwxNzY5NTMzNDIwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "creative writing"
+    },
+    {
+      "id": "vworks-ads",
+      "description": "A digital dashboard showing ad campaign performance metrics.",
+      "imageUrl": "https://images.unsplash.com/photo-1683200899447-d398198ed197?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGlnaXRhbCUyMGRhc2hib2FyZHxlbnwwfHx8fDE3Njk1ODIzMDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "digital dashboard"
+    },
+    {
+      "id": "vworks-webdev",
+      "description": "Code on a screen with a modern website design in the background.",
+      "imageUrl": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHx3ZWIlMjBkZXNpZ258ZW58MHx8fHwxNzY5NTgyMzA2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "web design"
+    }
+  ]
 }
