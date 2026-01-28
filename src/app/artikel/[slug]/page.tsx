@@ -53,7 +53,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   };
 
   return (
-    <article className="py-12 md:py-20">
+    <article className="py-8 md:py-16">
       <div className="container mx-auto">
         <div className="max-w-4xl mx-auto">
           <Button asChild variant="ghost" className="mb-8">
