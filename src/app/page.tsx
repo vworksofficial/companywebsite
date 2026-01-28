@@ -1,11 +1,20 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, CheckCircle2, Target, Eye } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Target, Eye, Building, Factory, Ship, Store, Globe, Network } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SERVICES, PRICING_DATA } from '@/lib/constants';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+
+const DUMMY_LOGOS = [
+  { name: 'Quantum Inc', icon: Building },
+  { name: 'Stellar Solutions', icon: Globe },
+  { name: 'Apex Industries', icon: Factory },
+  { name: 'Maritime Co', icon: Ship },
+  { name: 'Digital Emporium', icon: Store },
+  { name: 'Nexus Network', icon: Network },
+];
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'vworks-hero');
@@ -46,15 +55,37 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-8 bg-primary/95 border-y border-primary-foreground/10">
+      <section className="py-8 bg-background border-y">
         <div className="container mx-auto">
           <div className="flex flex-wrap justify-center items-center gap-3">
             {PRICING_DATA.map((category) => (
-              <div key={category.category} className="flex items-center gap-2 rounded-full border border-primary-foreground/30 bg-black/20 px-4 py-2 text-sm font-semibold text-primary-foreground">
+              <div key={category.category} className="flex items-center gap-2 rounded-full border bg-card px-4 py-2 text-sm font-semibold text-muted-foreground">
                 <category.icon className="h-4 w-4" />
                 <span>{category.category}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+      
+      <section className="py-12 bg-background">
+        <div className="container">
+          <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
+          <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+            <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 animate-marquee">
+              {DUMMY_LOGOS.map((logo) => (
+                <li key={logo.name}>
+                  <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
+                </li>
+              ))}
+            </ul>
+            <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 animate-marquee" aria-hidden="true">
+              {DUMMY_LOGOS.map((logo) => (
+                <li key={logo.name}>
+                  <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
