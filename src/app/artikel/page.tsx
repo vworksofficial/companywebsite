@@ -56,7 +56,7 @@ export default function ArtikelPage() {
 
   return (
     <>
-      <section className="py-8 border-b bg-card">
+      <section className="py-4 border-b bg-card">
         <div className="container mx-auto">
            {isClient ? (
               <div className="grid md:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
