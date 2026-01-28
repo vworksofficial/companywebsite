@@ -87,23 +87,23 @@ export default function Home() {
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Menyediakan layanan digital marketing yang strategis, kreatif, dan berbasis data untuk meningkatkan visibilitas, leads, dan penjualan klien.</span>
+                    <span className="text-muted-foreground text-sm">Menyediakan layanan digital marketing yang strategis, kreatif, dan berbasis data untuk meningkatkan visibilitas, leads, dan penjualan klien.</span>
                   </li>
                    <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Membangun kemitraan jangka panjang dengan klien melalui komunikasi yang transparan dan hasil kerja yang profesional.</span>
+                    <span className="text-muted-foreground text-sm">Membangun kemitraan jangka panjang dengan klien melalui komunikasi yang transparan dan hasil kerja yang profesional.</span>
                   </li>
                    <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Menghadirkan solusi digital yang relevan dengan perkembangan teknologi dan perilaku pasar.</span>
+                    <span className="text-muted-foreground text-sm">Menghadirkan solusi digital yang relevan dengan perkembangan teknologi dan perilaku pasar.</span>
                   </li>
                    <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Mengembangkan tim yang adaptif, kolaboratif, dan terus bertumbuh dalam ekosistem digital.</span>
+                    <span className="text-muted-foreground text-sm">Mengembangkan tim yang adaptif, kolaboratif, dan terus bertumbuh dalam ekosistem digital.</span>
                   </li>
                    <li className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
-                    <span className="text-muted-foreground">Membantu bisnis lokal dan institusi pendidikan memanfaatkan potensi digital secara optimal.</span>
+                    <span className="text-muted-foreground text-sm">Membantu bisnis lokal dan institusi pendidikan memanfaatkan potensi digital secara optimal.</span>
                   </li>
                 </ul>
               </CardContent>
