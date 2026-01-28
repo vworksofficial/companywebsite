@@ -18,6 +18,16 @@ export default function PortfolioPage() {
     setIsClient(true);
   }, []);
 
+  const categoryStyles: { [key: string]: string } = {
+    'Web Development': 'bg-sky-100 text-sky-900',
+    'Social Media Management': 'bg-rose-100 text-rose-900',
+    'Branding & Design': 'bg-purple-100 text-purple-900',
+    'SEO': 'bg-emerald-100 text-emerald-900',
+    'Content Marketing': 'bg-pink-100 text-pink-900',
+    'Ads Service': 'bg-amber-100 text-amber-900',
+    'Keuangan': 'bg-slate-200 text-slate-900',
+  };
+
   const filteredItems = selectedCategory
     ? PORTFOLIO_ITEMS.filter(item => item.category === selectedCategory)
     : PORTFOLIO_ITEMS;
@@ -95,43 +105,57 @@ export default function PortfolioPage() {
         <div className="container mx-auto">
           {filteredItems.length > 0 ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {filteredItems.map((item) => (
-                <Card key={item.slug} className="group grid md:grid-cols-2 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 md:aspect-square">
-                  {/* Left Column - Text */}
-                  <div className="p-8 flex flex-col justify-center">
-                      <div>
-                          <span className="text-xs font-semibold uppercase text-primary tracking-wider">{item.category}</span>
-                          <div className="flex items-center gap-4 my-4">
-                              {/* Client Logo Placeholder */}
-                              <div className="bg-muted p-3 rounded-lg">
-                                  <Building className="h-6 w-6 text-muted-foreground" />
-                              </div>
-                              <h3 className="font-headline text-2xl font-bold">{item.title}</h3>
+              {filteredItems.map((item) => {
+                const categoryInfo = PORTFOLIO_CATEGORIES.find(cat => cat.name === item.category);
+                const CategoryIcon = categoryInfo ? categoryInfo.icon : Building;
+                return (
+                  <Card key={item.slug} className="group grid md:grid-cols-2 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 md:aspect-square">
+                    {/* Left Column - Text */}
+                    <div className="flex flex-col">
+                      {categoryInfo && (
+                        <div className={cn('p-3', categoryStyles[item.category] || 'bg-gray-100')}>
+                          <div className="flex items-center gap-2 text-sm font-semibold">
+                            <CategoryIcon className="h-5 w-5 flex-shrink-0" />
+                            <span>{item.category}</span>
                           </div>
-                          <p className="text-muted-foreground text-sm mb-6">
-                              {item.description}
-                          </p>
-                      </div>
-                      {item.link && (
-                          <div className="mt-auto">
-                              <Button asChild variant="link" className="px-0 text-primary font-bold">
-                                  <Link href={item.link} target="_blank">View Project <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                              </Button>
-                          </div>
+                        </div>
                       )}
-                  </div>
-                  {/* Right Column - Image */}
-                  <div className="relative aspect-video md:aspect-auto order-first md:order-last">
-                      <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          data-ai-hint={item.imageHint}
-                      />
-                  </div>
-                </Card>
-              ))}
+                      <div className="p-6 flex flex-col justify-center flex-grow">
+                        <div>
+                            <div className="flex items-center gap-4 my-4">
+                                {/* Client Logo Placeholder */}
+                                <div className="bg-muted p-3 rounded-lg">
+                                    <Building className="h-6 w-6 text-muted-foreground" />
+                                </div>
+                                <h3 className="font-headline text-2xl font-bold">{item.title}</h3>
+                            </div>
+                            <p className="text-muted-foreground text-sm mb-6">
+                                {item.description}
+                            </p>
+                        </div>
+                        {item.link && (
+                            <div className="mt-auto">
+                                <Button asChild variant="link" className="px-0 text-primary font-bold">
+                                    <Link href={item.link} target="_blank">View Project <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                                </Button>
+                            </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Right Column - Image */}
+                    <div className="relative aspect-video md:aspect-auto order-first md:order-last">
+                        <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            data-ai-hint={item.imageHint}
+                        />
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           ) : (
              <div className="text-center py-16">
