@@ -68,7 +68,7 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="bg-background py-4">
+      <section className="bg-background pt-4 pb-16">
         <div className="container">
           <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
           <div className="w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
