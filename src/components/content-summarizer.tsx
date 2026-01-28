@@ -18,7 +18,7 @@ export default function ContentSummarizer() {
           strokeWidth={0}
         />
         <Phone
-          className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 text-white"
+          className="absolute left-1/2 top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 text-white"
           strokeWidth={2.5}
         />
       </div>
