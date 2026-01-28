@@ -96,7 +96,7 @@ export default function PortfolioPage() {
           {filteredItems.length > 0 ? (
             <div className="grid grid-cols-1 gap-12">
               {filteredItems.map((item) => (
-                <Card key={item.slug} className="group grid md:grid-cols-2 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                <Card key={item.slug} className="group grid md:grid-cols-2 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 md:aspect-square">
                   {/* Left Column - Text */}
                   <div className="p-8 flex flex-col justify-center">
                       <div>
@@ -121,7 +121,7 @@ export default function PortfolioPage() {
                       )}
                   </div>
                   {/* Right Column - Image */}
-                  <div className="relative aspect-square order-first md:order-last">
+                  <div className="relative aspect-video md:aspect-auto order-first md:order-last">
                       <Image
                           src={item.image}
                           alt={item.title}
