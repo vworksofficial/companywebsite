@@ -5,6 +5,7 @@ import { PRICING_DATA } from '@/lib/constants';
 import { Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Separator } from '@/components/ui/separator';
 
 export default function ServicesPage() {
   return (
@@ -38,39 +39,41 @@ export default function ServicesPage() {
                           <CardTitle className="font-headline text-xl">{pkg.name}</CardTitle>
                           <CardDescription>{pkg.title}</CardDescription>
                         </CardHeader>
-                        <CardContent className="flex-grow space-y-6">
+                        <CardContent className="flex flex-col flex-grow">
                           <div>
                             <p className="text-3xl font-bold text-primary">{pkg.price}</p>
                             <p className="text-sm text-muted-foreground mt-1">{pkg.description}</p>
                           </div>
-                          
-                          {includes.length > 0 && (
-                            <div>
-                              <h4 className="font-semibold mb-2 text-sm">Termasuk:</h4>
-                              <ul className="space-y-2">
-                                {includes.map(item => (
-                                  <li key={item} className="flex items-start gap-2 text-sm">
-                                    <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-0.5" />
-                                    <span>{item}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
+                          <Separator className="my-4" />
+                          <div className="space-y-4 flex-grow">
+                            {includes.length > 0 && (
+                              <div>
+                                <h4 className="font-semibold mb-2 text-sm">Termasuk:</h4>
+                                <ul className="space-y-2">
+                                  {includes.map(item => (
+                                    <li key={item} className="flex items-start gap-2 text-sm">
+                                      <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-0.5" />
+                                      <span>{item}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
 
-                          {excludes.length > 0 && (
-                            <div>
-                              <h4 className="font-semibold mb-2 text-sm">Tidak Termasuk:</h4>
-                              <ul className="space-y-2">
-                                {excludes.map(item => (
-                                  <li key={item} className="flex items-start gap-2 text-sm">
-                                    <X className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
-                                    <span>{item}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
+                            {excludes.length > 0 && (
+                              <div>
+                                <h4 className="font-semibold mb-2 text-sm">Tidak Termasuk:</h4>
+                                <ul className="space-y-2">
+                                  {excludes.map(item => (
+                                    <li key={item} className="flex items-start gap-2 text-sm">
+                                      <X className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
+                                      <span>{item}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                          </div>
                         </CardContent>
                         <CardFooter>
                           <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
