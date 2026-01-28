@@ -61,7 +61,7 @@ export default function ServicesPage() {
                             )}
 
                             {excludes.length > 0 && (
-                              <div>
+                              <div className="mt-4">
                                 <h4 className="font-semibold mb-2 text-sm">Tidak Termasuk:</h4>
                                 <ul className="space-y-2">
                                   {excludes.map(item => (
@@ -75,7 +75,7 @@ export default function ServicesPage() {
                             )}
                           </div>
                         </CardContent>
-                        <CardFooter>
+                        <CardFooter className="pt-4">
                           <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                             <Link href="/contact">Pesan Sekarang</Link>
                           </Button>
