@@ -15,7 +15,7 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-primary text-primary-foreground bg-hero-texture">
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="font-headline text-4xl md:text-5xl font-bold">
+            <h1 className="font-headline text-4xl md:text-5xl font-bold leading-tight">
               Your Partner to Leap Together
             </h1>
             <p className="mt-6 max-w-xl text-base text-primary-foreground/90">
