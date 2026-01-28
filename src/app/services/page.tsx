@@ -8,6 +8,14 @@ import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 
+// Function to generate a URL-friendly slug
+const toSlug = (text: string) => {
+  return text.toLowerCase()
+    .replace(/ & /g, '-and-') // Replace " & " with "-and-"
+    .replace(/\s+/g, '-')     // Replace spaces with -
+    .replace(/[^\w-]+/g, ''); // Remove all non-word chars
+};
+
 export default function ServicesPage() {
   return (
     <>
@@ -30,11 +38,25 @@ export default function ServicesPage() {
           </p>
         </div>
       </section>
+
+      <section className="sticky top-16 bg-background/95 backdrop-blur-sm z-40 border-b">
+        <div className="container mx-auto py-3">
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {PRICING_DATA.map((category) => (
+              <Button key={category.category} asChild variant="ghost" size="sm">
+                <Link href={`#${toSlug(category.category)}`}>
+                  {category.category}
+                </Link>
+              </Button>
+            ))}
+          </div>
+        </div>
+      </section>
       
       <section className="py-16 md:py-24">
         <div className="container mx-auto space-y-16">
           {PRICING_DATA.map((category) => (
-            <div key={category.category}>
+            <div key={category.category} id={toSlug(category.category)} className="scroll-mt-24">
               <div className="flex items-center gap-4 mb-8">
                 <div className="bg-primary/10 p-3 rounded-full">
                   <category.icon className="h-7 w-7 text-primary" />
