@@ -21,11 +21,11 @@ export default function PortfolioPage() {
       <section className="relative text-primary-foreground py-16 md:py-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1497032628192-86f99d791ba7?q=80&w=2070&auto=format&fit=crop"
-            alt="Creative workspace with portfolio items"
+            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop"
+            alt="Professional team in a meeting, symbolizing VWorks' collaborative approach to projects"
             fill
             className="object-cover"
-            data-ai-hint="creative workspace"
+            data-ai-hint="team meeting"
             priority
           />
           <div className="absolute inset-0 bg-primary/80 backdrop-blur-sm"></div>
