@@ -19,7 +19,7 @@ type Service = {
 export type PortfolioItem = {
   slug: string;
   title: string;
-  category: 'Web Development' | 'Social Media Management' | 'Branding & Design' | 'SEO';
+  category: 'Web Development' | 'Social Media Management' | 'Branding & Design' | 'SEO' | 'Content Marketing' | 'Ads Service' | 'Keuangan';
   description: string;
   image: string;
   imageHint: string;
@@ -269,6 +269,9 @@ export const PORTFOLIO_CATEGORIES = [
   { slug: 'social-media-management', name: 'Social Media Management', icon: Megaphone },
   { slug: 'branding-design', name: 'Branding & Design', icon: Palette },
   { slug: 'seo', name: 'SEO', icon: LineChart },
+  { slug: 'content-marketing', name: 'Content Marketing', icon: PenSquare },
+  { slug: 'ads-service', name: 'Ads Service', icon: Target },
+  { slug: 'keuangan', name: 'Keuangan', icon: Landmark },
 ];
 
 
@@ -328,5 +331,29 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Improved local search rankings for a small business, driving a 50% increase in foot traffic through targeted SEO strategies.',
     image: 'https://picsum.photos/seed/portfolio7/500/400',
     imageHint: 'local business',
+  },
+  {
+    slug: 'b2b-content-strategy',
+    title: 'B2B Content Strategy',
+    category: 'Content Marketing',
+    description: 'Developed a comprehensive content marketing strategy for a B2B SaaS company, increasing organic leads by 75%.',
+    image: 'https://picsum.photos/seed/portfolio8/500/400',
+    imageHint: 'content strategy',
+  },
+  {
+    slug: 'google-ads-campaign',
+    title: 'Google Ads Campaign for Retail',
+    category: 'Ads Service',
+    description: 'Managed a high-budget Google Ads campaign for an online retailer, achieving a 5X return on ad spend (ROAS).',
+    image: 'https://picsum.photos/seed/portfolio9/500/400',
+    imageHint: 'ads campaign',
+  },
+  {
+    slug: 'financial-reporting-system',
+    title: 'Financial Reporting System',
+    category: 'Keuangan',
+    description: 'Implemented a streamlined financial reporting process for a mid-sized company, improving data accuracy and efficiency.',
+    image: 'https://picsum.photos/seed/portfolio10/500/400',
+    imageHint: 'financial report',
   },
 ];
