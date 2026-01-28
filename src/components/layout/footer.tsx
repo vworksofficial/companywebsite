@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { Bot, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 import { NAV_LINKS, SERVICES } from '@/lib/constants';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4">
-              <Bot className="h-8 w-8 text-primary" />
+              <Image src="https://i.imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={32} height={32} />
               <span className="font-headline text-2xl font-bold text-foreground">
                 Vworks
               </span>
