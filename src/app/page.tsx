@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <section className="py-20 md:py-28 bg-primary text-primary-foreground bg-hero-texture">
-        <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-4xl md:text-5xl font-bold">
               Your Partner to Leap Together
@@ -45,9 +45,19 @@ export default function Home() {
       </section>
 
       <section id="vision-mission" className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto grid md:grid-cols-5 gap-12 items-start">
-          <div className="md:col-span-2">
-            <Card className="h-full">
+        <div className="container grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <Image
+              src="https://picsum.photos/seed/vision-mission/600/700"
+              alt="Team discussing vision and mission"
+              width={600}
+              height={700}
+              className="rounded-lg shadow-xl"
+              data-ai-hint="team collaboration"
+            />
+          </div>
+          <div className="space-y-8">
+            <Card>
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="bg-primary/10 p-3 rounded-full text-primary">
@@ -62,9 +72,7 @@ export default function Home() {
                 </p>
               </CardContent>
             </Card>
-          </div>
-          <div className="md:col-span-3">
-             <Card className="h-full">
+            <Card>
               <CardHeader>
                 <div className="flex items-center gap-4">
                    <div className="bg-primary/10 p-3 rounded-full text-primary">
@@ -103,7 +111,7 @@ export default function Home() {
       </section>
 
       <section id="services" className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto">
+        <div className="container">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Our Core Services</h2>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -148,7 +156,7 @@ export default function Home() {
       </section>
 
       <section className="py-16 md:py-24 bg-card">
-        <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div className="max-w-lg">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Who We Are</h2>
             <p className="mt-4 text-lg text-muted-foreground">
@@ -186,7 +194,7 @@ export default function Home() {
       </section>
 
       <section className="py-16 md:py-24 bg-primary text-primary-foreground">
-        <div className="container mx-auto text-center">
+        <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-headline font-bold">Ready to Grow Your Business?</h2>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
             Let's discuss how our digital strategies can be tailored to meet your unique goals.
