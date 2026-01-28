@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,13 +8,29 @@ import { Button } from '@/components/ui/button';
 import { PORTFOLIO_ITEMS, PORTFOLIO_CATEGORIES } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { ArrowRight } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const filteredItems = selectedCategory
     ? PORTFOLIO_ITEMS.filter(item => item.category === selectedCategory)
     : PORTFOLIO_ITEMS;
+  
+  const CategoryFiltersSkeleton = () => (
+    <div className="flex flex-wrap items-center justify-center gap-2">
+      <Skeleton className="h-10 w-24 rounded-full" />
+      <Skeleton className="h-10 w-40 rounded-full" />
+      <Skeleton className="h-10 w-48 rounded-full" />
+      <Skeleton className="h-10 w-32 rounded-full" />
+      <Skeleton className="h-10 w-20 rounded-full" />
+    </div>
+  );
   
   return (
     <>
@@ -35,38 +51,42 @@ export default function PortfolioPage() {
           <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
             A showcase of our best work and success stories.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            <Button
-              onClick={() => setSelectedCategory(null)}
-              variant={!selectedCategory ? 'secondary' : 'ghost'}
-              className={cn(
-                'rounded-full',
-                !selectedCategory
-                  ? ''
-                  : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
-              )}
-            >
-              All Projects
-            </Button>
-            {PORTFOLIO_CATEGORIES.map((category) => {
-              const isActive = selectedCategory === category.name;
-              return (
-                <Button
-                  key={category.slug}
-                  onClick={() => setSelectedCategory(category.name)}
-                  variant={isActive ? 'secondary' : 'ghost'}
-                  className={cn(
-                    'rounded-full',
-                    isActive
-                      ? ''
-                      : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
-                  )}
-                >
-                  <category.icon className="mr-2 h-4 w-4" />
-                  {category.name}
-                </Button>
-              );
-            })}
+          <div className="mt-8">
+            {!isClient ? <CategoryFiltersSkeleton /> : (
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                    <Button
+                    onClick={() => setSelectedCategory(null)}
+                    variant={!selectedCategory ? 'secondary' : 'ghost'}
+                    className={cn(
+                        'rounded-full',
+                        !selectedCategory
+                        ? ''
+                        : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
+                    )}
+                    >
+                    All Projects
+                    </Button>
+                    {PORTFOLIO_CATEGORIES.map((category) => {
+                    const isActive = selectedCategory === category.name;
+                    return (
+                        <Button
+                        key={category.slug}
+                        onClick={() => setSelectedCategory(category.name)}
+                        variant={isActive ? 'secondary' : 'ghost'}
+                        className={cn(
+                            'rounded-full',
+                            isActive
+                            ? ''
+                            : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
+                        )}
+                        >
+                        <category.icon className="mr-2 h-4 w-4" />
+                        {category.name}
+                        </Button>
+                    );
+                    })}
+                </div>
+            )}
           </div>
         </div>
       </section>
