@@ -25,7 +25,7 @@ export default function ContentSummarizer() {
     // Reset summary when the path changes, so it refetches for the new page
     setSummary('');
     setIsLoading(false);
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams.toString()]);
 
   const handleSummarize = async () => {
     // Avoid re-fetching if summary is already available or if it's loading
