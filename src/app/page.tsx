@@ -288,7 +288,7 @@ export default function Home() {
           <div className="max-w-lg">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Siapa Kami</h2>
             <p className="mt-4 text-sm text-muted-foreground">
-              VWORKS.ID adalah tim ahli digital yang bersemangat untuk membantu bisnis Anda berkembang di dunia online. Kami percaya dalam membangun kemitraan, bukan hanya daftar klien.
+              VWORKS.ID adalah tim ahli digital yang bersemangat untuk membantu bisnis Anda berkembang di dunia online. Kami percaya dalam membangun kemitraan, bukan hanya daftar klien. Setiap strategi yang kami rancang disesuaikan secara unik untuk memenuhi tujuan spesifik Anda. Dengan pendekatan yang berpusat pada data dan kreativitas, kami siap menjadi motor penggerak kesuksesan digital Anda.
             </p>
             <div className="mt-6 space-y-6">
               {coreValues.map((value) => (
