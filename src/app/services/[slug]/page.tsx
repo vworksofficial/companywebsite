@@ -57,7 +57,7 @@ export default function ServicePage({ params }: ServicePageProps) {
         </div>
       </section>
       
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto grid md:grid-cols-3 gap-12">
           <div className="md:col-span-2">
             <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Approach</h2>
