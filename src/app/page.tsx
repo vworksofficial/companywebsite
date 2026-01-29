@@ -235,7 +235,7 @@ export default function Home() {
                        </div>
                       <CardTitle className="font-headline text-xl">{service.title}</CardTitle>
                     </div>
-                    <p className="mt-4 text-muted-foreground">{service.description}</p>
+                    <p className="mt-4 text-muted-foreground text-sm">{service.description}</p>
                     <Button asChild variant="link" className="mt-4 px-0 text-primary">
                       <Link href={`/services/${service.slug}`}>Pelajari Selengkapnya <ArrowRight className="ml-2 h-4 w-4" /></Link>
                     </Button>
