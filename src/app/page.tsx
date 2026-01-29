@@ -354,55 +354,57 @@ export default function Home() {
           </div>
 
           {filteredPortfolioItems.length > 0 ? (
-            <Carousel
-              opts={{
-                align: "start",
-                loop: filteredPortfolioItems.length > 3,
-              }}
-              className="w-full mt-12"
-            >
-              <CarouselContent>
-                {filteredPortfolioItems.map((item, index) => {
-                  const categoryInfo = PORTFOLIO_CATEGORIES.find(cat => cat.name === item.category);
-                  const CategoryIcon = categoryInfo?.icon;
-                  return (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                      <div className="p-1 h-full">
-                        <Card className="group flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                          <div className="relative aspect-square w-full">
-                              <Image
-                                  src={item.image}
-                                  alt={item.title}
-                                  fill
-                                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                                  data-ai-hint={item.imageHint}
-                              />
-                          </div>
-                          
-                          <div className="p-6 flex flex-col flex-grow">
-                              <Badge variant="outline" className={cn('w-fit mb-4 border-0', categoryStyles[item.category] || 'bg-gray-100')}>
-                                  {CategoryIcon && <CategoryIcon className="h-4 w-4 mr-2" />}
-                                  {item.category}
-                              </Badge>
-                              <h3 className="font-headline text-xl font-bold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
-                              <p className="text-muted-foreground text-sm mb-4 flex-grow line-clamp-3">
-                                  {item.description}
-                              </p>
-                              <div className="mt-auto">
-                                  <Button asChild variant="link" className="px-0 text-primary font-bold">
-                                      <Link href="/portfolio">View Full Portfolio <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                                  </Button>
-                              </div>
-                          </div>
-                        </Card>
-                      </div>
-                    </CarouselItem>
-                  )
-                })}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex" />
-              <CarouselNext className="hidden md:flex" />
-            </Carousel>
+            <>
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: filteredPortfolioItems.length > 3,
+                }}
+                className="w-full mt-12"
+              >
+                <CarouselContent>
+                  {filteredPortfolioItems.map((item, index) => {
+                    const categoryInfo = PORTFOLIO_CATEGORIES.find(cat => cat.name === item.category);
+                    const CategoryIcon = categoryInfo?.icon;
+                    return (
+                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                        <div className="p-1 h-full">
+                          <Card className="group flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                            <div className="relative aspect-square w-full">
+                                <Image
+                                    src={item.image}
+                                    alt={item.title}
+                                    fill
+                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                    data-ai-hint={item.imageHint}
+                                />
+                            </div>
+                            
+                            <div className="p-6 flex flex-col flex-grow">
+                                <Badge variant="outline" className={cn('w-fit mb-4 border-0', categoryStyles[item.category] || 'bg-gray-100')}>
+                                    {CategoryIcon && <CategoryIcon className="h-4 w-4 mr-2" />}
+                                    {item.category}
+                                </Badge>
+                                <h3 className="font-headline text-xl font-bold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                                <p className="text-muted-foreground text-sm mb-4 flex-grow line-clamp-3">
+                                    {item.description}
+                                </p>
+                            </div>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    )
+                  })}
+                </CarouselContent>
+                <CarouselPrevious className="hidden md:flex" />
+                <CarouselNext className="hidden md:flex" />
+              </Carousel>
+              <div className="mt-12 text-center">
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/portfolio">View Full Portfolio <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                </Button>
+              </div>
+            </>
           ) : (
              <div className="text-center py-16 mt-12">
                 <p className="text-muted-foreground text-lg">No projects found for this category.</p>
