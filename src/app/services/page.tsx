@@ -154,6 +154,9 @@ export default function ServicesPage() {
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                       <Link href="/contact">Pesan Sekarang</Link>
                     </Button>
+                    <Button asChild variant="link" className="text-xs text-muted-foreground font-normal h-auto p-0 hover:no-underline -mt-2">
+                        <Link href="#">Syarat & Ketentuan</Link>
+                    </Button>
                   </CardFooter>
                 </Card>
               );
