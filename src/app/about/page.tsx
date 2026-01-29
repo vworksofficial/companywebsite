@@ -7,18 +7,18 @@ import { Eye, Rocket, Gem, Users, BookOpen, MessageSquare, Briefcase, ShieldChec
 const values = [
   {
     icon: Gem,
-    title: 'Professionalism',
-    description: 'We uphold the highest standards of quality and integrity in everything we do, ensuring our clients receive exceptional service and results.',
+    title: 'Profesionalisme',
+    description: 'Kami menjunjung tinggi standar kualitas dan integritas untuk memberikan hasil terbaik bagi klien.',
   },
   {
     icon: Eye,
-    title: 'Transparency',
-    description: 'We believe in open and honest communication. You’ll always know what we’re doing, why we’re doing it, and how it’s performing.',
+    title: 'Transparansi',
+    description: 'Kami percaya pada komunikasi yang terbuka dan jujur. Anda akan selalu tahu apa yang kami kerjakan dan bagaimana kinerjanya.',
   },
   {
     icon: Rocket,
-    title: 'Growth-Oriented',
-    description: 'Your success is our success. We are relentlessly focused on strategies that drive sustainable growth and deliver a tangible return on investment.',
+    title: 'Berorientasi Pertumbuhan',
+    description: 'Kesuksesan Anda adalah fokus kami. Kami merancang strategi yang mendorong pertumbuhan bisnis secara berkelanjutan.',
   },
 ];
 
@@ -131,9 +131,9 @@ export default function AboutPage() {
       <section className="py-16 md:py-24">
         <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Our Core Values</h2>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Nilai Inti Kami</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              These principles are the bedrock of our company culture and guide every decision we make.
+              Prinsip-prinsip ini adalah landasan budaya perusahaan kami dan memandu setiap keputusan yang kami buat.
             </p>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
