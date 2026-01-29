@@ -75,10 +75,10 @@ export default function Home() {
               Your Partner to Leap Together
             </h1>
             <p className="mt-6 max-w-xl text-base text-primary-foreground/90">
-              We help your brand get discovered, known, and chosen. VWORKS.ID delivers digital marketing solutions from content, social media, SEO, to paid ads to drive sustainable business growth.
+              Kami membantu brand Anda ditemukan, dikenal, dan dipilih. VWORKS.ID menghadirkan solusi pemasaran digital mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis yang berkelanjutan.
             </p>
             <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link href="/contact">Get a Free Consultation <ArrowRight className="ml-2 h-5 w-5" /></Link>
+              <Link href="/contact">Dapatkan Konsultasi Gratis <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
           <div className="flex items-center justify-center">
