@@ -111,7 +111,7 @@ export default function PortfolioPage() {
                 const CategoryIcon = categoryInfo ? categoryInfo.icon : Building;
                 return (
                   <Card key={item.slug} className="group flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                    <div className="relative aspect-square w-full">
+                    <div className="relative aspect-[1/2] w-full">
                         <Image
                             src={item.image}
                             alt={item.title}
