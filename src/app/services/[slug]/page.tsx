@@ -1,11 +1,12 @@
-import { SERVICES } from '@/lib/constants';
+import { SERVICES, PRICING_DATA } from '@/lib/constants';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 type ServicePageProps = {
   params: {
@@ -43,7 +44,7 @@ export default function ServicePage({ params }: ServicePageProps) {
     notFound();
   }
 
-  const serviceImage = PlaceHolderImages.find((img) => img.id === service.image);
+  const pricingCategory = PRICING_DATA.find(category => category.category === service.title);
 
   return (
     <>
@@ -75,28 +76,75 @@ export default function ServicePage({ params }: ServicePageProps) {
             </ul>
           </div>
           <div className="md:col-span-1">
-             {serviceImage && (
-              <Card className="sticky top-24">
-                <CardHeader className="p-0">
-                   <div className="relative aspect-[4/3] w-full">
-                      <Image
-                        src={serviceImage.imageUrl}
-                        alt={service.title}
-                        fill
-                        className="object-cover rounded-t-lg"
-                        data-ai-hint={serviceImage.imageHint}
-                      />
-                   </div>
-                </CardHeader>
-                <CardContent className="p-6">
-                    <CardTitle className="font-headline text-xl mb-4">Ready to boost your {service.title}?</CardTitle>
-                    <p className="text-muted-foreground text-sm mb-6">Let's discuss how we can tailor our {service.title} expertise to your unique business needs.</p>
-                    <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                        <Link href="/contact">Get a Free Quote <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                    </Button>
-                </CardContent>
-              </Card>
-            )}
+            <div className="sticky top-24 space-y-8">
+              {pricingCategory ? (
+                pricingCategory.packages.map((pkg) => {
+                  const includes = pkg.includes.split(',').map(item => item.trim()).filter(Boolean);
+                  const excludes = pkg.excludes.split(',').map(item => item.trim()).filter(Boolean);
+                  
+                  return (
+                    <Card key={pkg.name} className="flex flex-col shadow-lg w-full overflow-hidden">
+                      <CardHeader className="flex-grow-0 pt-6">
+                        <CardTitle className="font-headline text-xl">{pkg.name}</CardTitle>
+                        <CardDescription>{pkg.title}</CardDescription>
+                      </CardHeader>
+                      <CardContent className="flex flex-col flex-grow">
+                        <div className="flex-grow-0">
+                          <p className="text-sm text-muted-foreground">{pkg.description}</p>
+                        </div>
+                        <Separator className="my-4" />
+                        <div className="space-y-4 flex-grow">
+                          {includes.length > 0 && (
+                            <div>
+                              <h4 className="font-semibold mb-2 text-sm">Termasuk:</h4>
+                              <ul className="space-y-2">
+                                {includes.map(item => (
+                                  <li key={item} className="flex items-start gap-2 text-sm">
+                                    <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-0.5" />
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {excludes.length > 0 && (
+                            <div className="mt-4">
+                              <h4 className="font-semibold mb-2 text-sm">Tidak Termasuk:</h4>
+                              <ul className="space-y-2">
+                                {excludes.map(item => (
+                                  <li key={item} className="flex items-start gap-2 text-sm">
+                                    <X className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      </CardContent>
+                      <CardFooter className="pt-4 mt-auto flex flex-col gap-4">
+                        <div className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg text-center">
+                            <p className="text-xl font-bold">{pkg.price}</p>
+                        </div>
+                        <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                          <Link href="/contact">Pesan Sekarang</Link>
+                        </Button>
+                      </CardFooter>
+                    </Card>
+                  );
+                })
+              ) : (
+                <Card>
+                    <CardContent className="p-6">
+                        <p className="text-muted-foreground">Detail harga untuk layanan ini akan segera tersedia. Silakan hubungi kami untuk informasi lebih lanjut.</p>
+                        <Button asChild className="w-full mt-4">
+                            <Link href="/contact">Hubungi Kami</Link>
+                        </Button>
+                    </CardContent>
+                </Card>
+              )}
+            </div>
           </div>
         </div>
       </section>
