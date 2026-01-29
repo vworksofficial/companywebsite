@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Eye, Rocket, Gem } from 'lucide-react';
+import { Eye, Rocket, Gem, Users, BookOpen, MessageSquare, Briefcase, ShieldCheck, TrendingUp } from 'lucide-react';
 
 const values = [
   {
@@ -21,6 +21,40 @@ const values = [
     description: 'Your success is our success. We are relentlessly focused on strategies that drive sustainable growth and deliver a tangible return on investment.',
   },
 ];
+
+const workCulture = [
+    {
+      icon: Users,
+      title: 'Kolaboratif',
+      description: 'Kami percaya hasil terbaik lahir dari kerja tim yang solid. Setiap ide dihargai, setiap peran saling melengkapi, dan setiap tantangan diselesaikan bersama demi mencapai tujuan yang sama.',
+    },
+    {
+      icon: BookOpen,
+      title: 'Continuous Learning',
+      description: 'Kami mendorong setiap individu untuk terus belajar dan berkembang. Perubahan di dunia digital adalah peluang, dan peningkatan skill adalah bagian dari tanggung jawab profesional kami.',
+    },
+    {
+      icon: MessageSquare,
+      title: 'Clear Communication',
+      description: 'Kami menjunjung komunikasi yang terbuka, jujur, dan langsung ke inti. Dengan komunikasi yang jelas, kami meminimalkan miskomunikasi dan mempercepat pengambilan keputusan.',
+    },
+    {
+      icon: Briefcase,
+      title: 'Professional & Empathetic',
+      description: 'Kami bekerja secara profesional dengan tetap mengedepankan sikap saling menghargai dan memahami. Kinerja yang baik berjalan seiring dengan sikap manusiawi dalam berinteraksi.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'Integrity First',
+      description: 'Kejujuran dan etika adalah fondasi utama dalam setiap keputusan dan tindakan. Kami membangun kepercayaan melalui transparansi dan tanggung jawab yang konsisten.',
+    },
+    {
+      icon: TrendingUp,
+      title: 'Growth-Oriented',
+      description: 'Kami berorientasi pada pertumbuhan berkelanjutan—baik untuk klien, tim, maupun perusahaan. Tantangan adalah bagian dari proses menuju kualitas dan hasil yang lebih baik.',
+    },
+];
+
 
 export default function AboutPage() {
   return (
@@ -94,6 +128,32 @@ export default function AboutPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">{value.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-card py-16 md:py-24">
+        <div className="container mx-auto">
+          <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Corporate Culture VWORKS.ID</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Budaya kerja yang kami bangun adalah fondasi dari kolaborasi dan inovasi kami.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {workCulture.map((item) => (
+              <Card key={item.title}>
+                <CardHeader className="flex flex-row items-center gap-4">
+                    <div className="bg-primary/10 p-3 rounded-lg">
+                        <item.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <CardTitle className="font-headline text-xl">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm">{item.description}</p>
                 </CardContent>
               </Card>
             ))}
