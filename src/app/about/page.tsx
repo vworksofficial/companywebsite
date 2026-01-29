@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Eye, Rocket, Gem, Users, BookOpen, MessageSquare, Briefcase, ShieldCheck, TrendingUp } from 'lucide-react';
+import { Eye, Rocket, Gem, Users, BookOpen, MessageSquare, Briefcase, ShieldCheck, TrendingUp, CheckCircle2 } from 'lucide-react';
 
 const values = [
   {
@@ -93,18 +93,37 @@ export default function AboutPage() {
       </section>
       
       <section className="bg-card py-16 md:py-24">
-        <div className="container mx-auto grid md:grid-cols-2 gap-8 items-center">
-           <div>
-            <h2 className="text-3xl font-bold font-headline text-primary mb-2">Our Vision</h2>
-            <p className="text-muted-foreground mb-6">
-              To be the most trusted and results-driven digital growth partner for businesses of all sizes.
+        <div className="container mx-auto grid md:grid-cols-2 gap-12 items-start">
+           <div className="space-y-4">
+            <h2 className="text-3xl font-bold font-headline text-primary mb-2">Visi</h2>
+            <p className="text-muted-foreground">
+              Menjadi digital agency yang terpercaya dan berdampak dalam membantu brand, UMKM, dan institusi berkembang melalui strategi digital yang efektif, terukur, dan berkelanjutan.
             </p>
            </div>
-           <div>
-            <h2 className="text-3xl font-bold font-headline text-primary mb-2">Our Mission</h2>
-            <p className="text-muted-foreground">
-              To empower our clients to achieve their full potential online through innovative, data-driven, and transparent digital marketing strategies.
-            </p>
+           <div className="space-y-4">
+            <h2 className="text-3xl font-bold font-headline text-primary mb-2">Misi</h2>
+            <ul className="space-y-4 text-muted-foreground">
+                <li className="flex items-start gap-3">
+                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                <span>Menyediakan layanan digital marketing yang strategis, kreatif, dan berbasis data untuk meningkatkan visibilitas, leads, dan penjualan klien.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                <span>Membangun kemitraan jangka panjang dengan klien melalui komunikasi yang transparan dan hasil kerja yang profesional.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                <span>Menghadirkan solusi digital yang relevan dengan perkembangan teknologi dan perilaku pasar.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                <span>Mengembangkan tim yang adaptif, kolaboratif, dan terus bertumbuh dalam ekosistem digital.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
+                <span>Membantu bisnis lokal dan institusi pendidikan memanfaatkan potensi digital secara optimal.</span>
+                </li>
+            </ul>
            </div>
         </div>
       </section>
