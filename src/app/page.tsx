@@ -370,7 +370,7 @@ export default function Home() {
                       <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                         <div className="p-1 h-full">
                           <Card className="group flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                            <div className="relative aspect-[1/2] w-full">
+                            <div className="relative aspect-square w-full">
                                 <Image
                                     src={item.image}
                                     alt={item.title}
