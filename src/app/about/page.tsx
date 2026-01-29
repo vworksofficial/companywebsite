@@ -55,6 +55,33 @@ const workCulture = [
     },
 ];
 
+const teamMembers = [
+  {
+    name: 'Andi Saputra',
+    role: 'CEO & Founder',
+    imageUrl: 'https://picsum.photos/seed/team1/400/400',
+    imageHint: 'male portrait professional',
+  },
+  {
+    name: 'Citra Kirana',
+    role: 'Head of Digital Marketing',
+    imageUrl: 'https://picsum.photos/seed/team2/400/400',
+    imageHint: 'female portrait professional',
+  },
+  {
+    name: 'Bagus Hartono',
+    role: 'Lead Web Developer',
+    imageUrl: 'https://picsum.photos/seed/team3/400/400',
+    imageHint: 'male portrait tech',
+  },
+  {
+    name: 'Diana Sari',
+    role: 'Creative Director',
+    imageUrl: 'https://picsum.photos/seed/team4/400/400',
+    imageHint: 'female portrait creative',
+  },
+];
+
 
 export default function AboutPage() {
   return (
@@ -132,6 +159,38 @@ export default function AboutPage() {
       <section className="py-16 md:py-24">
         <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Temui Tim Kami</h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Orang-orang penuh semangat di balik kesuksesan kami.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {teamMembers.map((member) => (
+              <Card key={member.name} className="text-center overflow-hidden group shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                <div className="relative aspect-square">
+                  <Image
+                    src={member.imageUrl}
+                    alt={member.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    data-ai-hint={member.imageHint}
+                  />
+                </div>
+                <CardHeader className="p-4">
+                  <CardTitle className="font-headline text-xl">{member.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="p-4 pt-0">
+                  <p className="text-primary font-semibold text-sm">{member.role}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-card">
+        <div className="container mx-auto">
+          <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Our Core Values</h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Prinsip-prinsip ini adalah landasan budaya perusahaan kami dan memandu setiap keputusan yang kami buat.
@@ -155,7 +214,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-card py-16 md:py-24">
+      <section className="py-16 md:py-24">
         <div className="container mx-auto">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Corporate Culture VWORKS.ID</h2>
