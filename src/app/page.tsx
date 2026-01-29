@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, CheckCircle2, Target, Eye, Building, Factory, Ship, Store, Globe, Network } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Target, Eye, Building, Factory, Ship, Store, Globe, Network, Gem, Rocket } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SERVICES, PRICING_DATA } from '@/lib/constants';
@@ -30,6 +30,24 @@ export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'vworks-hero');
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
+
+  const coreValues = [
+    {
+      icon: Gem,
+      title: 'Profesionalisme',
+      description: 'Kami menjunjung tinggi standar kualitas dan integritas untuk memberikan hasil terbaik bagi klien.',
+    },
+    {
+      icon: Eye,
+      title: 'Transparansi',
+      description: 'Kami percaya pada komunikasi yang terbuka dan jujur. Anda akan selalu tahu apa yang kami kerjakan dan bagaimana kinerjanya.',
+    },
+    {
+      icon: Rocket,
+      title: 'Berorientasi Pertumbuhan',
+      description: 'Kesuksesan Anda adalah fokus kami. Kami merancang strategi yang mendorong pertumbuhan bisnis secara berkelanjutan.',
+    },
+  ];
 
   React.useEffect(() => {
     if (!api) {
@@ -254,20 +272,19 @@ export default function Home() {
             <p className="mt-4 text-sm text-muted-foreground">
               VWORKS.ID adalah tim ahli digital yang bersemangat untuk membantu bisnis Anda berkembang di dunia online. Kami percaya dalam membangun kemitraan, bukan hanya daftar klien.
             </p>
-            <ul className="mt-6 space-y-3 text-muted-foreground">
-              <li className="flex items-center gap-3">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span><span className="font-bold text-foreground">Profesional:</span> Menjunjung tinggi standar tertinggi di setiap proyek.</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span><span className="font-bold text-foreground">Transparan:</span> Komunikasi yang jelas dan pelaporan yang jujur.</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <CheckCircle2 className="h-5 w-5 text-primary" />
-                <span><span className="font-bold text-foreground">Berorientasi Pertumbuhan:</span> Fokus pada strategi yang menskalakan bisnis Anda.</span>
-              </li>
-            </ul>
+            <div className="mt-6 space-y-6">
+              {coreValues.map((value) => (
+                <div key={value.title} className="flex items-start gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full text-primary mt-1 flex-shrink-0">
+                    <value.icon className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-headline text-lg font-bold text-foreground">{value.title}</h3>
+                    <p className="text-muted-foreground text-sm mt-1">{value.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
             <Button asChild size="lg" variant="outline" className="mt-8 border-primary text-primary hover:bg-primary/10 hover:text-primary">
               <Link href="/about">Lebih Lanjut Tentang Kami</Link>
             </Button>
