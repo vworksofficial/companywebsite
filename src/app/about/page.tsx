@@ -63,7 +63,7 @@ export default function AboutPage() {
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">VWORKS.ID</h1>
           <p className="mt-4 text-lg font-semibold uppercase tracking-wider text-primary-foreground/80">PT VWORKS KOLABORASI BERSAMA</p>
-          <p className="mt-2 max-w-2xl mx-auto text-lg text-primary-foreground/90">
+          <p className="mt-2 max-w-2xl mx-auto text-sm text-primary-foreground/90">
             Pelajari tentang perjalanan kami, nilai-nilai kami, dan misi yang mendorong kami untuk memberikan keunggulan digital.
           </p>
         </div>
