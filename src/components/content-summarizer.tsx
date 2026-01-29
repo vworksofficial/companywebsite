@@ -1,6 +1,6 @@
 'use client';
 
-import { Phone } from 'lucide-react';
+import Image from 'next/image';
 
 export default function ContentSummarizer() {
   return (
@@ -12,12 +12,12 @@ export default function ContentSummarizer() {
       aria-label="Chat on WhatsApp"
     >
       <div className="relative h-full w-full">
-        <div className="flex h-full w-full items-center justify-center rounded-full rounded-bl-none bg-green-500 transition-colors group-hover:bg-green-600">
-          <Phone
-            className="h-7 w-7 text-white"
-            strokeWidth={2.5}
-          />
-        </div>
+        <Image
+          src="https://i.imgur.com/a7D8RbP.png"
+          alt="Chat on WhatsApp"
+          fill
+          className="object-contain"
+        />
       </div>
     </a>
   );
