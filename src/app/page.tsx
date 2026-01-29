@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/componen
 import { ArrowRight, CheckCircle2, Target, Eye, Building, Factory, Ship, Store, Globe, Network, Gem, Rocket } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SERVICES, PRICING_DATA, PORTFOLIO_ITEMS } from '@/lib/constants';
+import { SERVICES, PRICING_DATA, PORTFOLIO_ITEMS, PORTFOLIO_CATEGORIES } from '@/lib/constants';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Autoplay from "embla-carousel-autoplay";
 import {
@@ -33,6 +33,7 @@ export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'vworks-hero');
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
+  const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
 
   const coreValues = [
     {
@@ -62,6 +63,10 @@ export default function Home() {
     'Keuangan & Pajak': 'bg-slate-100 text-slate-900 border-slate-200',
   };
 
+  const filteredPortfolioItems = selectedCategory
+    ? PORTFOLIO_ITEMS.filter(item => item.category === selectedCategory)
+    : PORTFOLIO_ITEMS;
+
   React.useEffect(() => {
     if (!api) {
       return;
@@ -85,7 +90,7 @@ export default function Home() {
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-4xl md:text-5xl font-bold leading-tight">
-              Your Partner to Leap Together
+              Partner Anda untuk Melompat Bersama
             </h1>
             <p className="mt-6 max-w-xl text-base text-primary-foreground/90">
               Kami membantu brand Anda ditemukan, dikenal, dan dipilih. VWORKS.ID menghadirkan solusi pemasaran digital mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis yang berkelanjutan.
@@ -324,53 +329,83 @@ export default function Home() {
             </p>
           </div>
 
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full mt-12"
-          >
-            <CarouselContent>
-              {PORTFOLIO_ITEMS.map((item, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1 h-full">
-                    <Card className="group flex flex-col overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 h-full">
-                      <div className="relative aspect-video w-full">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          data-ai-hint={item.imageHint}
-                        />
-                      </div>
-                      <CardHeader>
-                        <Badge className={cn('w-fit border', categoryStyles[item.category] || 'bg-gray-100')}>
-                          {item.category}
-                        </Badge>
-                        <CardTitle className="mt-2 font-headline text-xl leading-tight group-hover:text-primary transition-colors">
-                          {item.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="flex-grow">
-                        <p className="text-muted-foreground text-sm line-clamp-3">{item.description}</p>
-                      </CardContent>
-                      <CardFooter>
-                          <Button asChild variant="link" className="px-0 font-semibold text-primary">
-                            <Link href="/portfolio">
-                              View Full Portfolio <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
-                          </Button>
-                      </CardFooter>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            <Button
+              onClick={() => setSelectedCategory(null)}
+              variant={!selectedCategory ? 'default' : 'outline'}
+              className="rounded-full"
+            >
+              Semua Project
+            </Button>
+            {PORTFOLIO_CATEGORIES.map((category) => {
+              const isActive = selectedCategory === category.name;
+              return (
+                <Button
+                  key={category.slug}
+                  onClick={() => setSelectedCategory(category.name)}
+                  variant={isActive ? 'default' : 'outline'}
+                  className="rounded-full"
+                >
+                  <category.icon className="mr-2 h-4 w-4" />
+                  {category.name}
+                </Button>
+              );
+            })}
+          </div>
+
+          {filteredPortfolioItems.length > 0 ? (
+            <Carousel
+              opts={{
+                align: "start",
+                loop: filteredPortfolioItems.length > 3,
+              }}
+              className="w-full mt-12"
+            >
+              <CarouselContent>
+                {filteredPortfolioItems.map((item, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                      <Card className="group flex flex-col overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 h-full">
+                        <div className="relative aspect-video w-full">
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            data-ai-hint={item.imageHint}
+                          />
+                        </div>
+                        <CardHeader>
+                          <Badge className={cn('w-fit border', categoryStyles[item.category] || 'bg-gray-100')}>
+                            {item.category}
+                          </Badge>
+                          <CardTitle className="mt-2 font-headline text-xl leading-tight group-hover:text-primary transition-colors">
+                            {item.title}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                          <p className="text-muted-foreground text-sm line-clamp-3">{item.description}</p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button asChild variant="link" className="px-0 font-semibold text-primary">
+                              <Link href="/portfolio">
+                                View Full Portfolio <ArrowRight className="ml-2 h-4 w-4" />
+                              </Link>
+                            </Button>
+                        </CardFooter>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex" />
+              <CarouselNext className="hidden md:flex" />
+            </Carousel>
+          ) : (
+             <div className="text-center py-16 mt-12">
+                <p className="text-muted-foreground text-lg">No projects found for this category.</p>
+             </div>
+          )}
         </div>
       </section>
 
