@@ -152,6 +152,7 @@ export type PricingPackage = {
   name: string;
   title: string;
   price: string;
+  originalPrice?: string;
   description: string;
   includes: string;
   excludes: string;
@@ -251,7 +252,8 @@ export const PRICING_DATA: PricingCategory[] = [
                 name: 'Vworks SEO Starter',
                 title: 'SEO Optimization Basic (30 Art)',
                 price: 'Rp 700.000',
-                description: 'Harga Promo (Normal: 850.000)',
+                originalPrice: 'Rp 850.000',
+                description: 'Paket optimasi SEO dasar untuk meningkatkan visibilitas awal.',
                 includes: 'Riset Keyword, Artikel 500+ kata, Posting',
                 excludes: 'Backlink berbayar (PBN), Perbaikan teknis web',
                 terms: 'Garansi tidak termasuk peringkat #1, namun kami menargetkan peningkatan visibilitas dan trafik. Konten artikel 500-700 kata. Kontrak minimum 6 bulan untuk melihat hasil optimal.'
@@ -260,7 +262,8 @@ export const PRICING_DATA: PricingCategory[] = [
                 name: 'Vworks SEO Pro',
                 title: 'SEO Optimization Premium (60 Art)',
                 price: 'Rp 1.300.000',
-                description: 'Harga Promo (Normal: 1.700.000)',
+                originalPrice: 'Rp 1.700.000',
+                description: 'Paket optimasi SEO komprehensif untuk hasil maksimal.',
                 includes: 'Riset Keyword, Optimasi On-Page, Laporan bulanan',
                 excludes: 'Maintenance server website',
                 terms: 'Sama seperti paket starter dengan jumlah konten lebih banyak. Termasuk optimasi teknis dasar on-page. Kontrak minimum 6 bulan. Laporan peringkat kata kunci dikirim bulanan.'

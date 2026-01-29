@@ -124,8 +124,15 @@ export default function ServicePage({ params }: ServicePageProps) {
                         </div>
                       </CardContent>
                       <CardFooter className="pt-4 mt-auto flex flex-col gap-4">
-                        <div className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg text-center">
-                            <p className="text-xl font-bold">{pkg.price}</p>
+                        <div className="w-full text-center">
+                          {pkg.originalPrice && (
+                            <div className="inline-block bg-destructive/10 text-destructive text-sm font-semibold mb-2 px-2 py-1 rounded-md">
+                                <span className="line-through">{pkg.originalPrice}</span>
+                            </div>
+                          )}
+                          <div className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg">
+                              <p className="text-xl font-bold">{pkg.price}</p>
+                          </div>
                         </div>
                         <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                           <Link href="/contact">Pesan Sekarang</Link>
