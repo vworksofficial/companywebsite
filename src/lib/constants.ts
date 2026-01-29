@@ -49,50 +49,22 @@ export const NAV_LINKS: NavLink[] = [
 
 export const SERVICES: Service[] = [
   {
-    slug: 'search-engine-optimization',
-    title: 'SEO',
-    description: 'Tingkatkan visibilitas Anda di mesin pencari dan tarik lalu lintas organik.',
-    longDescription: "Strategi SEO kami lebih dari sekadar kata kunci. Kami fokus membangun fondasi online yang kuat untuk merek Anda, mendorong prospek berkualitas ke situs web Anda. Kami menganalisis pasar Anda, mengoptimalkan kinerja teknis situs Anda, dan membuat konten berkualitas tinggi yang sesuai dengan pengguna dan mesin pencari.",
+    slug: 'web-development',
+    title: 'Web Development',
+    description: 'Buat situs web yang cepat, responsif, dan ramah pengguna yang dapat mengubah pengunjung.',
+    longDescription: "Situs web Anda adalah etalase digital Anda. Kami membangun situs web yang indah, responsif, dan berkinerja tinggi yang memberikan pengalaman pengguna yang luar biasa. Dari platform e-commerce hingga situs perusahaan, kami memastikan situs web Anda adalah alat yang ampuh untuk pertumbuhan bisnis.",
     benefits: [
-      "Peningkatan visibilitas pencarian organik",
-      "Perolehan prospek yang lebih berkualitas",
-      "Peningkatan kredibilitas dan kepercayaan merek",
-      "Hasil yang terukur dan berkelanjutan"
+      "Kehadiran online yang profesional dan modern",
+      "Dioptimalkan untuk semua perangkat (mobile-first)",
+      "Kecepatan muat yang cepat untuk pengalaman pengguna dan SEO yang lebih baik",
+      "Sistem manajemen konten yang mudah dikelola"
     ],
-    icon: LineChart,
-    image: 'vworks-seo',
+    icon: Code,
+    image: 'vworks-webdev',
   },
   {
-    slug: 'social-media-marketing',
-    title: 'Pemasaran Media Sosial',
-    description: 'Libatkan audiens Anda dan bangun kehadiran merek yang kuat di media sosial.',
-    longDescription: "Kami membuat dan mengelola kampanye media sosial yang berdampak yang membina komunitas dan mendorong keterlibatan. Dari pembuatan konten hingga interaksi audiens, kami menangani semua aspek media sosial Anda untuk membangun pengikut setia dan mengubah pengikut menjadi pelanggan.",
-    benefits: [
-      "Peningkatan kesadaran dan jangkauan merek",
-      "Keterlibatan langsung dengan audiens target Anda",
-      "Peningkatan lalu lintas situs web dari platform sosial",
-      "Wawasan berharga tentang perilaku pelanggan"
-    ],
-    icon: Megaphone,
-    image: 'vworks-smm',
-  },
-  {
-    slug: 'content-marketing',
-    title: 'Pemasaran Konten',
-    description: 'Ceritakan kisah Anda dan berikan nilai dengan konten yang menarik dan berkualitas tinggi.',
-    longDescription: "Konten adalah raja, dan kami adalah pembuatnya. Tim penulis dan ahli strategi kami mengembangkan konten menarik yang mendidik, menghibur, dan menginspirasi audiens Anda. Kami membuat postingan blog, artikel, video, dan lainnya untuk membangun otoritas Anda dan mendorong konversi.",
-    benefits: [
-      "Membangun merek Anda sebagai pemimpin industri",
-      "Membangun hubungan jangka panjang dengan audiens Anda",
-      "Meningkatkan kinerja SEO dan lalu lintas organik",
-      "Mendukung semua upaya pemasaran digital lainnya"
-    ],
-    icon: PenSquare,
-    image: 'vworks-content',
-  },
-  {
-    slug: 'paid-advertising',
-    title: 'Iklan Berbayar',
+    slug: 'digital-ads-service',
+    title: 'Digital Ads Service',
     description: 'Dapatkan hasil cepat dan targetkan audiens spesifik dengan kampanye iklan berbayar.',
     longDescription: "Kampanye iklan berbayar berbasis data kami dirancang untuk ROI maksimum. Kami memanfaatkan platform seperti Google Ads dan iklan media sosial untuk menjangkau pelanggan ideal Anda pada waktu yang tepat, dengan pesan yang tepat, memastikan setiap dolar dari pengeluaran iklan Anda dioptimalkan untuk kinerja.",
     benefits: [
@@ -105,18 +77,74 @@ export const SERVICES: Service[] = [
     image: 'vworks-ads',
   },
   {
-    slug: 'website-development',
-    title: 'Pengembangan Situs Web',
-    description: 'Buat situs web yang cepat, responsif, dan ramah pengguna yang dapat mengubah pengunjung.',
-    longDescription: "Situs web Anda adalah etalase digital Anda. Kami membangun situs web yang indah, responsif, dan berkinerja tinggi yang memberikan pengalaman pengguna yang luar biasa. Dari platform e-commerce hingga situs perusahaan, kami memastikan situs web Anda adalah alat yang ampuh untuk pertumbuhan bisnis.",
+    slug: 'social-media-management',
+    title: 'Social Media Management',
+    description: 'Libatkan audiens Anda dan bangun kehadiran merek yang kuat di media sosial.',
+    longDescription: "Kami membuat dan mengelola kampanye media sosial yang berdampak yang membina komunitas dan mendorong keterlibatan. Dari pembuatan konten hingga interaksi audiens, kami menangani semua aspek media sosial Anda untuk membangun pengikut setia dan mengubah pengikut menjadi pelanggan.",
     benefits: [
-      "Kehadiran online yang profesional dan modern",
-      "Dioptimalkan untuk semua perangkat (mobile-first)",
-      "Kecepatan muat yang cepat untuk pengalaman pengguna dan SEO yang lebih baik",
-      "Sistem manajemen konten yang mudah dikelola"
+      "Peningkatan kesadaran dan jangkauan merek",
+      "Keterlibatan langsung dengan audiens target Anda",
+      "Peningkatan lalu lintas situs web dari platform sosial",
+      "Wawasan berharga tentang perilaku pelanggan"
     ],
-    icon: Code,
-    image: 'vworks-webdev',
+    icon: Megaphone,
+    image: 'vworks-smm',
+  },
+  {
+    slug: 'branding-design',
+    title: 'Branding & Design',
+    description: 'Bangun identitas merek yang kuat dan berkesan melalui desain visual yang strategis.',
+    longDescription: "Identitas visual adalah wajah merek Anda. Tim desainer kami akan membantu Anda menciptakan logo, palet warna, dan materi branding yang tidak hanya menarik secara visual tetapi juga mengkomunikasikan nilai-nilai inti bisnis Anda secara efektif.",
+    benefits: [
+        "Identitas merek yang profesional dan kohesif",
+        "Diferensiasi dari kompetitor",
+        "Meningkatkan pengenalan dan loyalitas merek",
+        "Materi pemasaran yang konsisten dan menarik"
+    ],
+    icon: Palette,
+    image: 'vworks-branding',
+  },
+  {
+    slug: 'seo-dan-artikel',
+    title: 'SEO & Artikel',
+    description: 'Tingkatkan peringkat, tarik trafik organik, dan bangun otoritas dengan konten berkualitas.',
+    longDescription: "Kami menggabungkan optimisasi mesin pencari (SEO) teknis dengan pembuatan konten artikel yang relevan dan bernilai. Strategi ini dirancang untuk menempatkan Anda di puncak hasil pencarian dan menjadikan merek Anda sebagai sumber informasi terpercaya di industri Anda.",
+    benefits: [
+      "Peningkatan visibilitas pencarian organik",
+      "Peningkatan kredibilitas dan kepercayaan merek",
+      "Mendatangkan prospek berkualitas melalui konten yang bermanfaat",
+      "Hasil yang terukur dan pertumbuhan jangka panjang"
+    ],
+    icon: LineChart,
+    image: 'vworks-seo',
+  },
+  {
+    slug: 'content-creator',
+    title: 'Content Creator',
+    description: 'Produksi konten video kreatif untuk platform seperti TikTok dan Instagram Reels.',
+    longDescription: "Di era video pendek, konten yang otentik dan menarik adalah kunci. Tim kreator kami siap memproduksi video vertikal yang mengikuti tren, menghibur audiens, dan secara efektif menampilkan produk atau layanan Anda untuk mendorong engagement dan konversi.",
+    benefits: [
+        "Konten video yang relevan dengan tren saat ini",
+        "Peningkatan jangkauan dan interaksi di platform video pendek",
+        "Membangun koneksi yang lebih otentik dengan audiens muda",
+        "Materi promosi yang segar dan mudah dibagikan"
+    ],
+    icon: Video,
+    image: 'vworks-content-creator',
+  },
+  {
+    slug: 'keuangan-pajak',
+    title: 'Keuangan & Pajak',
+    description: 'Layanan akuntansi dan pelaporan pajak profesional untuk kesehatan finansial bisnis Anda.',
+    longDescription: "Jaga agar keuangan bisnis Anda tetap teratur dan patuh pada peraturan. Kami menyediakan layanan akuntansi yang akurat dan pengelolaan perpajakan yang efisien, sehingga Anda dapat fokus pada pengembangan bisnis inti Anda.",
+    benefits: [
+        "Laporan keuangan yang akurat dan tepat waktu",
+        "Kepatuhan terhadap peraturan perpajakan",
+        "Efisiensi dalam pengelolaan keuangan",
+        "Membantu pengambilan keputusan bisnis yang lebih baik"
+    ],
+    icon: Landmark,
+    image: 'vworks-finance',
   },
 ];
 

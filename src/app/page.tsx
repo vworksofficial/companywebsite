@@ -211,7 +211,7 @@ export default function Home() {
             </p>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.slice(0, 5).map((service) => {
+            {SERVICES.map((service) => {
               const serviceImage = PlaceHolderImages.find(img => img.id === service.image);
               return (
                 <Card key={service.slug} className="group overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
