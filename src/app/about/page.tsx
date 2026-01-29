@@ -62,8 +62,9 @@ export default function AboutPage() {
       <section className="bg-primary text-primary-foreground py-20 md:py-28">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-headline">VWORKS.ID</h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg text-primary-foreground/90">
-            Learn about our journey, our values, and the mission that drives us to deliver digital excellence.
+          <p className="mt-4 text-lg font-semibold uppercase tracking-wider text-primary-foreground/80">PT VWORKS KOLABORASI BERSAMA</p>
+          <p className="mt-2 max-w-2xl mx-auto text-lg text-primary-foreground/90">
+            Pelajari tentang perjalanan kami, nilai-nilai kami, dan misi yang mendorong kami untuk memberikan keunggulan digital.
           </p>
         </div>
       </section>
