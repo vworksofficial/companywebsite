@@ -171,7 +171,7 @@ export default function ServicesPage() {
                     </Button>
                     <Button
                       variant="link"
-                      className="text-xs text-muted-foreground font-normal h-auto p-0 hover:no-underline -mt-2"
+                      className="text-sm text-muted-foreground font-normal h-auto p-0 hover:no-underline -mt-2"
                       onClick={() => setSelectedPackageForTerms(pkg)}
                     >
                       Syarat & Ketentuan
