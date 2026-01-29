@@ -20,7 +20,7 @@ export default function ServicesPage() {
     'Branding & Design': 'bg-purple-100 text-purple-900',
     'SEO & Artikel': 'bg-emerald-100 text-emerald-900',
     'Content Creator': 'bg-pink-100 text-pink-900',
-    'Keuangan': 'bg-slate-200 text-slate-900',
+    'Keuangan & Pajak': 'bg-slate-200 text-slate-900',
   };
 
   const allPackages = PRICING_DATA.flatMap(category => 

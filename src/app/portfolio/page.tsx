@@ -25,7 +25,7 @@ export default function PortfolioPage() {
     'SEO': 'bg-emerald-100 text-emerald-900',
     'Content Marketing': 'bg-pink-100 text-pink-900',
     'Ads Service': 'bg-amber-100 text-amber-900',
-    'Keuangan': 'bg-slate-200 text-slate-900',
+    'Keuangan & Pajak': 'bg-slate-200 text-slate-900',
   };
 
   const filteredItems = selectedCategory

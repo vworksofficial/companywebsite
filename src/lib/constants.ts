@@ -19,7 +19,7 @@ type Service = {
 export type PortfolioItem = {
   slug: string;
   title: string;
-  category: 'Web Development' | 'Social Media Management' | 'Branding & Design' | 'SEO' | 'Content Marketing' | 'Ads Service' | 'Keuangan';
+  category: 'Web Development' | 'Social Media Management' | 'Branding & Design' | 'SEO' | 'Content Marketing' | 'Ads Service' | 'Keuangan & Pajak';
   description: string;
   image: string;
   imageHint: string;
@@ -29,7 +29,7 @@ export type PortfolioItem = {
 export type Article = {
   slug: string;
   title: string;
-  category: 'Web Development' | 'Social Media Management' | 'Branding & Design' | 'SEO' | 'Content Marketing' | 'Ads Service' | 'Keuangan';
+  category: 'Web Development' | 'Social Media Management' | 'Branding & Design' | 'SEO' | 'Content Marketing' | 'Ads Service' | 'Keuangan & Pajak';
   excerpt: string;
   content: string;
   imageUrl: string;
@@ -281,7 +281,7 @@ export const PRICING_DATA: PricingCategory[] = [
         ]
     },
     {
-        category: 'Keuangan',
+        category: 'Keuangan & Pajak',
         icon: Landmark,
         packages: [
             {
@@ -311,7 +311,7 @@ export const PORTFOLIO_CATEGORIES = [
   { slug: 'seo', name: 'SEO', icon: LineChart },
   { slug: 'content-marketing', name: 'Content Marketing', icon: PenSquare },
   { slug: 'ads-service', name: 'Ads Service', icon: Target },
-  { slug: 'keuangan', name: 'Keuangan', icon: Landmark },
+  { slug: 'keuangan', name: 'Keuangan & Pajak', icon: Landmark },
 ];
 
 
@@ -391,7 +391,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
   {
     slug: 'financial-reporting-system',
     title: 'Financial Reporting System',
-    category: 'Keuangan',
+    category: 'Keuangan & Pajak',
     description: 'Implemented a streamlined financial reporting process for a mid-sized company, improving data accuracy and efficiency.',
     image: 'https://picsum.photos/seed/portfolio10/500/400',
     imageHint: 'financial report',
@@ -468,7 +468,7 @@ export const ARTICLES: Article[] = [
   {
     slug: 'mengukur-roi-digital-marketing',
     title: 'Cara Akurat Mengukur ROI dari Digital Marketing',
-    category: 'Keuangan',
+    category: 'Keuangan & Pajak',
     excerpt: 'Investasi digital marketing harus terukur. Pelajari metrik dan formula kunci untuk menghitung Return on Investment (ROI) kampanye Anda.',
     content: '<p>Untuk mengukur ROI, Anda perlu melacak biaya kampanye dan pendapatan yang dihasilkannya. Gunakan Google Analytics dan platform iklan untuk melacak konversi. Formula dasarnya adalah: ((Pendapatan - Biaya) / Biaya) x 100%. Metrik penting lainnya termasuk Customer Acquisition Cost (CAC) dan Customer Lifetime Value (CLV).</p>',
     imageUrl: 'https://picsum.photos/seed/artikel7/800/450',
@@ -545,7 +545,7 @@ export const ARTICLES: Article[] = [
   {
     slug: 'cash-flow-untuk-startup',
     title: 'Manajemen Arus Kas (Cash Flow) untuk Startup',
-    category: 'Keuangan',
+    category: 'Keuangan & Pajak',
     excerpt: 'Arus kas adalah napas bagi startup. Pelajari dasar-dasar manajemen cash flow agar bisnis Anda tetap sehat dan berkelanjutan.',
     content: '<p>Buat proyeksi arus kas bulanan untuk memprediksi pemasukan dan pengeluaran. Pisahkan rekening bank pribadi dan bisnis. Kelola piutang dengan menagih tepat waktu, dan negosiasikan syarat pembayaran yang lebih lama dengan pemasok. Selalu siapkan dana darurat untuk biaya tak terduga.</p>',
     imageUrl: 'https://picsum.photos/seed/artikel14/800/450',

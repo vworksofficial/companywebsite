@@ -29,7 +29,7 @@ export default function ArtikelPage() {
     'SEO': 'bg-emerald-100 text-emerald-900 border-emerald-200',
     'Content Marketing': 'bg-pink-100 text-pink-900 border-pink-200',
     'Ads Service': 'bg-amber-100 text-amber-900 border-amber-200',
-    'Keuangan': 'bg-slate-100 text-slate-900 border-slate-200',
+    'Keuangan & Pajak': 'bg-slate-100 text-slate-900 border-slate-200',
   };
 
   const allCategories = [...new Set(ARTICLES.map(a => a.category))];
