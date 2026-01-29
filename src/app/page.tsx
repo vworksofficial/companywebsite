@@ -1,4 +1,6 @@
+'use client';
 
+import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, CheckCircle2, Target, Eye, Building, Factory, Ship, Store, Globe, Network } from 'lucide-react';
@@ -6,6 +8,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SERVICES, PRICING_DATA } from '@/lib/constants';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import Autoplay from "embla-carousel-autoplay";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
+import { cn } from '@/lib/utils';
 
 const DUMMY_LOGOS = [
   { name: 'Quantum Inc', icon: Building },
@@ -18,6 +28,25 @@ const DUMMY_LOGOS = [
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'vworks-hero');
+  const [api, setApi] = React.useState<CarouselApi>();
+  const [current, setCurrent] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    const onSelect = () => {
+      setCurrent(api.selectedScrollSnap());
+    };
+
+    api.on('select', onSelect);
+    onSelect(); // Set initial value
+
+    return () => {
+      api.off('select', onSelect);
+    };
+  }, [api]);
 
   return (
     <div className="flex flex-col">
@@ -71,21 +100,39 @@ export default function Home() {
       <section className="bg-background pt-4 pb-16">
         <div className="container">
           <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
-          <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-              <ul className="flex items-center animate-marquee [&_li]:mx-8">
-                  {DUMMY_LOGOS.map((logo, index) => (
-                    <li key={`${logo.name}-${index}`} className="flex-shrink-0">
-                      <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
-                    </li>
-                  ))}
-                  {/* Duplicated for seamless animation */}
-                  {DUMMY_LOGOS.map((logo, index) => (
-                    <li key={`${logo.name}-${index}-duplicate`} className="flex-shrink-0" aria-hidden="true">
-                      <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
-                    </li>
-                  ))}
-              </ul>
-          </div>
+          <Carousel
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 2500,
+                stopOnInteraction: false,
+                stopOnMouseEnter: true,
+              }),
+            ]}
+            setApi={setApi}
+            className="w-full"
+          >
+            <CarouselContent>
+              {DUMMY_LOGOS.map((logo, index) => (
+                <CarouselItem key={index} className="basis-1/3 md:basis-1/5">
+                  <div className="p-1 flex items-center justify-center">
+                    <logo.icon
+                      className={cn(
+                        "h-10 w-auto transition-all duration-500",
+                        current === index
+                          ? "text-foreground scale-110"
+                          : "text-muted-foreground/60 scale-90"
+                      )}
+                      title={logo.name}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
 
