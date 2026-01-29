@@ -72,13 +72,13 @@ export default function Home() {
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-4xl md:text-5xl font-bold leading-tight">
-              Partner Anda untuk Melompat Bersama
+              Your Partner to Leap Together
             </h1>
             <p className="mt-6 max-w-xl text-base text-primary-foreground/90">
-              Kami bantu brand Anda ditemukan, dikenal, dan dipilih. VWORKS.ID menghadirkan solusi digital marketing mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis secara berkelanjutan.
+              We help your brand get discovered, known, and chosen. VWORKS.ID delivers digital marketing solutions from content, social media, SEO, to paid ads to drive sustainable business growth.
             </p>
             <Button asChild size="lg" className="mt-8 bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link href="/contact">Dapatkan Konsultasi Gratis <ArrowRight className="ml-2 h-5 w-5" /></Link>
+              <Link href="/contact">Get a Free Consultation <ArrowRight className="ml-2 h-5 w-5" /></Link>
             </Button>
           </div>
           <div className="flex items-center justify-center">
