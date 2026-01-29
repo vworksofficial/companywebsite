@@ -1,17 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ElementType } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { PRICING_DATA } from '@/lib/constants';
+import { PRICING_DATA, type PricingPackage } from '@/lib/constants';
 import { Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from '@/components/ui/dialog';
+
+type PricingPackageWithCategory = PricingPackage & {
+  categoryName: string;
+  categoryIcon: ElementType;
+};
 
 export default function ServicesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedPackageForTerms, setSelectedPackageForTerms] = useState<PricingPackageWithCategory | null>(null);
 
   const categoryStyles: { [key: string]: string } = {
     'Web Development': 'bg-sky-100 text-sky-900',
@@ -23,7 +38,7 @@ export default function ServicesPage() {
     'Keuangan & Pajak': 'bg-slate-200 text-slate-900',
   };
 
-  const allPackages = PRICING_DATA.flatMap(category => 
+  const allPackages: PricingPackageWithCategory[] = PRICING_DATA.flatMap(category =>
     category.packages.map(pkg => ({
       ...pkg,
       categoryName: category.category,
@@ -154,8 +169,12 @@ export default function ServicesPage() {
                     <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
                       <Link href="/contact">Pesan Sekarang</Link>
                     </Button>
-                    <Button asChild variant="link" className="text-xs text-muted-foreground font-normal h-auto p-0 hover:no-underline -mt-2">
-                        <Link href="#">Syarat & Ketentuan</Link>
+                    <Button
+                      variant="link"
+                      className="text-xs text-muted-foreground font-normal h-auto p-0 hover:no-underline -mt-2"
+                      onClick={() => setSelectedPackageForTerms(pkg)}
+                    >
+                      Syarat & Ketentuan
                     </Button>
                   </CardFooter>
                 </Card>
@@ -164,6 +183,27 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {selectedPackageForTerms && (
+        <Dialog open={!!selectedPackageForTerms} onOpenChange={(isOpen) => !isOpen && setSelectedPackageForTerms(null)}>
+          <DialogContent className="sm:max-w-[425px]">
+            <DialogHeader>
+              <DialogTitle>Syarat & Ketentuan - {selectedPackageForTerms.name}</DialogTitle>
+              <DialogDescription>
+                Berikut adalah syarat dan ketentuan yang berlaku untuk paket {selectedPackageForTerms.title}.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="text-sm text-muted-foreground space-y-4 max-h-[60vh] overflow-y-auto pr-6">
+              <p className="whitespace-pre-wrap">{selectedPackageForTerms.terms}</p>
+            </div>
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button type="button">Tutup</Button>
+              </DialogClose>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+      )}
     </>
   );
 }
