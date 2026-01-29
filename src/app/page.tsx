@@ -71,14 +71,21 @@ export default function Home() {
       <section className="bg-background pt-4 pb-16">
         <div className="container">
           <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
-          <div className="w-full flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-            <ul className="flex items-center animate-marquee">
-              {[...DUMMY_LOGOS, ...DUMMY_LOGOS].map((logo, index) => (
-                <li key={`${logo.name}-${index}`} className="mx-8 flex-shrink-0">
-                  <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
-                </li>
-              ))}
-            </ul>
+          <div className="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+              <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 animate-marquee">
+                  {DUMMY_LOGOS.map((logo, index) => (
+                    <li key={`${logo.name}-${index}`} className="flex-shrink-0">
+                      <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
+                    </li>
+                  ))}
+              </ul>
+              <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 animate-marquee" aria-hidden="true">
+                  {DUMMY_LOGOS.map((logo, index) => (
+                    <li key={`${logo.name}-${index}-2`} className="flex-shrink-0">
+                      <logo.icon className="h-8 w-auto text-muted-foreground/70" title={logo.name} />
+                    </li>
+                  ))}
+              </ul>
           </div>
         </div>
       </section>
