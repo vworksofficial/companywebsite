@@ -65,7 +65,7 @@ export default function ServicesPage() {
           <div className="absolute inset-0 bg-primary/80 backdrop-blur-sm"></div>
         </div>
         <div className="container mx-auto text-center relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold font-headline">Layanan & Harga</h1>
+          <h1 className="text-4xl md:text-5xl font-bold font-headline">Layanan &amp; Harga</h1>
           <p className="mt-4 max-w-2xl mx-auto text-sm text-primary-foreground/90">
             Solusi digital yang transparan dan terukur untuk membantu bisnis Anda bertumbuh. Temukan paket yang paling sesuai dengan kebutuhan Anda.
           </p>
@@ -174,7 +174,7 @@ export default function ServicesPage() {
                       className="text-sm text-muted-foreground font-normal h-auto p-0 hover:no-underline -mt-2"
                       onClick={() => setSelectedPackageForTerms(pkg)}
                     >
-                      Syarat & Ketentuan
+                      Syarat &amp; Ketentuan
                     </Button>
                   </CardFooter>
                 </Card>
@@ -186,17 +186,28 @@ export default function ServicesPage() {
 
       {selectedPackageForTerms && (
         <Dialog open={!!selectedPackageForTerms} onOpenChange={(isOpen) => !isOpen && setSelectedPackageForTerms(null)}>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Syarat & Ketentuan - {selectedPackageForTerms.name}</DialogTitle>
-              <DialogDescription>
-                Berikut adalah syarat dan ketentuan yang berlaku untuk paket {selectedPackageForTerms.title}.
+          <DialogContent className="sm:max-w-[425px] p-0">
+            <DialogHeader className={cn(
+              "p-6 text-left", 
+              categoryStyles[selectedPackageForTerms.categoryName] || 'bg-muted'
+            )}>
+              <DialogTitle className={cn(
+                "font-headline text-xl",
+                categoryStyles[selectedPackageForTerms.categoryName] ? 'text-inherit' : ''
+              )}>
+                Syarat &amp; Ketentuan
+              </DialogTitle>
+              <DialogDescription className={cn(
+                "pt-1",
+                categoryStyles[selectedPackageForTerms.categoryName] ? 'text-inherit opacity-90' : ''
+              )}>
+                Paket: {selectedPackageForTerms.name}
               </DialogDescription>
             </DialogHeader>
-            <div className="text-sm text-muted-foreground space-y-4 max-h-[60vh] overflow-y-auto pr-6">
+            <div className="px-6 py-0 text-sm text-muted-foreground space-y-4 max-h-[60vh] overflow-y-auto">
               <p className="whitespace-pre-wrap">{selectedPackageForTerms.terms}</p>
             </div>
-            <DialogFooter>
+            <DialogFooter className="p-6">
               <DialogClose asChild>
                 <Button type="button">Tutup</Button>
               </DialogClose>
