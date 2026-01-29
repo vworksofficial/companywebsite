@@ -235,7 +235,7 @@ export default function Home() {
                        </div>
                       <CardTitle className="font-headline text-xl">{service.title}</CardTitle>
                     </div>
-                    <p className="mt-4 text-muted-foreground text-sm">{service.description}</p>
+                    <p className="mt-4 text-sm text-muted-foreground">{service.description}</p>
                     <Button asChild variant="link" className="mt-4 px-0 text-primary">
                       <Link href={`/services/${service.slug}`}>Pelajari Selengkapnya <ArrowRight className="ml-2 h-4 w-4" /></Link>
                     </Button>
@@ -269,7 +269,7 @@ export default function Home() {
               </li>
             </ul>
             <Button asChild size="lg" variant="outline" className="mt-8 border-primary text-primary hover:bg-primary/10 hover:text-primary">
-              <Link href="/about">Lebih Lanjut Tentang Misi Kami</Link>
+              <Link href="/about">Lebih Lanjut Tentang Kami</Link>
             </Button>
           </div>
           <div>
