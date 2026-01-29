@@ -122,12 +122,7 @@ export default function PortfolioPage() {
                       )}
                       <div className="p-6 flex flex-col justify-center flex-grow">
                         <div>
-                            <div className="flex items-center gap-4 mb-4">
-                                <div className="bg-muted p-3 rounded-lg w-fit">
-                                    <Building className="h-6 w-6 text-muted-foreground" />
-                                </div>
-                                <h3 className="font-headline text-2xl font-bold">{item.title}</h3>
-                            </div>
+                            <h3 className="font-headline text-2xl font-bold mb-4">{item.title}</h3>
                             <p className="text-muted-foreground text-sm mb-6">
                                 {item.description}
                             </p>
@@ -151,6 +146,11 @@ export default function PortfolioPage() {
                             className="object-cover transition-transform duration-300 group-hover:scale-105"
                             data-ai-hint={item.imageHint}
                         />
+                        <div className="absolute top-3 left-3">
+                            <div className="bg-black/50 backdrop-blur-sm p-3 rounded-lg w-fit">
+                                <Building className="h-6 w-6 text-white" />
+                            </div>
+                        </div>
                     </div>
                   </Card>
                 );
