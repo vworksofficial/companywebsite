@@ -109,7 +109,7 @@ export default function PortfolioPage() {
                 const categoryInfo = PORTFOLIO_CATEGORIES.find(cat => cat.name === item.category);
                 const CategoryIcon = categoryInfo ? categoryInfo.icon : Building;
                 return (
-                  <Card key={item.slug} className="group grid md:grid-cols-2 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 md:aspect-square">
+                  <Card key={item.slug} className="group grid md:grid-cols-2 overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 md:aspect-[2/1]">
                     {/* Left Column - Text */}
                     <div className="flex flex-col">
                       {categoryInfo && (
