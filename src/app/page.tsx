@@ -90,7 +90,7 @@ export default function Home() {
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-4xl md:text-5xl font-bold leading-tight">
-              Partner Anda untuk Melompat Bersama
+              Your Partner to Leap Together
             </h1>
             <p className="mt-6 max-w-xl text-base text-primary-foreground/90">
               Kami membantu brand Anda ditemukan, dikenal, dan dipilih. VWORKS.ID menghadirkan solusi pemasaran digital mulai dari konten, media sosial, SEO, hingga iklan berbayar untuk mendorong pertumbuhan bisnis yang berkelanjutan.
