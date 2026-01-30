@@ -174,8 +174,8 @@ export default function Home() {
       </section>
 
       <section id="vision-mission" className="py-16 md:py-24 bg-card">
-        <div className="container grid md:grid-cols-2 gap-12 items-stretch">
-          <div className="relative rounded-lg shadow-xl overflow-hidden">
+        <div className="container grid md:grid-cols-20 gap-12 items-stretch">
+          <div className="md:col-span-7 relative rounded-lg shadow-xl overflow-hidden">
             <Image
               src="https://i.imgur.com/jzK2W7D.png"
               alt="Team discussing vision and mission"
@@ -184,7 +184,7 @@ export default function Home() {
               data-ai-hint="team collaboration"
             />
           </div>
-          <div className="space-y-8">
+          <div className="md:col-span-13 space-y-8">
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-4">
@@ -427,5 +427,7 @@ export default function Home() {
     </div>
   );
 }
+
+    
 
     
