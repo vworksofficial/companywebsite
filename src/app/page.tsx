@@ -1,3 +1,4 @@
+
 'use client';
 
 import * as React from 'react';
@@ -178,8 +179,8 @@ export default function Home() {
             <Image
               src="https://i.imgur.com/jzK2W7D.png"
               alt="Team discussing vision and mission"
-              width={600}
-              height={700}
+              width={250}
+              height={292}
               className="rounded-lg shadow-xl"
               data-ai-hint="team collaboration"
             />
@@ -427,3 +428,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
