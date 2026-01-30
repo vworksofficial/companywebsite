@@ -105,8 +105,8 @@ export default function Home() {
                 <Image
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
-                  width={360}
-                  height={300}
+                  width={280}
+                  height={230}
                   className="rounded-lg relative z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
                   priority
                   data-ai-hint={heroImage.imageHint}
@@ -176,7 +176,7 @@ export default function Home() {
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <Image
-              src="https://picsum.photos/seed/vision-mission/600/700"
+              src="https://i.imgur.com/jzK2W7D.png"
               alt="Team discussing vision and mission"
               width={600}
               height={700}
