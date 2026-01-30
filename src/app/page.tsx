@@ -106,8 +106,8 @@ export default function Home() {
                 <Image
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
-                  width={280}
-                  height={230}
+                  width={400}
+                  height={330}
                   className="rounded-lg relative z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
                   priority
                   data-ai-hint={heroImage.imageHint}
