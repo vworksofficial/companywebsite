@@ -174,14 +174,13 @@ export default function Home() {
       </section>
 
       <section id="vision-mission" className="py-16 md:py-24 bg-card">
-        <div className="container grid md:grid-cols-2 gap-12 items-center">
-          <div>
+        <div className="container grid md:grid-cols-2 gap-12 items-stretch">
+          <div className="relative rounded-lg shadow-xl overflow-hidden">
             <Image
               src="https://i.imgur.com/jzK2W7D.png"
               alt="Team discussing vision and mission"
-              width={250}
-              height={292}
-              className="rounded-lg shadow-xl"
+              fill
+              className="object-cover"
               data-ai-hint="team collaboration"
             />
           </div>
@@ -324,7 +323,7 @@ export default function Home() {
       <section id="portfolio" className="py-16 md:py-24 bg-background">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Our Work & Portfolio</h2>
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Our Work &amp; Portfolio</h2>
             <p className="mt-4 text-sm text-muted-foreground">
               A showcase of our best work and the results we've delivered for our clients.
             </p>
