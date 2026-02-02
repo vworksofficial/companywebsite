@@ -107,14 +107,14 @@ export default function AboutPage() {
               We set out to be different. Our approach is built on a foundation of bespoke strategies, deep industry expertise, and a genuine commitment to our clients' growth. We are a collective of passionate marketers, designers, and developers united by a single purpose: to help you navigate the complexities of the digital world and achieve lasting success.
             </p>
           </div>
-          <div className="order-1 md:order-2">
+          <div className="order-1 md:order-2 flex justify-center">
             <Image
-              src="https://picsum.photos/seed/vworks-story/600/500"
+              src="https://imgur.com/mIgN8TX.png"
               alt="Team brainstorming session"
-              width={600}
-              height={500}
-              className="rounded-lg shadow-xl"
-              data-ai-hint="brainstorming session"
+              width={400}
+              height={600}
+              className="rounded-lg shadow-xl object-cover h-full"
+              data-ai-hint="team meeting"
             />
           </div>
         </div>
