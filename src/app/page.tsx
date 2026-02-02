@@ -309,7 +309,7 @@ export default function Home() {
           </div>
           <div>
             <Image 
-              src="https://picsum.photos/seed/vworks-team/600/400"
+              src="https://i.imgur.com/mIgN8TX.png"
               alt="Our Team"
               width={600}
               height={400}
