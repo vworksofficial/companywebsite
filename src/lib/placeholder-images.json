@@ -9,13 +9,13 @@
     {
       "id": "vworks-seo",
       "description": "A person analyzing charts and graphs on a computer screen.",
-      "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkYXRhJTIwYW5hbHlzaXN8ZW58MHx8fHwxNzY5NTAxNDAxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://imgur.com/OLX6jXE.png",
       "imageHint": "data analysis"
     },
     {
       "id": "vworks-smm",
       "description": "A smartphone displaying social media notifications and engagement.",
-      "imageUrl": "https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxzb2NpYWwlMjBtZWRpYXxlbnwwfHx8fDE3Njk0OTY2OTB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://imgur.com/ly3KaJc.png",
       "imageHint": "social media"
     },
     {
@@ -27,7 +27,7 @@
     {
       "id": "vworks-ads",
       "description": "A digital dashboard showing ad campaign performance metrics.",
-      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwZGFzaGJvYXJkfGVufDB8fHx8MTcxOTI0NDg0NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://imgur.com/0NYuoKS.png",
       "imageHint": "digital dashboard"
     },
     {
@@ -39,19 +39,19 @@
     {
       "id": "vworks-branding",
       "description": "A mood board with color palettes and design sketches for branding.",
-      "imageUrl": "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxicmFuZGluZyUyMGRlc2lnbnxlbnwwfHx8fDE3Njk2NzI1ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://imgur.com/GH8Jmfw.png",
       "imageHint": "branding design"
     },
     {
       "id": "vworks-content-creator",
       "description": "A person filming a video for social media with a ring light.",
-      "imageUrl": "https://images.unsplash.com/photo-1735216259891-cdb1d862af52?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHx2aWRlbyUyMGNyZWF0aW9ufGVufDB8fHx8MTc2OTYxNDYxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://imgur.com/OxmFWQu.png",
       "imageHint": "video creation"
     },
     {
       "id": "vworks-finance",
       "description": "A desk with a calculator, financial documents, and a laptop.",
-      "imageUrl": "https://images.unsplash.com/photo-1511377107391-116a9d5d20b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmaW5hbmNpYWwlMjBhY2NvdW50aW5nfGVufDB8fHx8MTc2OTY5MjkwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://imgur.com/IyIf0Da.png",
       "imageHint": "financial accounting"
     }
   ]
