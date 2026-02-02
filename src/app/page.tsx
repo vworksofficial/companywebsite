@@ -106,8 +106,8 @@ export default function Home() {
                 <Image
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
-                  width={400}
-                  height={330}
+                  width={600}
+                  height={500}
                   className="rounded-lg relative z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
                   priority
                   data-ai-hint={heroImage.imageHint}
@@ -177,7 +177,7 @@ export default function Home() {
         <div className="container grid grid-cols-1 md:grid-cols-3 gap-12 items-stretch">
           <div className="md:col-span-1 relative rounded-lg shadow-xl overflow-hidden">
             <Image
-              src="https://i.imgur.com/jzK2W7D.png"
+              src="https://imgur.com/jzK2W7D.png"
               alt="Team discussing vision and mission"
               fill
               className="object-cover"
@@ -309,7 +309,7 @@ export default function Home() {
           </div>
           <div>
             <Image 
-              src="https://i.imgur.com/mIgN8TX.png"
+              src="https://imgur.com/mIgN8TX.png"
               alt="Our Team"
               width={600}
               height={400}
@@ -358,7 +358,7 @@ export default function Home() {
               <Carousel
                 opts={{
                   align: "start",
-                  loop: filteredPortfolioItems.length > 3,
+                  loop: filteredPortfolioItems.length > 4,
                 }}
                 className="w-full mt-12"
               >
@@ -367,7 +367,7 @@ export default function Home() {
                     const categoryInfo = PORTFOLIO_CATEGORIES.find(cat => cat.name === item.category);
                     const CategoryIcon = categoryInfo?.icon;
                     return (
-                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                      <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
                         <div className="p-1 h-full">
                           <Card className="group flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 h-full">
                             <div className="relative aspect-square w-full">
@@ -431,3 +431,4 @@ export default function Home() {
     
 
     
+
