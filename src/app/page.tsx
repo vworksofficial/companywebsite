@@ -87,7 +87,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="py-12 md:py-16 bg-primary text-primary-foreground bg-hero-texture">
+      <section className="py-8 md:py-10 bg-primary text-primary-foreground bg-hero-texture">
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="font-headline text-4xl md:text-5xl font-bold leading-tight">
@@ -106,8 +106,8 @@ export default function Home() {
                 <Image
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
-                  width={600}
-                  height={500}
+                  width={500}
+                  height={400}
                   className="rounded-lg relative z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
                   priority
                   data-ai-hint={heroImage.imageHint}
@@ -432,3 +432,6 @@ export default function Home() {
 
     
 
+
+
+    
