@@ -57,27 +57,51 @@ const workCulture = [
 
 const teamMembers = [
   {
-    name: 'Andi Saputra',
-    role: 'CEO & Founder',
-    imageUrl: 'https://picsum.photos/seed/team1/400/400',
+    name: 'Adam Doni Mauladi',
+    role: 'Chief Executive Officer',
+    imageUrl: 'https://imgur.com/AlH1rcA.png',
     imageHint: 'male portrait professional',
   },
   {
-    name: 'Citra Kirana',
-    role: 'Head of Digital Marketing',
-    imageUrl: 'https://picsum.photos/seed/team2/400/400',
+    name: 'Panut',
+    role: 'Chief Operational Officer',
+    imageUrl: 'https://imgur.com/EMRRQKv.png',
+    imageHint: 'male portrait professional',
+  },
+  {
+    name: 'Dinda Afifah K.',
+    role: 'Chief Financial Officer',
+    imageUrl: 'https://imgur.com/s4IDxnn.png',
     imageHint: 'female portrait professional',
   },
   {
-    name: 'Bagus Hartono',
-    role: 'Lead Web Developer',
-    imageUrl: 'https://picsum.photos/seed/team3/400/400',
+    name: 'M. Fadli Rozi',
+    role: 'Project Leader',
+    imageUrl: 'https://imgur.com/Pvx2kMG.png',
     imageHint: 'male portrait tech',
   },
   {
-    name: 'Diana Sari',
-    role: 'Creative Director',
-    imageUrl: 'https://picsum.photos/seed/team4/400/400',
+    name: 'Fitria Handayani',
+    role: 'Account Executive',
+    imageUrl: 'https://imgur.com/IZ16F0I.png',
+    imageHint: 'female portrait professional',
+  },
+  {
+    name: 'M. Faisal Abda',
+    role: 'Account Executive',
+    imageUrl: 'https://imgur.com/XnaNbb5.png',
+    imageHint: 'male portrait professional',
+  },
+  {
+    name: 'Febrianti Kurniasari',
+    role: 'Account Executive',
+    imageUrl: 'https://imgur.com/wplwCYx.png',
+    imageHint: 'female portrait professional',
+  },
+  {
+    name: 'Ifada Nur Alifah',
+    role: 'Content Planner',
+    imageUrl: 'https://imgur.com/JTxmLYe.png',
     imageHint: 'female portrait creative',
   },
 ];
@@ -164,7 +188,7 @@ export default function AboutPage() {
               Orang-orang penuh semangat di balik kesuksesan kami.
             </p>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {teamMembers.map((member) => (
               <Card key={member.name} className="text-center overflow-hidden group shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                 <div className="relative aspect-square">
