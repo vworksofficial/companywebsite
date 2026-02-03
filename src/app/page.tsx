@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { ArrowRight, CheckCircle2, Target, Eye, Building, Factory, Ship, Store, Globe, Network, Gem, Rocket } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Target, Eye, Gem, Rocket } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { SERVICES, PRICING_DATA, PORTFOLIO_ITEMS, PORTFOLIO_CATEGORIES } from '@/lib/constants';
@@ -16,24 +16,22 @@ import {
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
-  type CarouselApi,
 } from "@/components/ui/carousel";
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 
-const DUMMY_LOGOS = [
-  { name: 'Quantum Inc', icon: Building },
-  { name: 'Stellar Solutions', icon: Globe },
-  { name: 'Apex Industries', icon: Factory },
-  { name: 'Maritime Co', icon: Ship },
-  { name: 'Digital Emporium', icon: Store },
-  { name: 'Nexus Network', icon: Network },
+const CLIENT_LOGOS = [
+  { name: 'Client 1', imageUrl: 'https://imgur.com/B0wMr9o.png' },
+  { name: 'Client 2', imageUrl: 'https://imgur.com/RcDf1U4.png' },
+  { name: 'Client 3', imageUrl: 'https://imgur.com/GTUoFnL.png' },
+  { name: 'Client 4', imageUrl: 'https://imgur.com/Zz95630.png' },
+  { name: 'Client 5', imageUrl: 'https://imgur.com/kzyQ7Rw.png' },
+  { name: 'Client 6', imageUrl: 'https://imgur.com/nIXVn7F.png' },
+  { name: 'Client 7', imageUrl: 'https://imgur.com/1Khgfk8.png' },
 ];
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'vworks-hero');
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
 
   const coreValues = [
@@ -68,23 +66,6 @@ export default function Home() {
     ? PORTFOLIO_ITEMS.filter(item => item.category === selectedCategory)
     : PORTFOLIO_ITEMS;
 
-  React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    const onSelect = () => {
-      setCurrent(api.selectedScrollSnap());
-    };
-
-    api.on('select', onSelect);
-    onSelect(); // Set initial value
-
-    return () => {
-      api.off('select', onSelect);
-    };
-  }, [api]);
-
   return (
     <div className="flex flex-col">
       <section className="py-8 md:py-10 bg-primary text-primary-foreground bg-hero-texture">
@@ -106,8 +87,8 @@ export default function Home() {
                 <Image
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
-                  width={500}
-                  height={400}
+                  width={400}
+                  height={320}
                   className="rounded-lg relative z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
                   priority
                   data-ai-hint={heroImage.imageHint}
@@ -149,22 +130,20 @@ export default function Home() {
                 stopOnMouseEnter: true,
               }),
             ]}
-            setApi={setApi}
             className="w-full"
           >
             <CarouselContent>
-              {DUMMY_LOGOS.map((logo, index) => (
-                <CarouselItem key={index} className="basis-1/3 md:basis-1/5">
-                  <div className="p-1 flex items-center justify-center">
-                    <logo.icon
-                      className={cn(
-                        "h-10 w-auto transition-all duration-500",
-                        current === index
-                          ? "text-foreground scale-110"
-                          : "text-muted-foreground/60 scale-90"
-                      )}
-                      title={logo.name}
-                    />
+              {CLIENT_LOGOS.map((logo, index) => (
+                <CarouselItem key={index} className="basis-1/2 md:basis-1/4 lg:basis-1/6">
+                  <div className="p-4 flex items-center justify-center h-24 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                    <div className="relative w-full h-full">
+                        <Image
+                        src={logo.imageUrl}
+                        alt={logo.name}
+                        fill
+                        className="object-contain"
+                        />
+                    </div>
                   </div>
                 </CarouselItem>
               ))}
@@ -433,5 +412,7 @@ export default function Home() {
     
 
 
+
+    
 
     
