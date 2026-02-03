@@ -63,9 +63,9 @@ const teamMembers = [
     imageHint: 'male portrait professional',
   },
   {
-    name: 'Panut',
-    role: 'Chief Operational Officer',
-    imageUrl: 'https://imgur.com/EMRRQKv.png',
+    name: 'M. Faisal Abda',
+    role: 'Account Executive',
+    imageUrl: 'https://imgur.com/XnaNbb5.png',
     imageHint: 'male portrait professional',
   },
   {
@@ -87,9 +87,9 @@ const teamMembers = [
     imageHint: 'female portrait professional',
   },
   {
-    name: 'M. Faisal Abda',
-    role: 'Account Executive',
-    imageUrl: 'https://imgur.com/XnaNbb5.png',
+    name: 'Panut',
+    role: 'Chief Operational Officer',
+    imageUrl: 'https://imgur.com/EMRRQKv.png',
     imageHint: 'male portrait professional',
   },
   {
