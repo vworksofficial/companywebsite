@@ -21,13 +21,13 @@ import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 
 const CLIENT_LOGOS = [
-  { name: 'Client 1', imageUrl: 'https://imgur.com/B0wMr9o.png' },
-  { name: 'Client 2', imageUrl: 'https://imgur.com/RcDf1U4.png' },
-  { name: 'Client 3', imageUrl: 'https://imgur.com/GTUoFnL.png' },
-  { name: 'Client 4', imageUrl: 'https://imgur.com/Zz95630.png' },
-  { name: 'Client 5', imageUrl: 'https://imgur.com/kzyQ7Rw.png' },
-  { name: 'Client 6', imageUrl: 'https://imgur.com/nIXVn7F.png' },
-  { name: 'Client 7', imageUrl: 'https://imgur.com/1Khgfk8.png' },
+  { name: 'Client 1', imageUrl: 'https://i.imgur.com/B0wMr9o.png' },
+  { name: 'Client 2', imageUrl: 'https://i.imgur.com/RcDf1U4.png' },
+  { name: 'Client 3', imageUrl: 'https://i.imgur.com/GTUoFnL.png' },
+  { name: 'Client 4', imageUrl: 'https://i.imgur.com/Zz95630.png' },
+  { name: 'Client 5', imageUrl: 'https://i.imgur.com/kzyQ7Rw.png' },
+  { name: 'Client 6', imageUrl: 'https://i.imgur.com/nIXVn7F.png' },
+  { name: 'Client 7', imageUrl: 'https://i.imgur.com/1Khgfk8.png' },
 ];
 
 export default function Home() {
