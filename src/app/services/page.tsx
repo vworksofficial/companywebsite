@@ -2,7 +2,7 @@
 
 import { useState, type ElementType } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { PRICING_DATA, type PricingPackage } from '@/lib/constants';
+import { PRICING_DATA, type PricingPackage, SERVICES } from '@/lib/constants';
 import { Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -18,6 +18,7 @@ import {
   DialogTitle,
   DialogClose,
 } from '@/components/ui/dialog';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 type PricingPackageWithCategory = PricingPackage & {
   categoryName: string;
@@ -70,36 +71,55 @@ export default function ServicesPage() {
             Solusi digital yang transparan dan terukur untuk membantu bisnis Anda bertumbuh. Temukan paket yang paling sesuai dengan kebutuhan Anda.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            <Button
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {/* "All Services" Card */}
+            <div
               onClick={() => setSelectedCategory(null)}
-              variant={!selectedCategory ? 'secondary' : 'ghost'}
               className={cn(
-                'rounded-full',
-                !selectedCategory
-                  ? ''
-                  : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
+                "group cursor-pointer rounded-lg bg-black/20 transition-all hover:bg-black/40 h-full",
+                !selectedCategory && "ring-2 ring-accent"
               )}
             >
-              Semua Layanan
-            </Button>
+              <div className="flex h-full flex-col items-center justify-center p-4 text-center">
+                <h3 className="font-headline text-lg font-bold">Semua Layanan</h3>
+                <p className="mt-1 text-sm text-primary-foreground/80">Lihat semua paket</p>
+              </div>
+            </div>
+
+            {/* Service Category Cards */}
             {PRICING_DATA.map((category) => {
+              const service = SERVICES.find((s) => s.title === category.category);
+              const serviceImage = service ? PlaceHolderImages.find((img) => img.id === service.image) : null;
               const isActive = selectedCategory === category.category;
+
               return (
-                <Button
+                <div
                   key={category.category}
                   onClick={() => setSelectedCategory(category.category)}
-                  variant={isActive ? 'secondary' : 'ghost'}
                   className={cn(
-                    'rounded-full',
-                    isActive
-                      ? ''
-                      : 'border border-primary-foreground/30 text-primary-foreground bg-black/20 hover:bg-black/40 hover:text-primary-foreground'
+                    "group cursor-pointer overflow-hidden rounded-lg bg-black/20 transition-all hover:bg-black/30",
+                    isActive && "ring-2 ring-accent"
                   )}
                 >
-                  <category.icon className="mr-2 h-4 w-4" />
-                  {category.category}
-                </Button>
+                  <div className="relative aspect-video w-full">
+                    {serviceImage ? (
+                      <Image
+                        src={serviceImage.imageUrl}
+                        alt={category.category}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        data-ai-hint={serviceImage.imageHint ?? ''}
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-black/10">
+                        <category.icon className="h-10 w-10 text-primary-foreground/50" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-3 text-center">
+                    <h3 className="font-headline font-semibold leading-tight text-white">{category.category}</h3>
+                  </div>
+                </div>
               );
             })}
           </div>
