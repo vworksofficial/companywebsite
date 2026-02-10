@@ -138,7 +138,7 @@ export default function ServicesPage() {
                             {pkg.originalPrice && (
                               <p className="text-lg line-through opacity-80">{pkg.originalPrice}</p>
                             )}
-                            <p className="text-4xl font-extrabold tracking-tight">{pkg.price}</p>
+                            <p className="text-3xl font-extrabold tracking-tight">{pkg.price}</p>
                             <p className="mt-2 text-sm font-semibold opacity-90">{pkg.title}</p>
                             <p className="mt-1 text-sm opacity-90">{pkg.description}</p>
                         </div>
