@@ -71,95 +71,111 @@ export default function ServicePage({ params }: ServicePageProps) {
       </section>
       
       <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto grid md:grid-cols-3 gap-12">
-          <div className="md:col-span-2">
-            <div className="grid md:grid-cols-2 gap-12 items-start">
-                <div>
-                    <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Approach</h2>
-                    <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground">
-                    <p>{service.longDescription}</p>
-                    </div>
-                </div>
-                <div>
-                    <h2 className="text-3xl font-bold font-headline text-primary mb-4">Key Benefits for Your Business</h2>
-                    <ul className="space-y-4">
-                    {service.benefits.map((benefit, index) => (
-                        <li key={index} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-                        <span className="text-muted-foreground">{benefit}</span>
-                        </li>
-                    ))}
-                    </ul>
-                </div>
-            </div>
-          </div>
-          <div className="md:col-span-1">
-            <div className="sticky top-24 space-y-8">
-              {pricingCategory && pricingCategory.packages.length > 0 ? (
-                pricingCategory.packages.map((pkg) => {
-                  const includes = pkg.includes.split(',').map(item => item.trim()).filter(Boolean);
-                  const excludes = pkg.excludes.split(',').map(item => item.trim()).filter(Boolean);
-                  
-                  return (
-                    <div key={pkg.name} className="flex flex-col rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden border">
-                        <div className={cn("p-6 relative", categoryStyles[pricingCategory.category] || 'bg-card')}>
-                            <div className="absolute top-6 right-0 bg-black/50 text-white text-[10px] leading-tight font-semibold uppercase px-1 py-1.5 rounded-l-md" style={{writingMode: 'vertical-rl', textOrientation: 'mixed'}}>
-                                {pricingCategory.category}
-                            </div>
-                            <Badge className="font-bold uppercase tracking-wider bg-black text-white">{pkg.name}</Badge>
-                            
-                            <div className={cn("mt-6 text-left text-black")}>
-                                {pkg.originalPrice && (
-                                  <p className="text-lg line-through opacity-80">{pkg.originalPrice}</p>
-                                )}
-                                <p className="font-headline text-2xl font-black tracking-tight">{pkg.price}</p>
-                                <p className="mt-2 text-sm font-semibold opacity-90">{pkg.title}</p>
-                                <p className="mt-1 text-sm opacity-90">{pkg.description}</p>
-                            </div>
-
-                            <Button asChild size="lg" className="w-full mt-6 rounded-xl font-bold bg-accent text-accent-foreground hover:bg-accent/90">
-                                <Link href="/contact">Pesan Sekarang</Link>
-                            </Button>
-                        </div>
-
-                        <div className="p-6 bg-muted/50 flex-grow flex flex-col">
-                            <ul className="space-y-3 flex-grow">
-                                {includes.map(item => (
-                                    <li key={item} className="flex items-start gap-3 text-sm">
-                                        <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-1" />
-                                        <span className="text-foreground">{item}</span>
-                                    </li>
-                                ))}
-                                {excludes.map(item => (
-                                    <li key={item} className="flex items-start gap-3 text-sm">
-                                        <X className="h-4 w-4 text-destructive flex-shrink-0 mt-1" />
-                                        <span className="text-muted-foreground line-through">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                             <p className="text-xs text-muted-foreground text-center w-full mt-6">
-                                Syarat &amp; Ketentuan berlaku.
-                            </p>
-                        </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <Card>
-                    <CardContent className="p-6">
-                        <p className="text-muted-foreground">Detail harga untuk layanan ini akan segera tersedia. Silakan hubungi kami untuk informasi lebih lanjut.</p>
-                        <Button asChild className="w-full mt-4">
-                            <Link href="/contact">Hubungi Kami</Link>
-                        </Button>
-                    </CardContent>
-                </Card>
-              )}
-            </div>
+        <div className="container mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+              <div>
+                  <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Approach</h2>
+                  <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground">
+                  <p>{service.longDescription}</p>
+                  </div>
+              </div>
+              <div>
+                  <h2 className="text-3xl font-bold font-headline text-primary mb-4">Key Benefits for Your Business</h2>
+                  <ul className="space-y-4">
+                  {service.benefits.map((benefit, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                      <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                      <span className="text-muted-foreground">{benefit}</span>
+                      </li>
+                  ))}
+                  </ul>
+              </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-card">
+      {pricingCategory && pricingCategory.packages.length > 0 ? (
+        <section className="py-16 md:py-24 bg-card border-y">
+          <div className="container mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Harga {service.title}</h2>
+              <p className="mt-4 text-muted-foreground">
+                Pilih paket yang paling sesuai untuk kebutuhan Anda.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start justify-center">
+              {pricingCategory.packages.map((pkg) => {
+                const includes = pkg.includes.split(',').map(item => item.trim()).filter(Boolean);
+                const excludes = pkg.excludes.split(',').map(item => item.trim()).filter(Boolean);
+                
+                return (
+                  <div key={pkg.name} className="flex flex-col rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden border">
+                      <div className={cn("p-6 relative", categoryStyles[pricingCategory.category] || 'bg-card')}>
+                          <div className="absolute top-6 right-0 bg-black/50 text-white text-[10px] leading-tight font-semibold uppercase px-1 py-1.5 rounded-l-md" style={{writingMode: 'vertical-rl', textOrientation: 'mixed'}}>
+                              {pricingCategory.category}
+                          </div>
+                          <Badge className="font-bold uppercase tracking-wider bg-black text-white">{pkg.name}</Badge>
+                          
+                          <div className={cn("mt-6 text-left text-black")}>
+                              {pkg.originalPrice && (
+                                <p className="text-lg line-through opacity-80">{pkg.originalPrice}</p>
+                              )}
+                              <p className="font-headline text-2xl font-black tracking-tight">{pkg.price}</p>
+                              <p className="mt-2 text-sm font-semibold opacity-90">{pkg.title}</p>
+                              <p className="mt-1 text-sm opacity-90">{pkg.description}</p>
+                          </div>
+
+                          <Button asChild size="lg" className="w-full mt-6 rounded-xl font-bold bg-accent text-accent-foreground hover:bg-accent/90">
+                              <Link href="/contact">Pesan Sekarang</Link>
+                          </Button>
+                      </div>
+
+                      <div className="p-6 bg-muted/50 flex-grow flex flex-col">
+                          <ul className="space-y-3 flex-grow">
+                              {includes.map(item => (
+                                  <li key={item} className="flex items-start gap-3 text-sm">
+                                      <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-1" />
+                                      <span className="text-foreground">{item}</span>
+                                  </li>
+                              ))}
+                              {excludes.map(item => (
+                                  <li key={item} className="flex items-start gap-3 text-sm">
+                                      <X className="h-4 w-4 text-destructive flex-shrink-0 mt-1" />
+                                      <span className="text-muted-foreground line-through">{item}</span>
+                                  </li>
+                              ))}
+                          </ul>
+                           <p className="text-xs text-muted-foreground text-center w-full mt-6">
+                              Syarat &amp; Ketentuan berlaku.
+                          </p>
+                      </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="py-16 md:py-24 bg-card border-y">
+            <div className="container mx-auto">
+                <div className="text-center max-w-3xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Detail Harga</h2>
+                    <div className="mt-8">
+                        <Card className="inline-block">
+                            <CardContent className="p-6 text-center">
+                                <p className="text-muted-foreground">Detail harga untuk layanan ini akan segera tersedia. Silakan hubungi kami untuk informasi lebih lanjut.</p>
+                                <Button asChild className="w-full mt-4">
+                                    <Link href="/contact">Hubungi Kami</Link>
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+            </div>
+        </section>
+      )}
+
+      <section className="py-16 md:py-20 bg-background">
           <div className="container mx-auto text-center">
             <h2 className="text-3xl font-headline font-bold text-primary">Explore Other Services</h2>
             <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
