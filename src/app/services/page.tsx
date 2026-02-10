@@ -38,6 +38,7 @@ export default function ServicesPage() {
     'SEO & Artikel': 'bg-emerald-100 text-emerald-900',
     'Content Creator': 'bg-pink-100 text-pink-900',
     'Keuangan & Pajak': 'bg-slate-200 text-slate-900',
+    'Foto Produk UMKM': 'bg-orange-100 text-orange-900',
   };
 
   const allPackages: PricingPackageWithCategory[] = PRICING_DATA.flatMap(category =>
@@ -128,7 +129,7 @@ export default function ServicesPage() {
 
               return (
                 <div key={pkg.name} className="flex flex-col rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden border h-full">
-                    <div className={cn("p-6", categoryStyles[pkg.categoryName] || 'bg-card')}>
+                    <div className={cn("p-6 text-card-foreground", categoryStyles[pkg.categoryName] || 'bg-card')}>
                         <div className="flex items-center">
                             <Badge variant="outline" className="font-bold uppercase tracking-wider border-current/50 bg-transparent text-inherit">{pkg.name}</Badge>
                         </div>
@@ -137,7 +138,7 @@ export default function ServicesPage() {
                             {pkg.originalPrice && (
                               <p className="text-lg line-through opacity-80">{pkg.originalPrice}</p>
                             )}
-                            <p className="text-5xl font-extrabold tracking-tight">{pkg.price}</p>
+                            <p className="text-4xl font-extrabold tracking-tight">{pkg.price}</p>
                             <p className="mt-2 text-sm font-semibold opacity-90">{pkg.title}</p>
                             <p className="mt-1 text-sm opacity-90">{pkg.description}</p>
                         </div>

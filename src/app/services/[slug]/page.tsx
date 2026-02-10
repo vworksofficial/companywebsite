@@ -93,7 +93,7 @@ export default function ServicePage({ params }: ServicePageProps) {
                                 {pkg.originalPrice && (
                                   <p className="text-lg line-through text-muted-foreground">{pkg.originalPrice}</p>
                                 )}
-                                <p className="text-5xl font-extrabold text-foreground tracking-tight">{pkg.price}</p>
+                                <p className="text-4xl font-extrabold text-foreground tracking-tight">{pkg.price}</p>
                                 <p className="mt-2 text-sm font-semibold text-muted-foreground">{pkg.title}</p>
                                 <p className="mt-1 text-sm text-muted-foreground">{pkg.description}</p>
                             </div>
