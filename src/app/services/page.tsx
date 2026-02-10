@@ -207,7 +207,7 @@ export default function ServicesPage() {
             <div className="container mx-auto space-y-16">
                 
                 <div>
-                    <h2 className="text-3xl font-bold font-headline text-primary mb-4 text-center">Deskripsi Layanan: {selectedService.title}</h2>
+                    <h2 className="text-3xl font-bold font-headline text-primary mb-4 text-center">{selectedService.title}</h2>
                     <div className="prose lg:prose-lg max-w-4xl mx-auto text-muted-foreground">
                         <p>{selectedService.longDescription}</p>
                     </div>
