@@ -128,31 +128,25 @@ export default function ServicesPage() {
 
               return (
                 <div key={pkg.name} className="flex flex-col rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden border h-full">
-                    {/* Top Part - White */}
-                    <div className="p-6 bg-card">
-                        <div className="flex justify-between items-center">
-                            <Badge variant="outline" className="font-bold uppercase tracking-wider">{pkg.name}</Badge>
-                            <div className={cn('flex items-center gap-2 text-xs font-semibold rounded-full px-3 py-1', categoryStyles[pkg.categoryName] || 'bg-gray-100')}>
-                                <CategoryIcon className="h-4 w-4 flex-shrink-0" />
-                                <span>{pkg.categoryName}</span>
-                            </div>
+                    <div className={cn("p-6", categoryStyles[pkg.categoryName] || 'bg-card')}>
+                        <div className="flex items-center">
+                            <Badge variant="outline" className="font-bold uppercase tracking-wider border-current/50 bg-transparent text-inherit">{pkg.name}</Badge>
                         </div>
                         
-                        <div className="mt-6 text-center">
+                        <div className="mt-6 text-center text-inherit">
                             {pkg.originalPrice && (
-                              <p className="text-lg line-through text-muted-foreground">{pkg.originalPrice}</p>
+                              <p className="text-lg line-through opacity-80">{pkg.originalPrice}</p>
                             )}
-                            <p className="text-5xl font-extrabold text-foreground tracking-tight">{pkg.price}</p>
-                            <p className="mt-2 text-sm font-semibold text-muted-foreground">{pkg.title}</p>
-                            <p className="mt-1 text-sm text-muted-foreground">{pkg.description}</p>
+                            <p className="text-5xl font-extrabold tracking-tight">{pkg.price}</p>
+                            <p className="mt-2 text-sm font-semibold opacity-90">{pkg.title}</p>
+                            <p className="mt-1 text-sm opacity-90">{pkg.description}</p>
                         </div>
 
-                        <Button asChild size="lg" className="w-full mt-6 rounded-xl font-bold">
+                        <Button asChild size="lg" className="w-full mt-6 rounded-xl font-bold bg-accent text-accent-foreground hover:bg-accent/90">
                             <Link href="/contact">Pesan Sekarang</Link>
                         </Button>
                     </div>
 
-                    {/* Bottom Part - Lighter Gray */}
                     <div className="p-6 bg-muted/50 flex-grow flex flex-col">
                         <ul className="space-y-3 flex-grow">
                             {includes.map(item => (
