@@ -132,7 +132,7 @@ export default function ServicesPage() {
                     <div className={cn("p-6", categoryStyles[pkg.categoryName] || 'bg-card')}>
                         <Badge className="font-bold uppercase tracking-wider bg-black text-white">{pkg.name}</Badge>
                         
-                        <div className={cn("mt-6 text-center text-black")}>
+                        <div className={cn("mt-6 text-left text-black")}>
                             {pkg.originalPrice && (
                               <p className="text-lg line-through opacity-80">{pkg.originalPrice}</p>
                             )}
