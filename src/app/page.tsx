@@ -225,7 +225,7 @@ export default function Home() {
               Kami menyediakan rangkaian lengkap solusi pemasaran digital yang disesuaikan dengan kebutuhan bisnis Anda.
             </p>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {SERVICES.map((service) => {
               const serviceImage = PlaceHolderImages.find(img => img.id === service.image);
               return (
@@ -406,13 +406,15 @@ export default function Home() {
     </div>
   );
 }
+    
+
+    
+
+    
+
+
 
     
 
     
 
-
-
-    
-
-    
