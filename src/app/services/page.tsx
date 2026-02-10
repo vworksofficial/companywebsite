@@ -133,7 +133,7 @@ export default function ServicesPage() {
                         <div className="absolute top-6 right-0 bg-black/50 text-white text-[10px] leading-tight font-semibold uppercase px-1 py-1.5 rounded-l-md" style={{writingMode: 'vertical-rl', textOrientation: 'mixed'}}>
                             {pkg.categoryName}
                         </div>
-                        <Badge className="font-bold uppercase tracking-wider bg-black text-white">{pkg.name}</Badge>
+                        <Badge variant="outline" className="font-bold uppercase tracking-wider bg-black text-white">{pkg.name}</Badge>
                         
                         <div className={cn("mt-6 text-left text-black")}>
                             {pkg.originalPrice && (
