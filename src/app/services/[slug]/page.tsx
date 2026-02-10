@@ -47,6 +47,7 @@ export default function ServicePage({ params }: ServicePageProps) {
   }
 
   const pricingCategory = PRICING_DATA.find(category => category.category === service.title);
+  const serviceImage = PlaceHolderImages.find((img) => img.id === service.image);
   
   const categoryStyles: { [key: string]: string } = {
     'Web Development': 'bg-sky-100 text-black',
@@ -62,34 +63,44 @@ export default function ServicePage({ params }: ServicePageProps) {
   return (
     <>
       <section className="bg-primary text-primary-foreground py-20">
-        <div className="container mx-auto">
-          <div className="max-w-3xl">
+        <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div>
             <h1 className="text-4xl md:text-5xl font-bold font-headline">{service.title}</h1>
             <p className="mt-4 text-base text-primary-foreground/90">{service.description}</p>
+          </div>
+          <div className="flex justify-center">
+            {serviceImage && (
+              <Image
+                src={serviceImage.imageUrl}
+                alt={serviceImage.description}
+                width={400}
+                height={400}
+                className="rounded-lg object-contain"
+                data-ai-hint={serviceImage.imageHint}
+              />
+            )}
           </div>
         </div>
       </section>
       
       <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-              <div>
-                  <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Approach</h2>
-                  <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground">
-                  <p>{service.longDescription}</p>
-                  </div>
+        <div className="container mx-auto grid md:grid-cols-2 gap-12 items-start">
+          <div>
+              <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Approach</h2>
+              <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground">
+              <p>{service.longDescription}</p>
               </div>
-              <div>
-                  <h2 className="text-3xl font-bold font-headline text-primary mb-4">Key Benefits for Your Business</h2>
-                  <ul className="space-y-4">
-                  {service.benefits.map((benefit, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-                      <span className="text-muted-foreground">{benefit}</span>
-                      </li>
-                  ))}
-                  </ul>
-              </div>
+          </div>
+          <div>
+              <h2 className="text-3xl font-bold font-headline text-primary mb-4">Key Benefits for Your Business</h2>
+              <ul className="space-y-4">
+              {service.benefits.map((benefit, index) => (
+                  <li key={index} className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                  <span className="text-muted-foreground">{benefit}</span>
+                  </li>
+              ))}
+              </ul>
           </div>
         </div>
       </section>
@@ -147,7 +158,7 @@ export default function ServicePage({ params }: ServicePageProps) {
                           </ul>
                            <p className="text-xs text-muted-foreground text-center w-full mt-6">
                               Syarat &amp; Ketentuan berlaku.
-                          </p>
+                           </p>
                       </div>
                   </div>
                 );
