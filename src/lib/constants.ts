@@ -331,6 +331,11 @@ export const PRICING_DATA: PricingCategory[] = [
                 terms: 'Layanan terbatas pada pencatatan dan pembukuan transaksi. Tidak termasuk pelaporan pajak. Klien menyediakan semua bukti transaksi (nota, faktur, dll).'
             }
         ]
+    },
+    {
+        category: 'Foto Produk UMKM',
+        icon: Camera,
+        packages: []
     }
 ];
 
