@@ -65,7 +65,7 @@ export default function ServicePage({ params }: ServicePageProps) {
         <div className="container mx-auto">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold font-headline">{service.title}</h1>
-            <p className="mt-4 text-lg text-primary-foreground/90">{service.description}</p>
+            <p className="mt-4 text-base text-primary-foreground/90">{service.description}</p>
           </div>
         </div>
       </section>
