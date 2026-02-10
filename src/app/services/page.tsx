@@ -3,7 +3,7 @@
 import { useState, type ElementType } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { PRICING_DATA, type PricingPackage, SERVICES } from '@/lib/constants';
-import { Check, X } from 'lucide-react';
+import { Check, X, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
@@ -51,6 +51,10 @@ export default function ServicesPage() {
     ? allPackages.filter(pkg => pkg.categoryName === selectedCategory)
     : allPackages;
 
+  const selectedService = selectedCategory
+    ? SERVICES.find(s => s.title === selectedCategory)
+    : null;
+
   return (
     <>
       <section className="bg-slate-800 text-primary-foreground py-16 md:py-20">
@@ -61,7 +65,6 @@ export default function ServicesPage() {
           </p>
 
           <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-            {/* "All Services" Card */}
             <div
               onClick={() => setSelectedCategory(null)}
               className={cn(
@@ -75,7 +78,6 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            {/* Service Category Cards */}
             {PRICING_DATA.map((category) => {
               const service = SERVICES.find((s) => s.title === category.category);
               const serviceImage = service ? PlaceHolderImages.find((img) => img.id === service.image) : null;
@@ -199,6 +201,42 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {selectedService && (
+        <section className="py-16 md:py-24 bg-card border-t">
+            <div className="container mx-auto space-y-16">
+                
+                <div>
+                    <h2 className="text-3xl font-bold font-headline text-primary mb-4 text-center">Deskripsi Layanan: {selectedService.title}</h2>
+                    <div className="prose lg:prose-lg max-w-4xl mx-auto text-muted-foreground">
+                        <p>{selectedService.longDescription}</p>
+                    </div>
+                </div>
+
+                <Separator />
+                
+                <div className="grid md:grid-cols-2 gap-12 items-start">
+                    <div>
+                        <h3 className="text-2xl font-bold font-headline text-primary mb-6">Our Approach</h3>
+                        <div className="prose max-w-none text-muted-foreground">
+                            <p>{selectedService.longDescription}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 className="text-2xl font-bold font-headline text-primary mb-6">Key Benefits</h3>
+                        <ul className="space-y-4">
+                            {selectedService.benefits.map((benefit, index) => (
+                                <li key={index} className="flex items-start gap-3">
+                                    <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                                    <span className="text-muted-foreground">{benefit}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+      )}
 
       {selectedPackageForTerms && (
         <Dialog open={!!selectedPackageForTerms} onOpenChange={(isOpen) => !isOpen && setSelectedPackageForTerms(null)}>
