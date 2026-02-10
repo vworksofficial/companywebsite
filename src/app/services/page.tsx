@@ -19,6 +19,7 @@ import {
   DialogClose,
 } from '@/components/ui/dialog';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Badge } from '@/components/ui/badge';
 
 type PricingPackageWithCategory = PricingPackage & {
   categoryName: string;
@@ -126,76 +127,56 @@ export default function ServicesPage() {
               const CategoryIcon = pkg.categoryIcon;
 
               return (
-                <Card key={pkg.name} className="flex flex-col shadow-lg hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden">
-                  <div className={cn('p-3', categoryStyles[pkg.categoryName] || 'bg-gray-100')}>
-                    <div className="flex items-center gap-2 text-sm font-semibold">
-                        <CategoryIcon className="h-5 w-5 flex-shrink-0" />
-                        <span>{pkg.categoryName}</span>
-                    </div>
-                  </div>
-                  
-                  <CardHeader className="flex-grow-0 pt-6">
-                    <CardTitle className="font-headline text-xl">{pkg.name}</CardTitle>
-                    <CardDescription>{pkg.title}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-col flex-grow">
-                    <div className="flex-grow-0">
-                      <p className="text-sm text-muted-foreground">{pkg.description}</p>
-                    </div>
-                    <Separator className="my-4" />
-                    <div className="space-y-4 flex-grow">
-                      {includes.length > 0 && (
-                        <div>
-                          <h4 className="font-semibold mb-2 text-sm">Termasuk:</h4>
-                          <ul className="space-y-2">
-                            {includes.map(item => (
-                              <li key={item} className="flex items-start gap-2 text-sm">
-                                <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-0.5" />
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
+                <div key={pkg.name} className="flex flex-col rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden border h-full">
+                    {/* Top Part - White */}
+                    <div className="p-6 bg-card">
+                        <div className="flex justify-between items-center">
+                            <Badge variant="outline" className="font-bold uppercase tracking-wider">{pkg.name}</Badge>
+                            <div className={cn('flex items-center gap-2 text-xs font-semibold rounded-full px-3 py-1', categoryStyles[pkg.categoryName] || 'bg-gray-100')}>
+                                <CategoryIcon className="h-4 w-4 flex-shrink-0" />
+                                <span>{pkg.categoryName}</span>
+                            </div>
                         </div>
-                      )}
+                        
+                        <div className="mt-6 text-center">
+                            {pkg.originalPrice && (
+                              <p className="text-lg line-through text-muted-foreground">{pkg.originalPrice}</p>
+                            )}
+                            <p className="text-5xl font-extrabold text-foreground tracking-tight">{pkg.price}</p>
+                            <p className="mt-2 text-sm font-semibold text-muted-foreground">{pkg.title}</p>
+                            <p className="mt-1 text-sm text-muted-foreground">{pkg.description}</p>
+                        </div>
 
-                      {excludes.length > 0 && (
-                        <div className="mt-4">
-                          <h4 className="font-semibold mb-2 text-sm">Tidak Termasuk:</h4>
-                          <ul className="space-y-2">
-                            {excludes.map(item => (
-                              <li key={item} className="flex items-start gap-2 text-sm">
-                                <X className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
-                                <span>{item}</span>
-                              </li>
+                        <Button asChild size="lg" className="w-full mt-6 rounded-xl font-bold">
+                            <Link href="/contact">Pesan Sekarang</Link>
+                        </Button>
+                    </div>
+
+                    {/* Bottom Part - Lighter Gray */}
+                    <div className="p-6 bg-muted/50 flex-grow flex flex-col">
+                        <ul className="space-y-3 flex-grow">
+                            {includes.map(item => (
+                                <li key={item} className="flex items-start gap-3 text-sm">
+                                    <Check className="h-4 w-4 text-green-500 flex-shrink-0 mt-1" />
+                                    <span className="text-foreground">{item}</span>
+                                </li>
                             ))}
-                          </ul>
-                        </div>
-                      )}
+                            {excludes.map(item => (
+                                <li key={item} className="flex items-start gap-3 text-sm">
+                                    <X className="h-4 w-4 text-destructive flex-shrink-0 mt-1" />
+                                    <span className="text-muted-foreground line-through">{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                        <Button
+                            variant="link"
+                            className="text-xs text-muted-foreground font-normal h-auto p-0 hover:underline w-full mt-6"
+                            onClick={() => setSelectedPackageForTerms(pkg)}
+                        >
+                          Syarat &amp; Ketentuan
+                        </Button>
                     </div>
-                  </CardContent>
-                  <CardFooter className="pt-4 mt-auto flex flex-col gap-4">
-                    <div className="w-full text-center">
-                        {pkg.originalPrice && (
-                          <div className="inline-block bg-destructive/10 text-destructive text-sm font-semibold mb-2 px-2 py-1 rounded-md">
-                              <span className="line-through">{pkg.originalPrice}</span>
-                          </div>
-                        )}
-                        <div className="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg">
-                            <p className="text-xl font-bold">{pkg.price}</p>
-                        </div>
-                    </div>
-                    <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
-                      <Link href="/contact">Pesan Sekarang</Link>
-                    </Button>
-                    <Button
-                      variant="link"
-                      className="text-sm text-muted-foreground font-normal h-auto p-0 hover:no-underline -mt-2"
-                      onClick={() => setSelectedPackageForTerms(pkg)}
-                    >
-                      Syarat &amp; Ketentuan
-                    </Button>
-                  </CardFooter>
-                </Card>
+                </div>
               );
             })}
           </div>
