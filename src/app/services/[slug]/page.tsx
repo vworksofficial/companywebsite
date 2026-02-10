@@ -98,7 +98,7 @@ export default function ServicePage({ params }: ServicePageProps) {
                   return (
                     <div key={pkg.name} className="flex flex-col rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden border">
                         <div className={cn("p-6 relative", categoryStyles[pricingCategory.category] || 'bg-card')}>
-                            <div className="absolute top-6 right-0 bg-black/50 text-white text-xs font-semibold uppercase px-1 py-2 rounded-l-md" style={{writingMode: 'vertical-rl', textOrientation: 'mixed'}}>
+                            <div className="absolute top-6 right-0 bg-black/50 text-white text-[10px] leading-tight font-semibold uppercase px-1 py-1.5 rounded-l-md" style={{writingMode: 'vertical-rl', textOrientation: 'mixed'}}>
                                 {pricingCategory.category}
                             </div>
                             <Badge className="font-bold uppercase tracking-wider bg-black text-white">{pkg.name}</Badge>
