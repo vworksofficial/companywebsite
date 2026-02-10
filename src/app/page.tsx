@@ -87,8 +87,8 @@ export default function Home() {
                 <Image
                   src={heroImage.imageUrl}
                   alt={heroImage.description}
-                  width={400}
-                  height={320}
+                  width={320}
+                  height={256}
                   className="rounded-lg relative z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
                   priority
                   data-ai-hint={heroImage.imageHint}
@@ -156,7 +156,7 @@ export default function Home() {
         <div className="container grid grid-cols-1 md:grid-cols-3 gap-12 items-stretch">
           <div className="md:col-span-1 relative rounded-lg shadow-xl overflow-hidden">
             <Image
-              src="https://imgur.com/jzK2W7D.png"
+              src="https://i.imgur.com/jzK2W7D.png"
               alt="Team discussing vision and mission"
               fill
               className="object-cover"
@@ -288,7 +288,7 @@ export default function Home() {
           </div>
           <div>
             <Image 
-              src="https://imgur.com/mIgN8TX.png"
+              src="https://i.imgur.com/mIgN8TX.png"
               alt="Our Team"
               width={600}
               height={400}
@@ -415,5 +415,8 @@ export default function Home() {
 
 
     
+
+    
+
 
     

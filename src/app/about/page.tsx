@@ -59,49 +59,49 @@ const teamMembers = [
   {
     name: 'Adam Doni Mauladi',
     role: 'Chief Executive Officer',
-    imageUrl: 'https://imgur.com/AlH1rcA.png',
+    imageUrl: 'https://i.imgur.com/AlH1rcA.png',
     imageHint: 'male portrait professional',
   },
   {
     name: 'M. Faisal Abda',
     role: 'Account Executive',
-    imageUrl: 'https://imgur.com/XnaNbb5.png',
+    imageUrl: 'https://i.imgur.com/XnaNbb5.png',
     imageHint: 'male portrait professional',
   },
   {
     name: 'Dinda Afifah K.',
     role: 'Chief Financial Officer',
-    imageUrl: 'https://imgur.com/s4IDxnn.png',
+    imageUrl: 'https://i.imgur.com/s4IDxnn.png',
     imageHint: 'female portrait professional',
   },
   {
     name: 'M. Fadli Rozi',
     role: 'Project Leader',
-    imageUrl: 'https://imgur.com/Pvx2kMG.png',
+    imageUrl: 'https://i.imgur.com/Pvx2kMG.png',
     imageHint: 'male portrait tech',
   },
   {
     name: 'Fitria Handayani',
     role: 'Account Executive',
-    imageUrl: 'https://imgur.com/IZ16F0I.png',
+    imageUrl: 'https://i.imgur.com/IZ16F0I.png',
     imageHint: 'female portrait professional',
   },
   {
     name: 'Panut',
     role: 'Chief Operational Officer',
-    imageUrl: 'https://imgur.com/EMRRQKv.png',
+    imageUrl: 'https://i.imgur.com/EMRRQKv.png',
     imageHint: 'male portrait professional',
   },
   {
     name: 'Febrianti Kurniasari',
     role: 'Account Executive',
-    imageUrl: 'https://imgur.com/wplwCYx.png',
+    imageUrl: 'https://i.imgur.com/wplwCYx.png',
     imageHint: 'female portrait professional',
   },
   {
     name: 'Ifada Nur Alifah',
     role: 'Content Planner',
-    imageUrl: 'https://imgur.com/JTxmLYe.png',
+    imageUrl: 'https://i.imgur.com/JTxmLYe.png',
     imageHint: 'female portrait creative',
   },
 ];
@@ -133,7 +133,7 @@ export default function AboutPage() {
           </div>
           <div className="order-1 md:order-2 flex justify-center">
             <Image
-              src="https://imgur.com/mIgN8TX.png"
+              src="https://i.imgur.com/mIgN8TX.png"
               alt="Team brainstorming session"
               width={400}
               height={600}
@@ -191,7 +191,7 @@ export default function AboutPage() {
           <div className="mt-12 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {teamMembers.map((member) => (
               <Card key={member.name} className="text-center overflow-hidden group shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                <div className="relative aspect-square">
+                <div className="relative aspect-[4/5]">
                   <Image
                     src={member.imageUrl}
                     alt={member.name}
@@ -278,3 +278,5 @@ export default function AboutPage() {
     </>
   );
 }
+
+    
