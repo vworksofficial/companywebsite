@@ -9,13 +9,13 @@
     {
       "id": "vworks-seo",
       "description": "A person analyzing charts and graphs on a computer screen.",
-      "imageUrl": "https://imgur.com/OLX6jXE.png",
+      "imageUrl": "https://i.imgur.com/OLX6jXE.png",
       "imageHint": "data analysis"
     },
     {
       "id": "vworks-smm",
       "description": "A smartphone displaying social media notifications and engagement.",
-      "imageUrl": "https://imgur.com/ly3KaJc.png",
+      "imageUrl": "https://i.imgur.com/ly3KaJc.png",
       "imageHint": "social media"
     },
     {
@@ -27,37 +27,37 @@
     {
       "id": "vworks-ads",
       "description": "A digital dashboard showing ad campaign performance metrics.",
-      "imageUrl": "https://imgur.com/0NYuoKS.png",
+      "imageUrl": "https://i.imgur.com/0NYuoKS.png",
       "imageHint": "digital dashboard"
     },
     {
       "id": "vworks-webdev",
       "description": "Code on a screen with a modern website design in the background.",
-      "imageUrl": "https://imgur.com/8sxnsBO.png",
+      "imageUrl": "https://i.imgur.com/8sxnsBO.png",
       "imageHint": "web design"
     },
     {
       "id": "vworks-branding",
       "description": "A mood board with color palettes and design sketches for branding.",
-      "imageUrl": "https://imgur.com/GH8Jmfw.png",
+      "imageUrl": "https://i.imgur.com/GH8Jmfw.png",
       "imageHint": "branding design"
     },
     {
       "id": "vworks-content-creator",
       "description": "A person filming a video for social media with a ring light.",
-      "imageUrl": "https://imgur.com/OxmFWQu.png",
+      "imageUrl": "https://i.imgur.com/OxmFWQu.png",
       "imageHint": "video creation"
     },
     {
       "id": "vworks-finance",
       "description": "A desk with a calculator, financial documents, and a laptop.",
-      "imageUrl": "https://imgur.com/IyIf0Da.png",
+      "imageUrl": "https://i.imgur.com/IyIf0Da.png",
       "imageHint": "financial accounting"
     },
     {
       "id": "vworks-product-photo",
       "description": "A professionally shot product photo for an e-commerce catalog.",
-      "imageUrl": "https://images.unsplash.com/photo-1551797802-f2dd1ec0033e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwcm9kdWN0JTIwcGhvdG9ncmFwaHl8ZW58MHx8fHwxNzcwNjk5ODg4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://i.imgur.com/KTeRNzO.png",
       "imageHint": "product photography"
     }
   ]
