@@ -9,6 +9,9 @@ import { SquiggleDecorations } from '@/components/decorations/squiggles';
 export const metadata: Metadata = {
   title: 'VWORKS.ID - Driving Growth Through Digital Excellence',
   description: 'VWORKS.ID offers expert SEO, SMM, Content Marketing, Paid Ads, and Web Development services to elevate your brand.',
+  icons: {
+    icon: 'https://i.imgur.com/lC5Y4YF.png',
+  },
 };
 
 export default function RootLayout({
