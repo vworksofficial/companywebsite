@@ -73,20 +73,25 @@ export default function ServicePage({ params }: ServicePageProps) {
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto grid md:grid-cols-3 gap-12">
           <div className="md:col-span-2">
-            <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Approach</h2>
-            <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground">
-              <p>{service.longDescription}</p>
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+                <div>
+                    <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Approach</h2>
+                    <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground">
+                    <p>{service.longDescription}</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 className="text-3xl font-bold font-headline text-primary mb-4">Key Benefits for Your Business</h2>
+                    <ul className="space-y-4">
+                    {service.benefits.map((benefit, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+                        <span className="text-muted-foreground">{benefit}</span>
+                        </li>
+                    ))}
+                    </ul>
+                </div>
             </div>
-            
-            <h3 className="text-2xl font-bold font-headline text-primary mt-12 mb-6">Key Benefits for Your Business</h3>
-            <ul className="space-y-4">
-              {service.benefits.map((benefit, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-                  <span className="text-muted-foreground">{benefit}</span>
-                </li>
-              ))}
-            </ul>
           </div>
           <div className="md:col-span-1">
             <div className="sticky top-24 space-y-8">
