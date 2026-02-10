@@ -53,6 +53,12 @@
       "description": "A desk with a calculator, financial documents, and a laptop.",
       "imageUrl": "https://imgur.com/IyIf0Da.png",
       "imageHint": "financial accounting"
+    },
+    {
+      "id": "vworks-product-photo",
+      "description": "A professionally shot product photo for an e-commerce catalog.",
+      "imageUrl": "https://images.unsplash.com/photo-1551797802-f2dd1ec0033e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxwcm9kdWN0JTIwcGhvdG9ncmFwaHl8ZW58MHx8fHwxNzcwNjk5ODg4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "product photography"
     }
   ]
 }

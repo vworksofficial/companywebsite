@@ -1,4 +1,4 @@
-import { LineChart, Megaphone, PenSquare, Target, Code, LucideIcon, Palette, Video, Landmark } from 'lucide-react';
+import { LineChart, Megaphone, PenSquare, Target, Code, LucideIcon, Palette, Video, Landmark, Camera } from 'lucide-react';
 
 type NavLink = {
   href: string;
@@ -145,6 +145,20 @@ export const SERVICES: Service[] = [
     ],
     icon: Landmark,
     image: 'vworks-finance',
+  },
+  {
+    slug: 'foto-produk-umkm',
+    title: 'Foto Produk UMKM',
+    description: 'Layanan foto produk dengan set background menarik untuk katalog usaha Anda.',
+    longDescription: "Tampilkan produk UMKM Anda dengan kualitas profesional. Kami menyediakan layanan fotografi produk dengan penataan dan latar belakang yang menarik, dirancang khusus untuk meningkatkan daya tarik visual dan mengubah pengunjung menjadi pembeli. Cocok untuk katalog, media sosial, dan platform e-commerce.",
+    benefits: [
+      "Foto produk berkualitas tinggi dengan resolusi tajam",
+      "Penataan produk yang kreatif dan sesuai dengan identitas brand",
+      "Latar belakang yang bersih dan menarik",
+      "Meningkatkan kepercayaan pelanggan dan citra profesional"
+    ],
+    icon: Camera,
+    image: 'vworks-product-photo',
   },
 ];
 
