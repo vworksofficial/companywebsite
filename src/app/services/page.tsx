@@ -31,14 +31,14 @@ export default function ServicesPage() {
   const [selectedPackageForTerms, setSelectedPackageForTerms] = useState<PricingPackageWithCategory | null>(null);
 
   const categoryStyles: { [key: string]: string } = {
-    'Web Development': 'bg-sky-100 text-sky-900',
-    'Digital Ads Service': 'bg-amber-100 text-amber-900',
-    'Social Media Management': 'bg-rose-100 text-rose-900',
-    'Branding & Design': 'bg-purple-100 text-purple-900',
-    'SEO & Artikel': 'bg-emerald-100 text-emerald-900',
-    'Content Creator': 'bg-pink-100 text-pink-900',
-    'Keuangan & Pajak': 'bg-slate-200 text-slate-900',
-    'Foto Produk UMKM': 'bg-orange-100 text-orange-900',
+    'Web Development': 'bg-sky-100 text-black',
+    'Digital Ads Service': 'bg-amber-100 text-black',
+    'Social Media Management': 'bg-rose-100 text-black',
+    'Branding & Design': 'bg-purple-100 text-black',
+    'SEO & Artikel': 'bg-emerald-100 text-black',
+    'Content Creator': 'bg-pink-100 text-black',
+    'Keuangan & Pajak': 'bg-slate-200 text-black',
+    'Foto Produk UMKM': 'bg-orange-100 text-black',
   };
 
   const allPackages: PricingPackageWithCategory[] = PRICING_DATA.flatMap(category =>
@@ -130,9 +130,7 @@ export default function ServicesPage() {
               return (
                 <div key={pkg.name} className="flex flex-col rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden border h-full">
                     <div className={cn("p-6 text-card-foreground", categoryStyles[pkg.categoryName] || 'bg-card')}>
-                        <div className="flex items-center">
-                            <Badge variant="outline" className="font-bold uppercase tracking-wider border-current/50 bg-transparent text-inherit">{pkg.name}</Badge>
-                        </div>
+                        <Badge variant="outline" className="font-bold uppercase tracking-wider border-current/50 bg-transparent text-inherit">{pkg.name}</Badge>
                         
                         <div className="mt-6 text-center text-inherit">
                             {pkg.originalPrice && (
