@@ -232,7 +232,7 @@ export default function Home() {
                 <Card key={service.slug} className="group overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                   <CardHeader className="p-0">
                     {serviceImage && (
-                       <div className="relative h-48 w-full">
+                       <div className="relative w-full aspect-video">
                         <Image
                           src={serviceImage.imageUrl}
                           alt={service.title}
@@ -417,4 +417,3 @@ export default function Home() {
     
 
     
-
