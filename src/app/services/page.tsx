@@ -129,14 +129,14 @@ export default function ServicesPage() {
 
               return (
                 <div key={pkg.name} className="flex flex-col rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden border h-full">
-                    <div className={cn("p-6 text-card-foreground", categoryStyles[pkg.categoryName] || 'bg-card')}>
+                    <div className={cn("p-6", categoryStyles[pkg.categoryName] || 'bg-card')}>
                         <Badge variant="outline" className="font-bold uppercase tracking-wider border-current/50 bg-transparent text-inherit">{pkg.name}</Badge>
                         
-                        <div className="mt-6 text-center text-inherit">
+                        <div className={cn("mt-6 text-center", categoryStyles[pkg.categoryName] ? 'text-black' : 'text-card-foreground')}>
                             {pkg.originalPrice && (
                               <p className="text-lg line-through opacity-80">{pkg.originalPrice}</p>
                             )}
-                            <p className="text-3xl font-extrabold tracking-tight">{pkg.price}</p>
+                            <p className="text-2xl font-extrabold tracking-tight">{pkg.price}</p>
                             <p className="mt-2 text-sm font-semibold opacity-90">{pkg.title}</p>
                             <p className="mt-1 text-sm opacity-90">{pkg.description}</p>
                         </div>

@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 type ServicePageProps = {
   params: {
@@ -46,6 +47,17 @@ export default function ServicePage({ params }: ServicePageProps) {
   }
 
   const pricingCategory = PRICING_DATA.find(category => category.category === service.title);
+  
+  const categoryStyles: { [key: string]: string } = {
+    'Web Development': 'bg-sky-100 text-black',
+    'Digital Ads Service': 'bg-amber-100 text-black',
+    'Social Media Management': 'bg-rose-100 text-black',
+    'Branding & Design': 'bg-purple-100 text-black',
+    'SEO & Artikel': 'bg-emerald-100 text-black',
+    'Content Creator': 'bg-pink-100 text-black',
+    'Keuangan & Pajak': 'bg-slate-200 text-black',
+    'Foto Produk UMKM': 'bg-orange-100 text-black',
+  };
 
   return (
     <>
@@ -85,17 +97,16 @@ export default function ServicePage({ params }: ServicePageProps) {
                   
                   return (
                     <div key={pkg.name} className="flex flex-col rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 w-full overflow-hidden border">
-                        {/* Top Part - White */}
-                        <div className="p-6 bg-card">
-                            <Badge variant="outline" className="font-bold uppercase tracking-wider">{pkg.name}</Badge>
+                        <div className={cn("p-6", categoryStyles[pricingCategory.category] || 'bg-card')}>
+                            <Badge variant="outline" className="font-bold uppercase tracking-wider border-current/50 bg-transparent text-inherit">{pkg.name}</Badge>
                             
-                            <div className="mt-6 text-center">
+                            <div className={cn("mt-6 text-center", categoryStyles[pricingCategory.category] ? 'text-black' : 'text-card-foreground')}>
                                 {pkg.originalPrice && (
-                                  <p className="text-lg line-through text-muted-foreground">{pkg.originalPrice}</p>
+                                  <p className="text-lg line-through opacity-80">{pkg.originalPrice}</p>
                                 )}
-                                <p className="text-3xl font-extrabold text-foreground tracking-tight">{pkg.price}</p>
-                                <p className="mt-2 text-sm font-semibold text-muted-foreground">{pkg.title}</p>
-                                <p className="mt-1 text-sm text-muted-foreground">{pkg.description}</p>
+                                <p className="text-2xl font-extrabold tracking-tight">{pkg.price}</p>
+                                <p className="mt-2 text-sm font-semibold opacity-90">{pkg.title}</p>
+                                <p className="mt-1 text-sm opacity-90">{pkg.description}</p>
                             </div>
 
                             <Button asChild size="lg" className="w-full mt-6 rounded-xl font-bold bg-accent text-accent-foreground hover:bg-accent/90">
@@ -103,7 +114,6 @@ export default function ServicePage({ params }: ServicePageProps) {
                             </Button>
                         </div>
 
-                        {/* Bottom Part - Lighter Gray */}
                         <div className="p-6 bg-muted/50 flex-grow flex flex-col">
                             <ul className="space-y-3 flex-grow">
                                 {includes.map(item => (
