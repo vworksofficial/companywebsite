@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: 'VWORKS.ID offers expert SEO, SMM, Content Marketing, Paid Ads, and Web Development services to elevate your brand.',
   icons: {
     icon: 'https://imgur.com/lC5Y4YF.png',
+    shortcut: 'https://imgur.com/lC5Y4YF.png',
+    apple: 'https://imgur.com/lC5Y4YF.png',
   },
 };
 
