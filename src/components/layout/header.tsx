@@ -29,7 +29,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-6">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -47,7 +47,7 @@ export default function Header() {
           </Button>
         </nav>
 
-        <div className="md:hidden">
+        <div className="lg:hidden">
           {isClient ? (
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
