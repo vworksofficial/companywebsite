@@ -368,7 +368,7 @@ export default function Home() {
                                     {item.category}
                                 </Badge>
                                 {item.link && (
-                                    <div className="mt-auto">
+                                    <div className="mt-auto flex justify-end">
                                         <Button asChild variant="link" className="px-0 text-primary font-bold">
                                             <Link href={item.link} target="_blank">Lihat Project <ArrowRight className="ml-2 h-4 w-4" /></Link>
                                         </Button>
