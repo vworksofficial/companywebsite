@@ -81,6 +81,12 @@ const teamMembers = [
     imageHint: 'male portrait tech',
   },
   {
+    name: 'Ahmad Mustofa Halim',
+    role: 'Fullstack Developer',
+    imageUrl: 'https://i.imgur.com/pBcRQwW.png',
+    imageHint: 'male portrait tech',
+  },
+  {
     name: 'Fitria Handayani',
     role: 'Account Executive',
     imageUrl: 'https://i.imgur.com/IZ16F0I.png',
@@ -103,6 +109,12 @@ const teamMembers = [
     role: 'Content Planner',
     imageUrl: 'https://i.imgur.com/JTxmLYe.png',
     imageHint: 'female portrait creative',
+  },
+  {
+    name: 'Muhammad Ilham Akbar',
+    role: 'Chief Technology Officer',
+    imageUrl: 'https://i.imgur.com/WeRqPqU.png',
+    imageHint: 'male portrait tech',
   },
 ];
 
@@ -132,14 +144,16 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="order-1 md:order-2 flex justify-center">
-            <Image
-              src="https://i.imgur.com/mIgN8TX.png"
-              alt="Team brainstorming session"
-              width={400}
-              height={600}
-              className="rounded-lg shadow-xl object-cover h-full"
-              data-ai-hint="team meeting"
-            />
+            <div className="relative group rounded-lg shadow-lg bg-card p-2 neumorphism-shadow-lg">
+                <Image
+                  src="https://i.imgur.com/mIgN8TX.png"
+                  alt="Team brainstorming session"
+                  width={400}
+                  height={600}
+                  className="rounded-lg object-cover h-full relative z-10"
+                  data-ai-hint="team meeting"
+                />
+              </div>
           </div>
         </div>
       </section>
@@ -188,7 +202,7 @@ export default function AboutPage() {
               Orang-orang penuh semangat di balik kesuksesan kami.
             </p>
           </div>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             {teamMembers.map((member) => (
               <Card key={member.name} className="text-center overflow-hidden group shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                 <div className="relative aspect-[4/5]">
@@ -278,5 +292,3 @@ export default function AboutPage() {
     </>
   );
 }
-
-    
