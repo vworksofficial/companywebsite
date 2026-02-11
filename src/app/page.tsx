@@ -120,21 +120,17 @@ export default function Home() {
       <section className="bg-background border-y py-12">
         <div className="container">
           <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
-          <div className="relative w-full overflow-x-hidden group">
-            <div className="flex animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap">
-              {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, index) => (
-                <div key={index} className="mx-10 flex items-center justify-center shrink-0" style={{ height: '3rem' }}>
-                  <div className="relative h-12 w-32">
-                    <Image
-                      src={logo.imageUrl}
-                      alt={logo.name}
-                      fill
-                      className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 opacity-60 hover:opacity-100"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8">
+            {CLIENT_LOGOS.map((logo) => (
+              <div key={logo.name} className="relative h-12 w-32 flex-shrink-0">
+                <Image
+                  src={logo.imageUrl}
+                  alt={logo.name}
+                  fill
+                  className="object-contain filter grayscale opacity-60"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
