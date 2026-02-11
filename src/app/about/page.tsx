@@ -147,7 +147,7 @@ export default function AboutPage() {
                     Hari ini, Vworks telah bertransformasi menjadi perusahaan digital marketing yang melayani UMKM, BUMN, hingga perusahaan swasta. Kami membantu brand menjadi lebih dekat dengan pelanggannya, lebih memahami pasarnya, dan lebih bertumbuh secara berkelanjutan.
                 </p>
             </div>
-            <p className="text-foreground font-semibold mt-6 text-lg">
+            <p className="text-foreground font-semibold mt-6">
                 Kami tidak sekedar menawarkan layanan.
                 <br />
                 Kami menawarkan kolaborasi dan akses ke ekosistem jaringan yang mendorong bisnis Anda naik kelas.
