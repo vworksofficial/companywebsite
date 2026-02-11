@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-card border-t">
       <div className="container mx-auto py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="md:col-span-1 md:pr-8">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <Image src="https://imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={32} height={32} />
