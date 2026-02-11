@@ -61,7 +61,7 @@ export default function Footer() {
             <h3 className="font-headline font-semibold text-foreground mb-4">Hubungi Kami</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>Co-working Space HIPMI Wonosobo Jl. Sindoro No.921, Kab. Wonosobo, Jawa Tengah 56311</li>
-              <li>Email: contact@vworks.com</li>
+              <li>Email: admin@vworks.id</li>
               <li>Phone: 085113208900</li>
             </ul>
           </div>

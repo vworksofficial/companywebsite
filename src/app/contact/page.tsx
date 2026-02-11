@@ -151,7 +151,7 @@ export default function ContactPage() {
               <ul className="space-y-4 text-muted-foreground">
                 <li className="flex items-center gap-4">
                   <Mail className="h-5 w-5 text-primary" />
-                  <span>contact@vworks.com</span>
+                  <span>admin@vworks.id</span>
                 </li>
                 <li className="flex items-center gap-4">
                   <Phone className="h-5 w-5 text-primary" />
