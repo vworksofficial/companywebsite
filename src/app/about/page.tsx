@@ -135,16 +135,30 @@ export default function AboutPage() {
       <section className="py-16 md:py-24">
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div className="order-2 md:order-1">
-            <h2 className="text-3xl font-bold font-headline text-primary mb-4">Our Story</h2>
-            <p className="text-muted-foreground mb-4">
-              VWORKS.ID was founded with a simple yet powerful idea: to create a digital marketing agency that truly partners with its clients. We saw a gap between what businesses needed and what traditional agencies offered. Too often, we saw cookie-cutter solutions and a lack of transparency.
+            <h2 className="text-3xl font-bold font-headline text-primary mb-4">Cerita Kami</h2>
+            <div className="space-y-4 text-muted-foreground">
+                <p>
+                    Vworks lahir dari semangat bertahan dan bertumbuh. Berawal dari masa perkuliahan di Universitas Indonesia, kami memulai Vworks bukan hanya untuk menambah pemasukan, tetapi untuk membantu sahabat, kolega, dan para pelaku UMKM membuka akses pasar yang lebih luas melalui digitalisasi.
+                </p>
+                <p>
+                    Kami percaya bahwa bisnis kecil sekalipun berhak memiliki panggung yang besar. Dengan memaksimalkan kekuatan media sosial, e-commerce, dan strategi digital yang terarah, Vworks perlahan berkembang—mendampingi UMKM hingga perusahaan besar dalam memperluas jangkauan dan meningkatkan interaksi dengan pelanggan.
+                </p>
+                <p>
+                    Hari ini, Vworks telah bertransformasi menjadi perusahaan digital marketing yang melayani UMKM, BUMN, hingga perusahaan swasta. Kami membantu brand menjadi lebih dekat dengan pelanggannya, lebih memahami pasarnya, dan lebih bertumbuh secara berkelanjutan.
+                </p>
+            </div>
+            <p className="text-foreground font-semibold mt-6 text-lg">
+                Kami tidak sekedar menawarkan layanan.
+                <br />
+                Kami menawarkan kolaborasi dan akses ke ekosistem jaringan yang mendorong bisnis Anda naik kelas.
             </p>
-            <p className="text-muted-foreground">
-              We set out to be different. Our approach is built on a foundation of bespoke strategies, deep industry expertise, and a genuine commitment to our clients' growth. We are a collective of passionate marketers, designers, and developers united by a single purpose: to help you navigate the complexities of the digital world and achieve lasting success.
-            </p>
+            <div className="mt-8 border-l-4 border-accent pl-4">
+                <p className="font-headline font-bold text-lg text-primary">PT Vworks Kolaborasi Bersama</p>
+                <p className="text-muted-foreground font-semibold italic">Your Partner to Leap Together</p>
+            </div>
           </div>
           <div className="order-1 md:order-2 flex justify-center">
-            <div className="relative group rounded-lg shadow-lg neumorphism-shadow-lg">
+            <div className="relative group">
                 <Image
                   src="https://i.imgur.com/mIgN8TX.png"
                   alt="Team brainstorming session"
