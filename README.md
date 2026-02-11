@@ -1,4 +1,4 @@
-gitu# Firebase Studio
+ .gitu# Firebase Studio
 
 This is a NextJS starter in Firebase Studio.
 
