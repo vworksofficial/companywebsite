@@ -155,7 +155,7 @@ export default function ContactPage() {
                 </li>
                 <li className="flex items-center gap-4">
                   <Phone className="h-5 w-5 text-primary" />
-                  <span>(123) 456-7890</span>
+                  <span>085113208900</span>
                 </li>
                 <li className="flex items-start gap-4">
                   <MapPin className="h-5 w-5 text-primary mt-1" />
@@ -167,7 +167,7 @@ export default function ContactPage() {
               <h3 className="text-xl font-bold font-headline text-primary mb-4">Need a quicker response?</h3>
               <p className="text-muted-foreground mb-4">Chat with us directly on WhatsApp for instant support and inquiries.</p>
               <Button asChild className="w-full bg-green-500 hover:bg-green-600 text-white">
-                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/6285113208900" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="mr-2 h-5 w-5" /> Chat on WhatsApp
                 </a>
               </Button>

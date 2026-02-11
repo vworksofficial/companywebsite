@@ -5,7 +5,7 @@ import Image from 'next/image';
 export default function ContentSummarizer() {
   return (
     <a
-      href="https://wa.me/1234567890"
+      href="https://wa.me/6285113208900"
       target="_blank"
       rel="noopener noreferrer"
       className="group fixed bottom-4 right-4 z-50 h-16 w-16 shadow-2xl transition-transform hover:scale-110"

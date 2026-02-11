@@ -62,7 +62,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>Co-working Space HIPMI Wonosobo Jl. Sindoro No.921, Kab. Wonosobo, Jawa Tengah 56311</li>
               <li>Email: contact@vworks.com</li>
-              <li>Phone: (123) 456-7890</li>
+              <li>Phone: 085113208900</li>
             </ul>
           </div>
         </div>
