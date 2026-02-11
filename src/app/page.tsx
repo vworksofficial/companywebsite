@@ -83,7 +83,7 @@ export default function Home() {
           <div className="flex items-center justify-center">
             <div className="relative group">
               {heroImage && (
-                <div className="relative group rounded-lg shadow-lg bg-card p-2 neumorphism-shadow-lg">
+                <div className="relative group rounded-lg shadow-lg neumorphism-shadow-lg">
                   <Image
                     src={heroImage.imageUrl}
                     alt={heroImage.description}
@@ -288,13 +288,13 @@ export default function Home() {
             </Button>
           </div>
           <div>
-            <div className="relative group rounded-lg shadow-lg bg-card p-2 neumorphism-shadow-lg">
+            <div className="relative group rounded-lg shadow-lg neumorphism-shadow-lg">
                 <Image 
                   src="https://i.imgur.com/mIgN8TX.png"
                   alt="Our Team"
                   width={600}
                   height={400}
-                  className="rounded-lg shadow-xl"
+                  className="rounded-lg"
                   data-ai-hint="team meeting"
                 />
             </div>

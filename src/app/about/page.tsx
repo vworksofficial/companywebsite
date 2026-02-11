@@ -144,7 +144,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="order-1 md:order-2 flex justify-center">
-            <div className="relative group rounded-lg shadow-lg bg-card p-2 neumorphism-shadow-lg">
+            <div className="relative group rounded-lg shadow-lg neumorphism-shadow-lg">
                 <Image
                   src="https://i.imgur.com/mIgN8TX.png"
                   alt="Team brainstorming session"
