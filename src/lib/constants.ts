@@ -358,6 +358,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'A complete overhaul of a corporate website to improve user experience, mobile responsiveness, and lead generation.',
     image: 'https://picsum.photos/seed/portfolio1/500/400',
     imageHint: 'corporate website',
+    link: '#',
   },
   {
     slug: 'smm-campaign-fashion',
@@ -366,6 +367,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Managed a 3-month social media campaign for a new fashion brand, resulting in a 200% increase in followers and high engagement rates.',
     image: 'https://picsum.photos/seed/portfolio2/500/400',
     imageHint: 'fashion social media',
+    link: '#',
   },
   {
     slug: 'startup-branding-kit',
@@ -374,6 +376,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Developed a full branding package for a tech startup, including logo design, color palette, typography, and brand guidelines.',
     image: 'https://picsum.photos/seed/portfolio3/500/400',
     imageHint: 'startup branding',
+    link: '#',
   },
   {
     slug: 'ecommerce-store-launch',
@@ -382,6 +385,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Built a full-featured e-commerce store on Shopify, including custom theme development and payment gateway integration.',
     image: 'https://picsum.photos/seed/portfolio4/500/400',
     imageHint: 'ecommerce store',
+    link: '#',
   },
    {
     slug: 'restaurant-logo-design',
@@ -390,6 +394,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Created a memorable logo and a beautifully designed menu for a new local restaurant, enhancing its brand identity.',
     image: 'https://picsum.photos/seed/portfolio5/500/400',
     imageHint: 'restaurant menu',
+    link: '#',
   },
   {
     slug: 'health-app-social-media',
@@ -398,6 +403,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Produced engaging video and static content for a health and wellness app, growing their Instagram presence significantly.',
     image: 'https://picsum.photos/seed/portfolio6/500/400',
     imageHint: 'health app',
+    link: '#',
   },
   {
     slug: 'local-business-seo',
@@ -406,6 +412,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Improved local search rankings for a small business, driving a 50% increase in foot traffic through targeted SEO strategies.',
     image: 'https://picsum.photos/seed/portfolio7/500/400',
     imageHint: 'local business',
+    link: '#',
   },
   {
     slug: 'b2b-content-strategy',
@@ -414,6 +421,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Developed a comprehensive content marketing strategy for a B2B SaaS company, increasing organic leads by 75%.',
     image: 'https://picsum.photos/seed/portfolio8/500/400',
     imageHint: 'content strategy',
+    link: '#',
   },
   {
     slug: 'google-ads-campaign',
@@ -422,6 +430,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Managed a high-budget Google Ads campaign for an online retailer, achieving a 5X return on ad spend (ROAS).',
     image: 'https://picsum.photos/seed/portfolio9/500/400',
     imageHint: 'ads campaign',
+    link: '#',
   },
   {
     slug: 'financial-reporting-system',
@@ -430,6 +439,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: 'Implemented a streamlined financial reporting process for a mid-sized company, improving data accuracy and efficiency.',
     image: 'https://picsum.photos/seed/portfolio10/500/400',
     imageHint: 'financial report',
+    link: '#',
   },
 ];
 
@@ -600,3 +610,5 @@ export const ARTICLES: Article[] = [
     date: '14 Juli 2024',
   },
 ];
+
+    

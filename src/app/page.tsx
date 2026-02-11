@@ -367,6 +367,13 @@ export default function Home() {
                                     {CategoryIcon && <CategoryIcon className="h-4 w-4 mr-2" />}
                                     {item.category}
                                 </Badge>
+                                {item.link && (
+                                    <div className="mt-auto">
+                                        <Button asChild variant="link" className="px-0 text-primary font-bold">
+                                            <Link href={item.link} target="_blank">Lihat Project <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                                        </Button>
+                                    </div>
+                                )}
                             </div>
                           </Card>
                         </div>
@@ -379,7 +386,7 @@ export default function Home() {
               </Carousel>
               <div className="mt-12 text-center">
                 <Button asChild size="lg" variant="outline">
-                  <Link href="/portfolio">View Full Portfolio <ArrowRight className="ml-2 h-4 w-4" /></Link>
+                  <Link href="/portfolio">Lihat Semua Portofolio <ArrowRight className="ml-2 h-4 w-4" /></Link>
                 </Button>
               </div>
             </>
@@ -417,5 +424,7 @@ export default function Home() {
 
     
 
+
+    
 
     
