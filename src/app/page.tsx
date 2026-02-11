@@ -116,20 +116,22 @@ export default function Home() {
         </div>
       </section>
       
-      <section className="bg-background pt-4 pb-16">
+      <section className="bg-background py-12">
         <div className="container">
           <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
-          <div className="flex flex-wrap justify-center items-center gap-x-8 sm:gap-x-12 md:gap-x-16 lg:gap-x-20 gap-y-8">
-            {CLIENT_LOGOS.map((logo) => (
-                <div key={logo.name} className="relative h-16 w-32 opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-105">
-                    <Image
-                        src={logo.imageUrl}
-                        alt={logo.name}
-                        fill
-                        className="object-contain"
-                    />
+          <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]">
+            <div className="flex w-max animate-marquee">
+              {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, index) => (
+                <div key={`${logo.name}-${index}`} className="relative h-14 w-40 mx-6 flex-shrink-0">
+                  <Image
+                    src={logo.imageUrl}
+                    alt={logo.name}
+                    fill
+                    className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110 opacity-60 hover:opacity-100"
+                  />
                 </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
