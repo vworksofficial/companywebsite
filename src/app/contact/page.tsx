@@ -159,7 +159,7 @@ export default function ContactPage() {
                 </li>
                 <li className="flex items-start gap-4">
                   <MapPin className="h-5 w-5 text-primary mt-1" />
-                  <span>123 Digital Avenue,<br />Webville, 12345</span>
+                  <span>Co-working Space HIPMI Wonosobo<br />Jl. Sindoro No.921, Kab. Wonosobo, Jawa Tengah 56311</span>
                 </li>
               </ul>
             </div>

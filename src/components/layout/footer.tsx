@@ -60,7 +60,7 @@ export default function Footer() {
           <div>
             <h3 className="font-headline font-semibold text-foreground mb-4">Hubungi Kami</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>123 Digital Avenue, Webville, 12345</li>
+              <li>Co-working Space HIPMI Wonosobo Jl. Sindoro No.921, Kab. Wonosobo, Jawa Tengah 56311</li>
               <li>Email: contact@vworks.com</li>
               <li>Phone: (123) 456-7890</li>
             </ul>
