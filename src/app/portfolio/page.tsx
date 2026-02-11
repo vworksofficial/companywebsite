@@ -119,11 +119,6 @@ export default function PortfolioPage() {
                             className="object-cover transition-transform duration-300 group-hover:scale-105"
                             data-ai-hint={item.imageHint}
                         />
-                        <div className="absolute top-3 left-3">
-                            <div className="bg-black/50 backdrop-blur-sm p-3 rounded-lg w-fit">
-                                <Building className="h-6 w-6 text-white" />
-                            </div>
-                        </div>
                     </div>
                     
                     <div className="p-6 flex flex-col flex-grow">
