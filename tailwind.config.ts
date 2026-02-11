@@ -13,8 +13,8 @@ export default {
       padding: {
         DEFAULT: '1rem',
         sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
+        lg: '6rem',
+        xl: '10rem',
       },
       screens: {
         "2xl": "1400px",
