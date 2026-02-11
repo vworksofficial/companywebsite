@@ -105,7 +105,7 @@ export default function PortfolioPage() {
       <section className="py-16 md:py-24">
         <div className="container mx-auto">
           {filteredItems.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {filteredItems.map((item) => {
                 const categoryInfo = PORTFOLIO_CATEGORIES.find(cat => cat.name === item.category);
                 const CategoryIcon = categoryInfo ? categoryInfo.icon : Building;
