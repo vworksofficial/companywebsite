@@ -133,10 +133,6 @@ export default function PortfolioPage() {
                                 {item.category}
                             </Badge>
                         )}
-                        <h3 className="font-headline text-xl font-bold mb-2">{item.title}</h3>
-                        <p className="text-muted-foreground text-sm mb-4 flex-grow">
-                            {item.description}
-                        </p>
                         {item.link && (
                             <div className="mt-auto">
                                 <Button asChild variant="link" className="px-0 text-primary font-bold">

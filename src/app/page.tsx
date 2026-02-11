@@ -1,4 +1,3 @@
-
 'use client';
 
 import * as React from 'react';
@@ -84,15 +83,17 @@ export default function Home() {
           <div className="flex items-center justify-center">
             <div className="relative group">
               {heroImage && (
-                <Image
-                  src={heroImage.imageUrl}
-                  alt={heroImage.description}
-                  width={320}
-                  height={256}
-                  className="rounded-lg relative z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
-                  priority
-                  data-ai-hint={heroImage.imageHint}
-                />
+                <div className="relative group rounded-lg shadow-lg bg-card p-2 neumorphism-shadow-lg">
+                  <Image
+                    src={heroImage.imageUrl}
+                    alt={heroImage.description}
+                    width={320}
+                    height={256}
+                    className="rounded-lg relative z-10 transition-transform duration-500 ease-in-out group-hover:scale-105"
+                    priority
+                    data-ai-hint={heroImage.imageHint}
+                  />
+                </div>
               )}
               <div className="absolute -top-8 -right-8 w-32 h-32 bg-accent/20 rounded-full z-0 transition-all duration-500 ease-in-out group-hover:scale-110"></div>
               <div className="absolute bottom-10 -left-10 w-40 h-40 border-8 border-primary/20 rounded-lg z-0 transform rotate-12 transition-all duration-500 ease-in-out group-hover:rotate-6 group-hover:scale-105"></div>
@@ -287,14 +288,16 @@ export default function Home() {
             </Button>
           </div>
           <div>
-            <Image 
-              src="https://i.imgur.com/mIgN8TX.png"
-              alt="Our Team"
-              width={600}
-              height={400}
-              className="rounded-lg shadow-xl"
-              data-ai-hint="team meeting"
-            />
+            <div className="relative group rounded-lg shadow-lg bg-card p-2 neumorphism-shadow-lg">
+                <Image 
+                  src="https://i.imgur.com/mIgN8TX.png"
+                  alt="Our Team"
+                  width={600}
+                  height={400}
+                  className="rounded-lg shadow-xl"
+                  data-ai-hint="team meeting"
+                />
+            </div>
           </div>
         </div>
       </section>
@@ -364,10 +367,6 @@ export default function Home() {
                                     {CategoryIcon && <CategoryIcon className="h-4 w-4 mr-2" />}
                                     {item.category}
                                 </Badge>
-                                <h3 className="font-headline text-xl font-bold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
-                                <p className="text-muted-foreground text-sm mb-4 flex-grow line-clamp-3">
-                                    {item.description}
-                                </p>
                             </div>
                           </Card>
                         </div>
