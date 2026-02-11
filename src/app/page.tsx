@@ -83,7 +83,7 @@ export default function Home() {
           <div className="flex items-center justify-center">
             <div className="relative group">
               {heroImage && (
-                <div className="relative group rounded-lg shadow-lg neumorphism-shadow-lg">
+                <div className="relative group rounded-lg">
                   <Image
                     src={heroImage.imageUrl}
                     alt={heroImage.description}
@@ -119,37 +119,18 @@ export default function Home() {
       <section className="bg-background pt-4 pb-16">
         <div className="container">
           <h3 className="text-center text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-8">Dipercaya oleh Perusahaan Terkemuka</h3>
-          <Carousel
-            opts={{
-              align: "center",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 2500,
-                stopOnInteraction: false,
-                stopOnMouseEnter: true,
-              }),
-            ]}
-            className="w-full"
-          >
-            <CarouselContent>
-              {CLIENT_LOGOS.map((logo, index) => (
-                <CarouselItem key={index} className="basis-1/2 md:basis-1/4 lg:basis-1/6">
-                  <div className="p-4 flex items-center justify-center h-24 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                    <div className="relative w-full h-full">
-                        <Image
+          <div className="flex flex-wrap justify-center items-center gap-x-8 sm:gap-x-12 md:gap-x-16 lg:gap-x-20 gap-y-8">
+            {CLIENT_LOGOS.map((logo) => (
+                <div key={logo.name} className="relative h-16 w-32 opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-105">
+                    <Image
                         src={logo.imageUrl}
                         alt={logo.name}
                         fill
                         className="object-contain"
-                        />
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+                    />
+                </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -288,7 +269,7 @@ export default function Home() {
             </Button>
           </div>
           <div>
-            <div className="relative group rounded-lg shadow-lg neumorphism-shadow-lg">
+            <div className="relative group rounded-lg">
                 <Image 
                   src="https://i.imgur.com/mIgN8TX.png"
                   alt="Our Team"
@@ -418,12 +399,7 @@ export default function Home() {
 
     
 
-
-
     
-
-    
-
 
     
 

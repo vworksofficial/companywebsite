@@ -13,8 +13,8 @@ export default {
       padding: {
         DEFAULT: '1rem',
         sm: '2rem',
-        lg: '6rem',
-        xl: '10rem',
+        lg: '8rem',
+        xl: '12rem',
       },
       screens: {
         "2xl": "1400px",
@@ -113,3 +113,5 @@ export default {
   },
   plugins: [require('tailwindcss-animate')],
 } satisfies Config;
+
+    
