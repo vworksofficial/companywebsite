@@ -66,7 +66,7 @@ export default function ServicesPage() {
             Solusi digital yang transparan dan terukur untuk membantu bisnis Anda bertumbuh. Temukan paket yang paling sesuai dengan kebutuhan Anda.
           </p>
 
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <div className="mt-12 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
             <div
               onClick={() => setSelectedCategory(null)}
               className={cn(
@@ -74,9 +74,9 @@ export default function ServicesPage() {
                 !selectedCategory && "ring-2 ring-accent"
               )}
             >
-              <div className="flex h-full flex-col items-center justify-center p-4 text-center">
-                <h3 className="font-headline text-lg font-bold">Semua Layanan</h3>
-                <p className="mt-1 text-sm text-primary-foreground/80">Lihat semua paket</p>
+              <div className="flex h-full flex-col items-center justify-center p-3 text-center">
+                <h3 className="font-headline text-base font-bold">Semua Layanan</h3>
+                <p className="mt-1 text-xs text-primary-foreground/80">Lihat semua paket</p>
               </div>
             </div>
 
@@ -109,8 +109,8 @@ export default function ServicesPage() {
                       </div>
                     )}
                   </div>
-                  <div className="p-3 text-center">
-                    <h3 className="font-headline font-semibold leading-tight text-white">{category.category}</h3>
+                  <div className="p-2 text-center">
+                    <h3 className="font-headline font-bold text-sm leading-tight text-white">{category.category}</h3>
                   </div>
                 </div>
               );
