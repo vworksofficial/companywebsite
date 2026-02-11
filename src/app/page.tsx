@@ -106,11 +106,11 @@ export default function Home() {
 
       <section className="bg-background border-y py-4">
         <div className="container mx-auto">
-          <div className="flex flex-wrap justify-center items-center gap-2">
+          <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
             {PRICING_DATA.map((category) => (
-              <div key={category.category} className="flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
-                <category.icon className="h-4 w-4 text-primary" />
-                <span>{category.category}</span>
+              <div key={category.category} className="flex items-center gap-1 rounded-full border bg-card px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+                <category.icon className="h-3 w-3 text-primary" />
+                <span className="whitespace-nowrap">{category.category}</span>
               </div>
             ))}
           </div>
