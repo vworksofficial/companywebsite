@@ -19,7 +19,7 @@ type Service = {
 export type PortfolioItem = {
   slug: string;
   title: string;
-  category: 'Web Development' | 'Social Media Management' | 'Branding & Design' | 'SEO' | 'Content Marketing' | 'Ads Service' | 'Keuangan & Pajak';
+  category: 'Web Development' | 'Social Media Management' | 'Branding & Design' | 'SEO' | 'Content Marketing' | 'Ads Service' | 'Keuangan & Pajak' | 'Foto Produk UMKM';
   description: string;
   image: string;
   imageHint: string;
@@ -401,6 +401,7 @@ export const PORTFOLIO_CATEGORIES = [
   { slug: 'content-marketing', name: 'Content Marketing', icon: PenSquare },
   { slug: 'ads-service', name: 'Ads Service', icon: Target },
   { slug: 'keuangan', name: 'Keuangan & Pajak', icon: Landmark },
+  { slug: 'foto-produk-umkm', name: 'Foto Produk UMKM', icon: Camera },
 ];
 
 
@@ -683,6 +684,8 @@ export const ARTICLES: Article[] = [
     date: '14 Juli 2024',
   },
 ];
+
+    
 
     
 
