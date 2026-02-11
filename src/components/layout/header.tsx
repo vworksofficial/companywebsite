@@ -18,7 +18,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm">
       <div className="container mx-auto flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-          <Image src="https://i.imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={28} height={28} />
+          <Image src="https://imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={28} height={28} />
           <span className="font-headline text-xl font-bold text-foreground">
             VWORKS.ID
           </span>
@@ -56,7 +56,7 @@ export default function Header() {
               </SheetHeader>
               <div className="flex flex-col h-full">
                 <Link href="/" className="flex items-center gap-2 mb-8" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Image src="https://i.imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={28} height={28} />
+                    <Image src="https://imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={28} height={28} />
                     <span className="font-headline text-xl font-bold">VWORKS.ID</span>
                 </Link>
                 <nav className="flex flex-col gap-6">
