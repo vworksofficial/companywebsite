@@ -180,29 +180,29 @@ type PricingCategory = {
 };
 
 const VWORKS_PHOTOGRAPHY_TERMS = `1. CAKUPAN LAYANAN (INCLUSIONS)
-Penyerahan File: Klien akan menerima hasil akhir dalam format digital (High Resolution) yang dikirimkan melalui tautan Google Drive.
-Properti Studio: Biaya sudah termasuk penggunaan properti dasar yang tersedia di studio VWorks sesuai dengan paket yang dipilih.
-Penyimpanan Data: VWorks akan menjamin penyimpanan cadangan file klien selama 30 hari sejak tanggal pengiriman.
-Konsultasi: Gratis konsultasi konsep dasar agar hasil foto sesuai dengan branding produk klien.
+• Penyerahan File: Klien akan menerima hasil akhir dalam format digital (High Resolution) yang dikirimkan melalui tautan Google Drive.
+• Properti Studio: Biaya sudah termasuk penggunaan properti dasar yang tersedia di studio VWorks sesuai dengan paket yang dipilih.
+• Penyimpanan Data: VWorks akan menjamin penyimpanan cadangan file klien selama 30 hari sejak tanggal pengiriman.
+• Konsultasi: Gratis konsultasi konsep dasar agar hasil foto sesuai dengan branding produk klien.
 
 2. BIAYA DI LUAR PAKET (EXCLUSIONS)
-Logistik: Seluruh biaya pengiriman produk ke studio VWorks dan biaya pengiriman kembali ke alamat klien sepenuhnya ditanggung oleh klien.
-Properti Khusus: Biaya paket tidak mencakup properti khusus yang bersifat sekali pakai atau spesifik (seperti bunga segar, bahan makanan tertentu, atau dekorasi khusus permintaan klien).
-Eksternal Talent: Untuk paket Platinum, model disediakan oleh tim VWorks. Jika klien meminta model profesional eksternal/influencer tertentu, maka biaya tambahan akan dikenakan sesuai tarif talent tersebut.
-Lokasi: Biaya hanya berlaku untuk pemotretan di dalam studio VWorks. Pemotretan outdoor atau di lokasi klien akan dikenakan biaya transportasi dan akomodasi tambahan.
+• Logistik: Seluruh biaya pengiriman produk ke studio VWorks dan biaya pengiriman kembali ke alamat klien sepenuhnya ditanggung oleh klien.
+• Properti Khusus: Biaya paket tidak mencakup properti khusus yang bersifat sekali pakai atau spesifik (seperti bunga segar, bahan makanan tertentu, atau dekorasi khusus permintaan klien).
+• Eksternal Talent: Untuk paket Platinum, model disediakan oleh tim VWorks. Jika klien meminta model profesional eksternal/influencer tertentu, maka biaya tambahan akan dikenakan sesuai tarif talent tersebut.
+• Lokasi: Biaya hanya berlaku untuk pemotretan di dalam studio VWorks. Pemotretan outdoor atau di lokasi klien akan dikenakan biaya transportasi dan akomodasi tambahan.
 
 3. SISTEM PEMBAYARAN
-Down Payment (DP): Klien wajib membayar DP sebesar 50% dari total tagihan sebagai tanda jadi (booking jadwal).
-Pelunasan: Pelunasan dilakukan setelah proses editing selesai. File akhir tanpa watermark hanya akan dikirimkan setelah pembayaran lunas 100%.
+• Down Payment (DP): Klien wajib membayar DP sebesar 50% dari total tagihan sebagai tanda jadi (booking jadwal).
+• Pelunasan: Pelunasan dilakukan setelah proses editing selesai. File akhir tanpa watermark hanya akan dikirimkan setelah pembayaran lunas 100%.
 
 4. PROSEDUR PRODUK & PENGERJAAN
-Kedatangan Produk: Produk harus sudah diterima oleh tim VWorks minimal 2 hari sebelum jadwal pemotretan.
-Durasi Kerja: Proses pengerjaan (pemotretan hingga editing) memakan waktu 3-7 hari kerja, tergantung pada jumlah produk dan antrean.
-Pengambilan Produk: Produk yang tidak diambil dalam waktu 30 hari setelah proyek selesai bukan lagi menjadi tanggung jawab VWorks.
+• Kedatangan Produk: Produk harus sudah diterima oleh tim VWorks minimal 2 hari sebelum jadwal pemotretan.
+• Durasi Kerja: Proses pengerjaan (pemotretan hingga editing) memakan waktu 3-7 hari kerja, tergantung pada jumlah produk dan antrean.
+• Pengambilan Produk: Produk yang tidak diambil dalam waktu 30 hari setelah proyek selesai bukan lagi menjadi tanggung jawab VWorks.
 
 5. REVISI DAN PEMOTRETAN ULANG
-Batas Revisi: Klien berhak mendapatkan 1x revisi editing (warna/kecerahan) tanpa biaya tambahan.
-Re-shoot: Permintaan foto ulang (re-shoot) karena perubahan konsep dari pihak klien akan dikenakan biaya penuh sesuai harga paket. Foto ulang tanpa biaya hanya dilakukan jika terjadi kesalahan teknis murni dari pihak VWorks.`;
+• Batas Revisi: Klien berhak mendapatkan 1x revisi editing (warna/kecerahan) tanpa biaya tambahan.
+• Re-shoot: Permintaan foto ulang (re-shoot) karena perubahan konsep dari pihak klien akan dikenakan biaya penuh sesuai harga paket. Foto ulang tanpa biaya hanya dilakukan jika terjadi kesalahan teknis murni dari pihak VWorks.`;
 
 
 export const PRICING_DATA: PricingCategory[] = [
@@ -683,5 +683,7 @@ export const ARTICLES: Article[] = [
     date: '14 Juli 2024',
   },
 ];
+
+    
 
     
