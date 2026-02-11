@@ -60,13 +60,8 @@ export default function ServicesPage() {
   return (
     <>
       <section className="bg-slate-800 text-primary-foreground py-16 md:py-20">
-        <div className="container mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-headline">Layanan &amp; Harga</h1>
-          <p className="mt-4 max-w-2xl mx-auto text-sm text-primary-foreground/90">
-            Solusi digital yang transparan dan terukur untuk membantu bisnis Anda bertumbuh. Temukan paket yang paling sesuai dengan kebutuhan Anda.
-          </p>
-
-          <div className="mt-12 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <div
               onClick={() => setSelectedCategory(null)}
               className={cn(
