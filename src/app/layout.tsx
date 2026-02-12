@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     shortcut: 'https://imgur.com/lC5Y4YF.png',
     apple: 'https://imgur.com/lC5Y4YF.png',
   },
+  verification: {
+    google: 'fb3aced143db1a13',
+  },
 };
 
 export default function RootLayout({
