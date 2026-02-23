@@ -306,7 +306,7 @@ export const PRICING_DATA: PricingCategory[] = [
                 description: 'Paket optimasi SEO komprehensif untuk hasil maksimal.',
                 includes: 'Riset Keyword, Optimasi On-Page, Laporan bulanan',
                 excludes: 'Maintenance server website',
-                terms: 'Sama seperti paket starter dengan jumlah konten lebih banyak. Termasuk optimasi teknis dasar on-page. Kontrak minimum 6 bulan. Laporan peringkat kata kunci dikirim bulanan.'
+                terms: 'Sama seperti paket starter with jumlah konten lebih banyak. Termasuk optimasi teknis dasar on-page. Kontrak minimum 6 bulan. Laporan peringkat kata kunci dikirim bulanan.'
             }
         ]
     },
@@ -488,12 +488,13 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     link: 'https://www.instagram.com/easylauk.id/',
   },
   {
-    slug: 'smm-project-3',
-    title: 'SMM Design Project 3',
+    slug: 'tourism-watch-smm',
+    title: 'Tourism Watch Instagram',
     category: 'Social Media Management',
     description: '',
     image: 'https://i.imgur.com/YDhSWxa.png',
     imageHint: 'social media design',
+    link: 'https://www.instagram.com/id.tourismwatch/',
   },
   {
     slug: 'berkahjaya-tiktok',
