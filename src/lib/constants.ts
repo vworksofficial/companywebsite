@@ -546,6 +546,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: '',
     image: 'https://i.imgur.com/zSs4Mue.png',
     imageHint: 'product photography',
+    link: 'https://www.instagram.com/basmallah_kafe/',
   },
   {
     slug: 'foto-produk-2',
@@ -554,6 +555,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: '',
     image: 'https://i.imgur.com/ZyjwBDi.png',
     imageHint: 'product photography',
+    link: 'https://www.instagram.com/basmallah_kafe/',
   },
 ];
 
@@ -574,7 +576,7 @@ export const ARTICLES: Article[] = [
     slug: 'membangun-brand-kuat-sosmed',
     title: 'Cara Membangun Brand yang Kuat di Media Sosial',
     category: 'Social Media Management',
-    excerpt: 'Media sosial adalah alat yang ampuh untuk membangun brand. Temukan langkah-langkah praktis untuk meningkatkan kehadiran dan engagement brand Anda.',
+    excerpt: 'Media sosial adalah alat yang ampuh untuk membangun brand. Temukan langkah-langkah praktis untuk meningkatkan kehadiran and engagement brand Anda.',
     content: '<p>Membangun brand yang kuat di media sosial memerlukan konsistensi, kreativitas, dan strategi. Tentukan suara brand Anda, kenali audiens Anda, dan buat kalender konten yang terencana. Manfaatkan fitur-fitur seperti Stories, Reels, dan Live untuk berinteraksi secara langsung dengan pengikut. Jangan lupa untuk menganalisis metrik performa secara rutin untuk menyempurnakan strategi Anda.</p>',
     imageUrl: 'https://picsum.photos/seed/artikel2/800/450',
     imageHint: 'social media branding',
