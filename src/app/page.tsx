@@ -27,6 +27,10 @@ const CLIENT_LOGOS = [
   { name: 'Client 5', imageUrl: 'https://i.imgur.com/kzyQ7Rw.png' },
   { name: 'Client 6', imageUrl: 'https://i.imgur.com/nIXVn7F.png' },
   { name: 'Client 7', imageUrl: 'https://i.imgur.com/1Khgfk8.png' },
+  { name: 'Client 8', imageUrl: 'https://i.imgur.com/PkuoAzr.png' },
+  { name: 'Client 9', imageUrl: 'https://i.imgur.com/7Vubzkt.png' },
+  { name: 'Client 10', imageUrl: 'https://i.imgur.com/e8dzGwN.png' },
+  { name: 'Client 11', imageUrl: 'https://i.imgur.com/MtbFdP8.png' },
 ];
 
 export default function Home() {
@@ -104,12 +108,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-background border-y py-4">
+      <section className="bg-background border-y py-6">
         <div className="container mx-auto">
-          <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
+          <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2">
             {PRICING_DATA.map((category) => (
-              <div key={category.category} className="flex items-center gap-1 rounded-full border bg-card px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
-                <category.icon className="h-3 w-3 text-primary" />
+              <div key={category.category} className="flex items-center gap-2 rounded-full border bg-card px-3 py-1 text-[13px] font-bold text-muted-foreground hover:border-primary transition-colors">
+                <category.icon className="h-4 w-4 text-primary" />
                 <span className="whitespace-nowrap">{category.category}</span>
               </div>
             ))}
@@ -257,7 +261,7 @@ export default function Home() {
           <div className="max-w-lg">
             <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Siapa Kami</h2>
             <p className="mt-4 text-sm text-muted-foreground">
-              VWORKS.ID adalah tim ahli digital yang bersemangat untuk membantu bisnis Anda berkembang di dunia online. Kami membangun kemitraan, bukan hanya daftar klien. Setiap strategi yang kami rancang disesuaikan secara unik untuk memenuhi tujuan spesifik Anda. Dengan pendekatan yang berpusat pada data dan kreativitas, kami siap menjadi motor penggerak kesuksesan digital Anda.
+              VWORKS.ID adalah tim ahli digital yang bersemangat untuk membantu bisnis Anda berkembang di dunia online. Kami membangun kemitraan, bukan hanya daftar klien. Setiap strategi yang kami rancang disesuaikan secara unik untuk memenuhi tujuan spesifik Anda. Dengan pendekatan yang berocust pada data dan kreativitas, kami siap menjadi motor penggerak kesuksesan digital Anda.
             </p>
             <div className="mt-6 space-y-6">
               {coreValues.map((value) => (
