@@ -80,7 +80,7 @@ export const SERVICES: Service[] = [
     slug: 'social-media-management',
     title: 'Social Media Management',
     description: 'Libatkan audiens Anda dan bangun kehadiran merek yang kuat di media sosial.',
-    longDescription: "Kami membuat dan mengelola kampanye media sosial yang berdampak yang membina komunitas dan mendorong keterlibatan. Dari pembuatan konten hingga interaksi audiens, kami menangani semua aspek media sosial Anda untuk membangun pengikut setia dan mengubah pengikut menjadi pelanggan.",
+    longDescription: "Kami membuat dan mengelola kampanye media sosial yang berdampak yang membina komunitas dan mendorong keterlibatan. Dari pembuatan konten hingga interaksi audiens, kami menangani semua aspek media sosial Anda untuk membangun pengikut setia and mengubah pengikut menjadi pelanggan.",
     benefits: [
       "Peningkatan kesadaran dan jangkauan merek",
       "Keterlibatan langsung dengan audiens target Anda",
@@ -555,7 +555,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     description: '',
     image: 'https://i.imgur.com/ZyjwBDi.png',
     imageHint: 'product photography',
-    link: 'https://www.instagram.com/basmallah_kafe/',
+    link: 'https://www.instagram.com/easylauk.id/',
   },
 ];
 
