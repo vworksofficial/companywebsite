@@ -45,7 +45,6 @@ export default function ContributorPage() {
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
 
-  // Ensure client-side rendering only for auth-dependent content to avoid hydration mismatch
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -59,11 +58,15 @@ export default function ContributorPage() {
       await signInWithEmailAndPassword(auth, email, password);
       toast({ title: 'Login Berhasil', description: 'Selamat datang kembali, Kontributor!' });
     } catch (error: any) {
-      setErrorMessage(error.message);
+      console.error("Login Error:", error);
+      const message = error.code === 'auth/invalid-credential' 
+        ? 'Email atau password salah.' 
+        : `Gagal Login: ${error.message}`;
+      setErrorMessage(message);
       toast({
         variant: 'destructive',
         title: 'Login Gagal',
-        description: 'Email atau password salah.',
+        description: message,
       });
     } finally {
       setIsSubmitting(false);
@@ -84,10 +87,12 @@ export default function ContributorPage() {
       }
       toast({ title: 'Pendaftaran Berhasil', description: 'Akun kontributor Anda telah dibuat.' });
     } catch (error: any) {
-      let message = 'Terjadi kesalahan saat mendaftar.';
+      console.error("Register Error:", error);
+      let message = `Gagal Daftar: ${error.message}`;
       if (error.code === 'auth/email-already-in-use') message = 'Email sudah terdaftar.';
       if (error.code === 'auth/weak-password') message = 'Password minimal 6 karakter.';
       if (error.code === 'auth/operation-not-allowed') message = 'Metode pendaftaran Email/Password belum diaktifkan di Firebase Console.';
+      if (error.code === 'auth/invalid-api-key') message = 'Konfigurasi Firebase (API Key) tidak valid atau belum diatur.';
       
       setErrorMessage(message);
       toast({
@@ -136,17 +141,17 @@ export default function ContributorPage() {
       setContent('');
       setImageUrl('');
     } catch (error: any) {
+      console.error("Submit Article Error:", error);
       toast({
         variant: 'destructive',
         title: 'Gagal Mengirim',
-        description: 'Terjadi kesalahan saat menyimpan artikel.',
+        description: `Error: ${error.message}`,
       });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Prevent rendering anything until mounted to avoid hydration errors
   if (!isMounted) {
     return <div className="container mx-auto py-12 px-4 min-h-[60vh]" />;
   }
@@ -155,8 +160,8 @@ export default function ContributorPage() {
     <div className="container mx-auto py-12 px-4">
       {!user ? (
         <div className="flex flex-col items-center py-8">
-          <Card className="w-full max-w-md shadow-xl">
-            <CardHeader className="text-center">
+          <Card className="w-full max-w-md shadow-xl border-t-4 border-primary">
+            <CardHeader className="text-center pb-2">
               <CardTitle className="text-3xl font-headline font-bold text-primary">
                 {isRegisterMode ? 'Daftar Kontributor' : 'Portal Kontributor'}
               </CardTitle>
@@ -170,8 +175,8 @@ export default function ContributorPage() {
               {errorMessage && (
                 <Alert variant="destructive" className="mb-6">
                   <AlertCircle className="h-4 w-4" />
-                  <AlertTitle>Error</AlertTitle>
-                  <AlertDescription>{errorMessage}</AlertDescription>
+                  <AlertTitle>Pemberitahuan</AlertTitle>
+                  <AlertDescription className="text-xs break-words">{errorMessage}</AlertDescription>
                 </Alert>
               )}
               
@@ -179,9 +184,8 @@ export default function ContributorPage() {
                 {isRegisterMode && (
                   <div className="space-y-2">
                     <Label htmlFor="name">Nama Lengkap</Label>
-                    <input
+                    <Input
                       id="name"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="Masukkan nama Anda"
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
@@ -191,10 +195,9 @@ export default function ContributorPage() {
                 )}
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <input
+                  <Input
                     id="email"
                     type="email"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="name@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -203,17 +206,16 @@ export default function ContributorPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="password">Password</Label>
-                  <input
+                  <Input
                     id="password"
                     type="password"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Min. 6 karakter"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
                 </div>
-                <Button type="submit" className="w-full h-11" disabled={isSubmitting}>
+                <Button type="submit" className="w-full h-11 text-base" disabled={isSubmitting}>
                   {isSubmitting ? (
                     <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Memproses...</>
                   ) : isRegisterMode ? (
@@ -224,7 +226,7 @@ export default function ContributorPage() {
                 </Button>
               </form>
               
-              <div className="mt-6 text-center">
+              <div className="mt-6 text-center border-t pt-4">
                 <p className="text-sm text-muted-foreground">
                   {isRegisterMode ? 'Sudah punya akun?' : 'Belum punya akun?'}
                   <button 
@@ -256,19 +258,18 @@ export default function ContributorPage() {
             </Button>
           </div>
 
-          <Card className="max-w-4xl mx-auto shadow-lg">
+          <Card className="max-w-4xl mx-auto shadow-lg border-t-4 border-primary">
             <CardHeader>
               <CardTitle className="text-2xl font-headline">Buat Artikel Baru</CardTitle>
-              <CardDescription>Isi detail artikel Anda di bawah ini.</CardDescription>
+              <CardDescription>Isi detail artikel Anda di bawah ini untuk dipublikasikan.</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmitArticle} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <Label htmlFor="article-title">Judul Artikel</Label>
-                    <input
+                    <Input
                       id="article-title"
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="Contoh: Strategi Marketing 2024"
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
@@ -292,9 +293,8 @@ export default function ContributorPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="imageUrl">URL Gambar Sampul (Opsional)</Label>
-                  <input
+                  <Input
                     id="imageUrl"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="https://images.unsplash.com/..."
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
