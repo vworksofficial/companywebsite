@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -92,7 +93,9 @@ export default function ContributorPage() {
       if (error.code === 'auth/email-already-in-use') message = 'Email sudah terdaftar.';
       if (error.code === 'auth/weak-password') message = 'Password minimal 6 karakter.';
       if (error.code === 'auth/operation-not-allowed') message = 'Metode pendaftaran Email/Password belum diaktifkan di Firebase Console.';
-      if (error.code === 'auth/invalid-api-key') message = 'Konfigurasi Firebase (API Key) tidak valid atau belum diatur.';
+      if (error.code === 'auth/invalid-api-key' || error.message.includes('api-key-not-valid')) {
+        message = 'Kunci API Firebase belum valid. Pastikan file .env sudah diisi dengan benar dari Firebase Console.';
+      }
       
       setErrorMessage(message);
       toast({
