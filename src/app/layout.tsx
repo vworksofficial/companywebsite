@@ -5,6 +5,7 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import ContentSummarizer from '@/components/content-summarizer';
 import { SquiggleDecorations } from '@/components/decorations/squiggles';
+import { FirebaseClientProvider } from '@/firebase';
 
 export const metadata: Metadata = {
   title: 'VWORKS.ID - Driving Growth Through Digital Excellence',
@@ -27,16 +28,19 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet" />
+        <meta name="google-site-verification" content="googlefb3aced143db1a13.html" />
       </head>
       <body className="font-body antialiased">
-        <div className="relative flex min-h-screen flex-col overflow-x-hidden">
-          <SquiggleDecorations />
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </div>
-        <Toaster />
-        <ContentSummarizer />
+        <FirebaseClientProvider>
+          <div className="relative flex min-h-screen flex-col overflow-x-hidden">
+            <SquiggleDecorations />
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
+          <Toaster />
+          <ContentSummarizer />
+        </FirebaseClientProvider>
       </body>
     </html>
   );

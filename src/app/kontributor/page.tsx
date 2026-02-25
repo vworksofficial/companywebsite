@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -25,7 +24,7 @@ const CATEGORIES = [
 ];
 
 export default function ContributorPage() {
-  const { auth } = useAuth();
+  const auth = useAuth();
   const { firestore } = useFirestore();
   const { user, loading: authLoading } = useUser();
   const { toast } = useToast();
