@@ -48,6 +48,7 @@ export default function ContributorPage() {
     e.preventDefault();
     if (!auth) return;
     setErrorMessage(null);
+    setIsSubmitting(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast({ title: 'Login Berhasil', description: 'Selamat datang kembali, Kontributor!' });
@@ -58,6 +59,8 @@ export default function ContributorPage() {
         title: 'Login Gagal',
         description: 'Email atau password salah.',
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -137,202 +140,194 @@ export default function ContributorPage() {
     }
   };
 
-  if (authLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
-      </div>
-    );
-  }
-
-  if (!user) {
-    return (
-      <div className="container mx-auto py-20 flex flex-col items-center px-4">
-        <Card className="w-full max-w-md shadow-xl">
-          <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-headline font-bold text-primary">
-              {isRegisterMode ? 'Daftar Kontributor' : 'Portal Kontributor'}
-            </CardTitle>
-            <CardDescription>
-              {isRegisterMode 
-                ? 'Bergabunglah dengan tim penulis kami sekarang.' 
-                : 'Silakan login untuk mulai menulis artikel.'}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            {errorMessage && (
-              <Alert variant="destructive" className="mb-6">
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>{errorMessage}</AlertDescription>
-              </Alert>
-            )}
-            
-            <form onSubmit={isRegisterMode ? handleRegister : handleLogin} className="space-y-4">
-              {isRegisterMode && (
+  return (
+    <div className="container mx-auto py-12 px-4">
+      {!user ? (
+        <div className="flex flex-col items-center py-8">
+          <Card className="w-full max-w-md shadow-xl">
+            <CardHeader className="text-center">
+              <CardTitle className="text-3xl font-headline font-bold text-primary">
+                {isRegisterMode ? 'Daftar Kontributor' : 'Portal Kontributor'}
+              </CardTitle>
+              <CardDescription>
+                {isRegisterMode 
+                  ? 'Bergabunglah dengan tim penulis kami sekarang.' 
+                  : 'Silakan login untuk mulai menulis artikel.'}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {errorMessage && (
+                <Alert variant="destructive" className="mb-6">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertTitle>Error</AlertTitle>
+                  <AlertDescription>{errorMessage}</AlertDescription>
+                </Alert>
+              )}
+              
+              <form onSubmit={isRegisterMode ? handleRegister : handleLogin} className="space-y-4">
+                {isRegisterMode && (
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Nama Lengkap</Label>
+                    <Input
+                      id="name"
+                      placeholder="Masukkan nama Anda"
+                      value={displayName}
+                      onChange={(e) => setDisplayName(e.target.value)}
+                      required
+                    />
+                  </div>
+                )}
                 <div className="space-y-2">
-                  <Label htmlFor="name">Nama Lengkap</Label>
+                  <Label htmlFor="email">Email</Label>
                   <Input
-                    id="name"
-                    placeholder="Masukkan nama Anda"
-                    value={displayName}
-                    onChange={(e) => setDisplayName(e.target.value)}
+                    id="email"
+                    type="email"
+                    placeholder="name@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                   />
                 </div>
-              )}
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="name@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+                <div className="space-y-2">
+                  <Label htmlFor="password">Password</Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="Min. 6 karakter"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full h-11" disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Memproses...</>
+                  ) : isRegisterMode ? (
+                    <><UserPlus className="mr-2 h-4 w-4" /> Daftar Sekarang</>
+                  ) : (
+                    <><LogIn className="mr-2 h-4 w-4" /> Masuk</>
+                  )}
+                </Button>
+              </form>
+              
+              <div className="mt-6 text-center">
+                <p className="text-sm text-muted-foreground">
+                  {isRegisterMode ? 'Sudah punya akun?' : 'Belum punya akun?'}
+                  <button 
+                    onClick={() => {
+                      setIsRegisterMode(!isRegisterMode);
+                      setErrorMessage(null);
+                    }}
+                    className="ml-2 text-primary font-bold hover:underline"
+                  >
+                    {isRegisterMode ? 'Masuk di sini' : 'Daftar jadi kontributor'}
+                  </button>
+                </p>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Min. 6 karakter"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              <Button type="submit" className="w-full h-11" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Memproses...</>
-                ) : isRegisterMode ? (
-                  <><UserPlus className="mr-2 h-4 w-4" /> Daftar Sekarang</>
-                ) : (
-                  <><LogIn className="mr-2 h-4 w-4" /> Masuk</>
-                )}
-              </Button>
-            </form>
-            
-            <div className="mt-6 text-center">
-              <p className="text-sm text-muted-foreground">
-                {isRegisterMode ? 'Sudah punya akun?' : 'Belum punya akun?'}
-                <button 
-                  onClick={() => {
-                    setIsRegisterMode(!isRegisterMode);
-                    setErrorMessage(null);
-                  }}
-                  className="ml-2 text-primary font-bold hover:underline"
-                >
-                  {isRegisterMode ? 'Masuk di sini' : 'Daftar jadi kontributor'}
-                </button>
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-  return (
-    <div className="container mx-auto py-12 px-4">
-      <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
-        <div>
-          <h1 className="text-3xl font-headline font-bold text-primary flex items-center gap-2">
-            <PenLine className="h-8 w-8" />
-            Dashboard Kontributor
-          </h1>
-          <p className="text-muted-foreground">Halo, {user.displayName || user.email}. Tulis sesuatu yang luar biasa hari ini.</p>
+            </CardContent>
+          </Card>
         </div>
-        <Button variant="outline" onClick={handleLogout} className="flex items-center gap-2">
-          <LogOut className="h-4 w-4" /> Keluar
-        </Button>
-      </div>
-
-      <Card className="max-w-4xl mx-auto shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-2xl font-headline">Buat Artikel Baru</CardTitle>
-          <CardDescription>Isi detail artikel Anda di bawah ini.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmitArticle} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="title">Judul Artikel</Label>
-                <Input
-                  id="title"
-                  placeholder="Contoh: Strategi Marketing 2024"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="category">Kategori</Label>
-                <Select value={category} onValueChange={setCategory} required>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Pilih Kategori" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {CATEGORIES.map((cat) => (
-                      <SelectItem key={cat} value={cat}>{cat}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+      ) : (
+        <>
+          <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+            <div>
+              <h1 className="text-3xl font-headline font-bold text-primary flex items-center gap-2">
+                <PenLine className="h-8 w-8" />
+                Dashboard Kontributor
+              </h1>
+              <p className="text-muted-foreground">Halo, {user.displayName || user.email}. Tulis sesuatu yang luar biasa hari ini.</p>
             </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="imageUrl">URL Gambar Sampul (Opsional)</Label>
-              <Input
-                id="imageUrl"
-                placeholder="https://images.unsplash.com/..."
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-              />
-              <p className="text-xs text-muted-foreground">Gunakan link gambar dari Unsplash atau Picsum untuk hasil terbaik.</p>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="excerpt">Ringkasan Singkat (Excerpt)</Label>
-              <Textarea
-                id="excerpt"
-                placeholder="Berikan ringkasan singkat tentang apa yang dibahas dalam artikel ini..."
-                className="h-20"
-                value={excerpt}
-                onChange={(e) => setExcerpt(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="content">Isi Konten</Label>
-              <Textarea
-                id="content"
-                placeholder="Tulis artikel lengkap Anda di sini..."
-                className="min-h-[300px]"
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                required
-              />
-            </div>
-
-            <Button type="submit" className="w-full py-6 text-lg" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Mengirim...
-                </>
-              ) : (
-                <>
-                  <Send className="mr-2 h-5 w-5" />
-                  Terbitkan Artikel
-                </>
-              )}
+            <Button variant="outline" onClick={handleLogout} className="flex items-center gap-2">
+              <LogOut className="h-4 w-4" /> Keluar
             </Button>
-          </form>
-        </CardContent>
-      </Card>
+          </div>
+
+          <Card className="max-w-4xl mx-auto shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-2xl font-headline">Buat Artikel Baru</CardTitle>
+              <CardDescription>Isi detail artikel Anda di bawah ini.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmitArticle} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="title">Judul Artikel</Label>
+                    <Input
+                      id="title"
+                      placeholder="Contoh: Strategi Marketing 2024"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="category">Kategori</Label>
+                    <Select value={category} onValueChange={setCategory} required>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Pilih Kategori" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {CATEGORIES.map((cat) => (
+                          <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="imageUrl">URL Gambar Sampul (Opsional)</Label>
+                  <Input
+                    id="imageUrl"
+                    placeholder="https://images.unsplash.com/..."
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                  />
+                  <p className="text-xs text-muted-foreground">Gunakan link gambar dari Unsplash atau Picsum untuk hasil terbaik.</p>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="excerpt">Ringkasan Singkat (Excerpt)</Label>
+                  <Textarea
+                    id="excerpt"
+                    placeholder="Berikan ringkasan singkat tentang apa yang dibahas dalam artikel ini..."
+                    className="h-20"
+                    value={excerpt}
+                    onChange={(e) => setExcerpt(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="content">Isi Konten</Label>
+                  <Textarea
+                    id="content"
+                    placeholder="Tulis artikel lengkap Anda di sini..."
+                    className="min-h-[300px]"
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <Button type="submit" className="w-full py-6 text-lg" disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Mengirim...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-5 w-5" />
+                      Terbitkan Artikel
+                    </>
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </>
+      )}
     </div>
   );
 }
