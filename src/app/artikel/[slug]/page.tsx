@@ -1,42 +1,48 @@
-import { ARTICLES } from '@/lib/constants';
-import { notFound } from 'next/navigation';
+
+'use client';
+
+import { ARTICLES as STATIC_ARTICLES, type Article } from '@/lib/constants';
+import { notFound, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useCollection, useFirestore } from '@/firebase';
+import { collection, query, where, limit } from 'firebase/firestore';
+import { useMemo } from 'react';
 
-type ArticlePageProps = {
-  params: {
-    slug: string;
-  };
-};
+export default function ArticlePage() {
+  const params = useParams();
+  const slug = params.slug as string;
+  const { firestore } = useFirestore();
 
-export async function generateStaticParams() {
-  return ARTICLES.map((article) => ({
-    slug: article.slug,
-  }));
-}
+  // Try to find in static articles first
+  const staticArticle = STATIC_ARTICLES.find((a) => a.slug === slug);
 
-export async function generateMetadata({ params }: ArticlePageProps) {
-  const article = ARTICLES.find((a) => a.slug === params.slug);
+  // Try to find in Firestore
+  const articleQuery = useMemo(() => {
+    if (!firestore || staticArticle) return null;
+    return query(
+      collection(firestore, 'articles'),
+      where('slug', '==', slug),
+      limit(1)
+    );
+  }, [firestore, slug, staticArticle]);
 
-  if (!article) {
-    return {
-      title: 'Artikel Tidak Ditemukan',
-    };
+  const { data: dynamicArticles, loading } = useCollection(articleQuery);
+  const dynamicArticle = dynamicArticles?.[0] as Article | undefined;
+
+  const article = staticArticle || dynamicArticle;
+
+  if (loading && !staticArticle) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    );
   }
-
-  return {
-    title: `${article.title} - VWORKS.ID`,
-    description: article.excerpt,
-  };
-}
-
-export default function ArticlePage({ params }: ArticlePageProps) {
-  const { slug } = params;
-  const article = ARTICLES.find((a) => a.slug === slug);
 
   if (!article) {
     notFound();
@@ -85,7 +91,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
           </div>
 
           <div
-            className="prose lg:prose-xl dark:prose-invert max-w-none mx-auto text-muted-foreground"
+            className="prose lg:prose-xl dark:prose-invert max-w-none mx-auto text-muted-foreground whitespace-pre-wrap"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
 

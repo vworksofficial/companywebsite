@@ -1,10 +1,11 @@
+
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
-import { ARTICLES } from '@/lib/constants';
+import { ARTICLES as STATIC_ARTICLES, type Article } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -12,15 +13,26 @@ import { ArrowRight, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useCollection, useFirestore } from '@/firebase';
+import { collection, query, orderBy } from 'firebase/firestore';
 
 export default function ArtikelPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [isClient, setIsClient] = useState(false);
+  const { firestore } = useFirestore();
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Fetch dynamic articles from Firestore
+  const articlesQuery = useMemo(() => {
+    if (!firestore) return null;
+    return query(collection(firestore, 'articles'), orderBy('createdAt', 'desc'));
+  }, [firestore]);
+
+  const { data: dynamicArticles, loading: articlesLoading } = useCollection(articlesQuery);
 
   const categoryStyles: { [key: string]: string } = {
     'Web Development': 'bg-sky-100 text-sky-900 border-sky-200',
@@ -32,9 +44,15 @@ export default function ArtikelPage() {
     'Keuangan & Pajak': 'bg-slate-100 text-slate-900 border-slate-200',
   };
 
-  const allCategories = [...new Set(ARTICLES.map(a => a.category))];
+  // Combine static and dynamic articles
+  const allArticles = useMemo(() => {
+    const dynamic = (dynamicArticles || []) as Article[];
+    return [...dynamic, ...STATIC_ARTICLES];
+  }, [dynamicArticles]);
 
-  const filteredArticles = ARTICLES.filter(article => {
+  const allCategories = [...new Set(allArticles.map(a => a.category))];
+
+  const filteredArticles = allArticles.filter(article => {
     const matchesCategory = selectedCategory ? article.category === selectedCategory : true;
     const matchesSearch = searchTerm ? article.title.toLowerCase().includes(searchTerm.toLowerCase()) : true;
     return matchesCategory && matchesSearch;
@@ -58,7 +76,9 @@ export default function ArtikelPage() {
     <>
       <section className="py-4 border-b bg-card">
         <div className="container mx-auto">
-           {isClient ? (
+           {!isClient ? (
+             <FilterControlsSkeleton />
+           ) : (
               <div className="grid md:grid-cols-3 gap-8 items-center">
                 <div>
                   <h2 className="font-headline text-xl font-bold text-primary">Blog & Artikel</h2>
@@ -88,13 +108,17 @@ export default function ArtikelPage() {
                   />
                 </div>
               </div>
-           ) : (
-             <FilterControlsSkeleton />
            )}
         </div>
       </section>
 
-      {featuredArticle && (
+      {articlesLoading && (
+        <div className="container mx-auto py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[1, 2, 3].map(i => <Skeleton key={i} className="h-64 w-full" />)}
+        </div>
+      )}
+
+      {featuredArticle && !articlesLoading && (
         <section className="py-12 md:py-16">
           <div className="container mx-auto">
             <div className="grid md:grid-cols-10 gap-8 items-center">
@@ -135,7 +159,7 @@ export default function ArtikelPage() {
         </section>
       )}
 
-      {otherArticles.length > 0 && (
+      {otherArticles.length > 0 && !articlesLoading && (
         <section className="py-12 md:py-16 bg-card">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -179,7 +203,7 @@ export default function ArtikelPage() {
         </section>
       )}
 
-      {filteredArticles.length === 0 && (
+      {filteredArticles.length === 0 && !articlesLoading && (
           <section className="py-16 md:py-24">
             <div className="container mx-auto text-center">
                 <p className="text-lg text-muted-foreground">Tidak ada artikel yang ditemukan untuk kriteria pencarian ini.</p>

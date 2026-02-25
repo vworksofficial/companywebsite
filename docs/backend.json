@@ -1,0 +1,32 @@
+
+{
+  "entities": {
+    "Article": {
+      "title": "Article",
+      "description": "Schema for articles submitted by contributors",
+      "type": "object",
+      "properties": {
+        "slug": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string", "enum": ["Web Development", "Social Media Management", "Branding & Design", "SEO", "Content Marketing", "Ads Service", "Keuangan & Pajak"] },
+        "excerpt": { "type": "string" },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "imageHint": { "type": "string" },
+        "author": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["slug", "title", "category", "excerpt", "content", "imageUrl", "author", "date"]
+    }
+  },
+  "auth": {
+    "providers": ["password"]
+  },
+  "firestore": {
+    "/articles/{articleId}": {
+      "schema": "Article",
+      "description": "Collection of articles submitted through the contributor portal"
+    }
+  }
+}
