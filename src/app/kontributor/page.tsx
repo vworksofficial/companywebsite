@@ -11,7 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn } from 'lucide-react';
+import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const CATEGORIES = [
   'Web Development',
@@ -34,6 +35,7 @@ export default function ContributorPage() {
   const [password, setPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Article Form State
   const [title, setTitle] = useState('');
@@ -45,10 +47,12 @@ export default function ContributorPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!auth) return;
+    setErrorMessage(null);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast({ title: 'Login Berhasil', description: 'Selamat datang kembali, Kontributor!' });
     } catch (error: any) {
+      setErrorMessage(error.message);
       toast({
         variant: 'destructive',
         title: 'Login Gagal',
@@ -60,6 +64,8 @@ export default function ContributorPage() {
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!auth) return;
+    setErrorMessage(null);
+    setIsSubmitting(true);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       if (userCredential.user) {
@@ -71,13 +77,17 @@ export default function ContributorPage() {
     } catch (error: any) {
       let message = 'Terjadi kesalahan saat mendaftar.';
       if (error.code === 'auth/email-already-in-use') message = 'Email sudah terdaftar.';
-      if (error.code === 'auth/weak-password') message = 'Password terlalu lemah.';
+      if (error.code === 'auth/weak-password') message = 'Password minimal 6 karakter.';
+      if (error.code === 'auth/operation-not-allowed') message = 'Metode pendaftaran Email/Password belum diaktifkan di Firebase Console.';
       
+      setErrorMessage(message);
       toast({
         variant: 'destructive',
         title: 'Pendaftaran Gagal',
         description: message,
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -100,7 +110,7 @@ export default function ContributorPage() {
         title,
         category,
         excerpt,
-        content: content.replace(/\n/g, '<br>'), // Simple HTML conversion
+        content: content.replace(/\n/g, '<br>'),
         imageUrl: imageUrl || 'https://picsum.photos/seed/default/800/450',
         imageHint: 'article cover',
         author: user.displayName || user.email?.split('@')[0] || 'Kontributor',
@@ -111,7 +121,6 @@ export default function ContributorPage() {
 
       toast({ title: 'Artikel Terkirim!', description: 'Artikel Anda telah berhasil dipublikasikan.' });
       
-      // Reset Form
       setTitle('');
       setCategory('');
       setExcerpt('');
@@ -138,7 +147,7 @@ export default function ContributorPage() {
 
   if (!user) {
     return (
-      <div className="container mx-auto py-20 flex justify-center px-4">
+      <div className="container mx-auto py-20 flex flex-col items-center px-4">
         <Card className="w-full max-w-md shadow-xl">
           <CardHeader className="text-center">
             <CardTitle className="text-3xl font-headline font-bold text-primary">
@@ -151,6 +160,14 @@ export default function ContributorPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
+            {errorMessage && (
+              <Alert variant="destructive" className="mb-6">
+                <AlertCircle className="h-4 w-4" />
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>{errorMessage}</AlertDescription>
+              </Alert>
+            )}
+            
             <form onSubmit={isRegisterMode ? handleRegister : handleLogin} className="space-y-4">
               {isRegisterMode && (
                 <div className="space-y-2">
@@ -180,13 +197,16 @@ export default function ContributorPage() {
                 <Input
                   id="password"
                   type="password"
+                  placeholder="Min. 6 karakter"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
-              <Button type="submit" className="w-full h-11">
-                {isRegisterMode ? (
+              <Button type="submit" className="w-full h-11" disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Memproses...</>
+                ) : isRegisterMode ? (
                   <><UserPlus className="mr-2 h-4 w-4" /> Daftar Sekarang</>
                 ) : (
                   <><LogIn className="mr-2 h-4 w-4" /> Masuk</>
@@ -198,7 +218,10 @@ export default function ContributorPage() {
               <p className="text-sm text-muted-foreground">
                 {isRegisterMode ? 'Sudah punya akun?' : 'Belum punya akun?'}
                 <button 
-                  onClick={() => setIsRegisterMode(!isRegisterMode)}
+                  onClick={() => {
+                    setIsRegisterMode(!isRegisterMode);
+                    setErrorMessage(null);
+                  }}
                   className="ml-2 text-primary font-bold hover:underline"
                 >
                   {isRegisterMode ? 'Masuk di sini' : 'Daftar jadi kontributor'}
