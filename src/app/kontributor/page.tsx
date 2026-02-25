@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useAuth, useFirestore, useUser } from '@/firebase';
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, LogOut, PenLine, Send } from 'lucide-react';
+import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn } from 'lucide-react';
 
 const CATEGORIES = [
   'Web Development',
@@ -29,8 +29,10 @@ export default function ContributorPage() {
   const { user, loading: authLoading } = useUser();
   const { toast } = useToast();
 
+  const [isRegisterMode, setIsRegisterMode] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Article Form State
@@ -45,12 +47,36 @@ export default function ContributorPage() {
     if (!auth) return;
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      toast({ title: 'Login Berhasil', description: 'Selamat datang, Kontributor!' });
+      toast({ title: 'Login Berhasil', description: 'Selamat datang kembali, Kontributor!' });
     } catch (error: any) {
       toast({
         variant: 'destructive',
         title: 'Login Gagal',
         description: 'Email atau password salah.',
+      });
+    }
+  };
+
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!auth) return;
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      if (userCredential.user) {
+        await updateProfile(userCredential.user, {
+          displayName: displayName
+        });
+      }
+      toast({ title: 'Pendaftaran Berhasil', description: 'Akun kontributor Anda telah dibuat.' });
+    } catch (error: any) {
+      let message = 'Terjadi kesalahan saat mendaftar.';
+      if (error.code === 'auth/email-already-in-use') message = 'Email sudah terdaftar.';
+      if (error.code === 'auth/weak-password') message = 'Password terlalu lemah.';
+      
+      toast({
+        variant: 'destructive',
+        title: 'Pendaftaran Gagal',
+        description: message,
       });
     }
   };
@@ -112,14 +138,32 @@ export default function ContributorPage() {
 
   if (!user) {
     return (
-      <div className="container mx-auto py-20 flex justify-center">
+      <div className="container mx-auto py-20 flex justify-center px-4">
         <Card className="w-full max-w-md shadow-xl">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-headline font-bold text-primary">Portal Kontributor</CardTitle>
-            <CardDescription>Silakan login untuk mulai menulis artikel.</CardDescription>
+            <CardTitle className="text-3xl font-headline font-bold text-primary">
+              {isRegisterMode ? 'Daftar Kontributor' : 'Portal Kontributor'}
+            </CardTitle>
+            <CardDescription>
+              {isRegisterMode 
+                ? 'Bergabunglah dengan tim penulis kami sekarang.' 
+                : 'Silakan login untuk mulai menulis artikel.'}
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={isRegisterMode ? handleRegister : handleLogin} className="space-y-4">
+              {isRegisterMode && (
+                <div className="space-y-2">
+                  <Label htmlFor="name">Nama Lengkap</Label>
+                  <Input
+                    id="name"
+                    placeholder="Masukkan nama Anda"
+                    value={displayName}
+                    onChange={(e) => setDisplayName(e.target.value)}
+                    required
+                  />
+                </div>
+              )}
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -141,8 +185,26 @@ export default function ContributorPage() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full">Masuk</Button>
+              <Button type="submit" className="w-full h-11">
+                {isRegisterMode ? (
+                  <><UserPlus className="mr-2 h-4 w-4" /> Daftar Sekarang</>
+                ) : (
+                  <><LogIn className="mr-2 h-4 w-4" /> Masuk</>
+                )}
+              </Button>
             </form>
+            
+            <div className="mt-6 text-center">
+              <p className="text-sm text-muted-foreground">
+                {isRegisterMode ? 'Sudah punya akun?' : 'Belum punya akun?'}
+                <button 
+                  onClick={() => setIsRegisterMode(!isRegisterMode)}
+                  className="ml-2 text-primary font-bold hover:underline"
+                >
+                  {isRegisterMode ? 'Masuk di sini' : 'Daftar jadi kontributor'}
+                </button>
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -157,7 +219,7 @@ export default function ContributorPage() {
             <PenLine className="h-8 w-8" />
             Dashboard Kontributor
           </h1>
-          <p className="text-muted-foreground">Halo, {user.email}. Tulis sesuatu yang luar biasa hari ini.</p>
+          <p className="text-muted-foreground">Halo, {user.displayName || user.email}. Tulis sesuatu yang luar biasa hari ini.</p>
         </div>
         <Button variant="outline" onClick={handleLogout} className="flex items-center gap-2">
           <LogOut className="h-4 w-4" /> Keluar
