@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth, useFirestore, useUser } from '@/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -30,6 +30,7 @@ export default function ContributorPage() {
   const { user, loading: authLoading } = useUser();
   const { toast } = useToast();
 
+  const [isMounted, setIsMounted] = useState(false);
   const [isRegisterMode, setIsRegisterMode] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -43,6 +44,11 @@ export default function ContributorPage() {
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+
+  // Ensure client-side rendering only for auth-dependent content to avoid hydration mismatch
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,6 +146,11 @@ export default function ContributorPage() {
     }
   };
 
+  // Prevent rendering anything until mounted to avoid hydration errors
+  if (!isMounted) {
+    return <div className="container mx-auto py-12 px-4 min-h-[60vh]" />;
+  }
+
   return (
     <div className="container mx-auto py-12 px-4">
       {!user ? (
@@ -168,8 +179,9 @@ export default function ContributorPage() {
                 {isRegisterMode && (
                   <div className="space-y-2">
                     <Label htmlFor="name">Nama Lengkap</Label>
-                    <Input
+                    <input
                       id="name"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="Masukkan nama Anda"
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
@@ -179,9 +191,10 @@ export default function ContributorPage() {
                 )}
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input
+                  <input
                     id="email"
                     type="email"
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="name@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -190,9 +203,10 @@ export default function ContributorPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="password">Password</Label>
-                  <Input
+                  <input
                     id="password"
                     type="password"
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="Min. 6 karakter"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -251,9 +265,10 @@ export default function ContributorPage() {
               <form onSubmit={handleSubmitArticle} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="title">Judul Artikel</Label>
-                    <Input
-                      id="title"
+                    <Label htmlFor="article-title">Judul Artikel</Label>
+                    <input
+                      id="article-title"
+                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                       placeholder="Contoh: Strategi Marketing 2024"
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
@@ -277,8 +292,9 @@ export default function ContributorPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="imageUrl">URL Gambar Sampul (Opsional)</Label>
-                  <Input
+                  <input
                     id="imageUrl"
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder="https://images.unsplash.com/..."
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
