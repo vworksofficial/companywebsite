@@ -178,6 +178,11 @@ export default function ContributorPage() {
     setContent(art.content.replace(/<br>/g, '\n'));
     setImageUrl(art.imageUrl);
     setActiveView('buat-artikel');
+    
+    toast({
+      title: "Mode Edit Aktif",
+      description: `Sekarang menyunting: ${art.title}`,
+    });
   };
 
   const resetForm = () => {
@@ -383,11 +388,18 @@ export default function ContributorPage() {
       <main className="flex-grow overflow-y-auto p-8">
         {activeView === 'buat-artikel' && (
           <div className="max-w-[1200px] mx-auto">
-            <div className="mb-8">
-              <h1 className="text-3xl font-headline font-bold text-slate-900">
-                {editingId ? 'Edit Artikel' : 'Buat Artikel Baru'}
-              </h1>
-              <p className="text-slate-500">Gunakan sidebar kanan untuk optimasi SEO artikel Anda.</p>
+            <div className="mb-8 flex justify-between items-end">
+              <div>
+                <h1 className="text-3xl font-headline font-bold text-slate-900">
+                  {editingId ? 'Edit Artikel' : 'Buat Artikel Baru'}
+                </h1>
+                <p className="text-slate-500">Gunakan sidebar kanan untuk optimasi SEO artikel Anda.</p>
+              </div>
+              {editingId && (
+                <Button variant="outline" size="sm" onClick={resetForm} className="mb-1">
+                  Batal Edit & Buat Baru
+                </Button>
+              )}
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -464,11 +476,6 @@ export default function ContributorPage() {
                   {isSubmitting ? <Loader2 className="mr-2 h-6 w-6 animate-spin" /> : <Send className="mr-2 h-6 w-6" />}
                   {editingId ? 'Simpan Perubahan' : 'Terbitkan Artikel Sekarang'}
                 </Button>
-                {editingId && (
-                  <Button variant="ghost" onClick={resetForm} className="w-full mt-2">
-                    Batal Edit & Buat Baru
-                  </Button>
-                )}
               </div>
 
               {/* SEO & Metadata Sidebar */}
@@ -639,17 +646,17 @@ export default function ContributorPage() {
                             <Badge variant="outline" className="text-[10px] uppercase">{art.category}</Badge>
                           </TableCell>
                           <TableCell className="text-right">
-                            <div className="flex justify-end gap-1">
+                            <div className="flex justify-end gap-2">
                               {art.isDynamic && (
-                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => handleEdit(art)}>
-                                  <Pencil className="h-4 w-4 text-slate-600" />
-                                  <span className="sr-only">Edit</span>
+                                <Button variant="outline" size="sm" className="h-8 gap-1" onClick={() => handleEdit(art)}>
+                                  <Pencil className="h-3.5 w-3.5" />
+                                  <span>Edit</span>
                                 </Button>
                               )}
-                              <Button asChild variant="ghost" size="sm" className="h-8 w-8 p-0">
+                              <Button asChild variant="ghost" size="sm" className="h-8 gap-1">
                                 <Link href={`/artikel/${art.slug}`} target="_blank">
-                                  <ExternalLink className="h-4 w-4 text-primary" />
-                                  <span className="sr-only">Buka</span>
+                                  <ExternalLink className="h-3.5 w-3.5" />
+                                  <span>Buka</span>
                                 </Link>
                               </Button>
                             </div>
