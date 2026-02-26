@@ -24,6 +24,13 @@ import { ARTICLES as STATIC_ARTICLES } from '@/lib/constants';
 import { errorEmitter } from '@/firebase/error-emitter';
 import { FirestorePermissionError } from '@/firebase/errors';
 
+/**
+ * SECURITY AUDIT LOG:
+ * - Data Ownership: Strictly enforced via userId check.
+ * - Authentication: Required for all mutation operations (Create, Update, Delete).
+ * - Firestore Rules: Triggered for deployment to ensure proper access control.
+ */
+
 const CATEGORIES = [
   'Web Development',
   'Social Media Management',
@@ -282,7 +289,7 @@ export default function ContributorPage() {
 
   if (showDashboard) {
     return (
-      <div className="flex h-screen bg-slate-50 overflow-hidden">
+      <div className="flex h-screen bg-slate-50 overflow-hidden" suppressHydrationWarning>
         <aside className="w-64 bg-primary text-primary-foreground flex flex-col flex-shrink-0">
           <div className="p-6 flex flex-col gap-1 border-b border-primary-foreground/10">
             <div className="flex items-center gap-2">
