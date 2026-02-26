@@ -5,15 +5,15 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { CheckCircle2, ArrowRight, Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
 type ServicePageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateStaticParams() {
@@ -23,7 +23,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: ServicePageProps) {
-  const service = SERVICES.find((s) => s.slug === params.slug);
+  const { slug } = await params;
+  const service = SERVICES.find((s) => s.slug === slug);
 
   if (!service) {
     return {
@@ -38,8 +39,8 @@ export async function generateMetadata({ params }: ServicePageProps) {
 }
 
 
-export default function ServicePage({ params }: ServicePageProps) {
-  const { slug } = params;
+export default async function ServicePage({ params }: ServicePageProps) {
+  const { slug } = await params;
   const service = SERVICES.find((s) => s.slug === slug);
 
   if (!service) {

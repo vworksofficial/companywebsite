@@ -13,9 +13,20 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "",
 };
 
-// Pastikan Firebase diinisialisasi hanya sekali
-const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+// Inisialisasi Firebase secara aman.
+// Selama build Next.js atau pra-render, variabel lingkungan mungkin tidak tersedia.
+// Pengecekan ini mencegah error "auth/invalid-api-key" yang menghentikan proses build di Vercel.
+const hasConfig = typeof window !== 'undefined' 
+  ? !!process.env.NEXT_PUBLIC_FIREBASE_API_KEY 
+  : (!!process.env.NEXT_PUBLIC_FIREBASE_API_KEY && process.env.NEXT_PUBLIC_FIREBASE_API_KEY !== "");
+
+const app = hasConfig
+  ? (getApps().length > 0 ? getApp() : initializeApp(firebaseConfig))
+  : (getApps().length > 0 ? getApp() : null);
+
+// Jika app tidak ada (misal saat build tanpa env vars), kita berikan null.
+// Komponen dan hooks sudah diperbarui untuk menangani kondisi ini secara anggun.
+const auth = app ? getAuth(app) : null;
+const db = app ? getFirestore(app) : null;
 
 export { app, auth, db };

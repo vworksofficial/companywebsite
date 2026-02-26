@@ -27,11 +27,14 @@ export function useCollection<T = DocumentData>(query: Query<T> | null) {
         setLoading(false);
       },
       async (serverError) => {
-        const permissionError = new FirestorePermissionError({
-          path: (query as any)._query?.path?.segments?.join('/') || 'unknown',
-          operation: 'list',
-        });
-        errorEmitter.emit('permission-error', permissionError);
+        // Only emit if it's a real permission error
+        if (serverError.code === 'permission-denied') {
+          const permissionError = new FirestorePermissionError({
+            path: (query as any)._query?.path?.segments?.join('/') || 'unknown',
+            operation: 'list',
+          });
+          errorEmitter.emit('permission-error', permissionError);
+        }
         setError(serverError);
         setLoading(false);
       }
