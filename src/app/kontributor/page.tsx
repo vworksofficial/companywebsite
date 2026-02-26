@@ -11,8 +11,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, LayoutDashboard, List, PlusCircle, ArrowLeft } from 'lucide-react';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle } from 'lucide-react';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -147,12 +147,12 @@ export default function ContributorPage() {
   if (!user) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
-        <Link href="/" className="flex items-center gap-2 mb-8">
-          <Image src="https://imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={40} height={40} />
-          <span className="font-headline text-2xl font-bold text-primary">VWORKS.ID</span>
-        </Link>
-        <Card className="w-full max-w-md shadow-2xl border-t-4 border-primary">
-          <CardHeader className="text-center pb-2">
+        <div className="flex flex-col items-center gap-2 mb-8">
+          <Image src="https://imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={60} height={60} />
+          <span className="font-headline text-3xl font-bold text-primary tracking-tight">VWORKS.ID</span>
+        </div>
+        <Card className="w-full max-w-md shadow-2xl border-t-4 border-primary overflow-hidden">
+          <CardHeader className="text-center pb-2 bg-white">
             <CardTitle className="text-2xl font-headline font-bold">
               {isRegisterMode ? 'Daftar Kontributor' : 'Portal Kontributor'}
             </CardTitle>
@@ -160,7 +160,7 @@ export default function ContributorPage() {
               {isRegisterMode ? 'Bergabunglah dengan tim penulis kami.' : 'Silakan login untuk mulai mengelola konten.'}
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-6">
             {errorMessage && (
               <Alert variant="destructive" className="mb-6">
                 <AlertCircle className="h-4 w-4" />
@@ -188,7 +188,7 @@ export default function ContributorPage() {
               </Button>
             </form>
             <div className="mt-6 text-center pt-4 border-t">
-              <button onClick={() => setIsRegisterMode(!isRegisterMode)} className="text-sm text-primary font-bold hover:underline">
+              <button onClick={() => { setIsRegisterMode(!isRegisterMode); setErrorMessage(null); }} className="text-sm text-primary font-bold hover:underline">
                 {isRegisterMode ? 'Sudah punya akun? Masuk' : 'Belum punya akun? Daftar jadi kontributor'}
               </button>
             </div>
@@ -202,15 +202,21 @@ export default function ContributorPage() {
     <div className="flex h-screen bg-slate-50 overflow-hidden">
       {/* Sidebar */}
       <aside className="w-64 bg-primary text-primary-foreground flex flex-col flex-shrink-0">
-        <div className="p-6 flex items-center gap-2 border-b border-primary-foreground/10">
-          <Image src="https://imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={28} height={28} className="brightness-0 invert" />
-          <span className="font-headline font-bold text-lg">Dashboard</span>
+        <div className="p-6 flex flex-col gap-1 border-b border-primary-foreground/10">
+          <div className="flex items-center gap-2">
+            <Image src="https://imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={32} height={32} className="brightness-0 invert" />
+            <span className="font-headline font-bold text-xl tracking-tight text-white">VWORKS.ID</span>
+          </div>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-primary-foreground/50 font-bold px-1 mt-1">Contributor Hub</p>
         </div>
         <nav className="flex-grow p-4 space-y-2">
           <Link href="/artikel" className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary-foreground/10 transition-colors">
             <FileText className="h-5 w-5" />
-            <span>Artikel Utama</span>
+            <span className="text-sm font-medium">Artikel Utama</span>
           </Link>
+          <div className="pt-4 pb-2 px-3">
+            <p className="text-[10px] uppercase font-bold text-primary-foreground/40 tracking-wider">Navigasi</p>
+          </div>
           <button
             onClick={() => setActiveView('tulisanmu')}
             className={cn(
@@ -219,7 +225,7 @@ export default function ContributorPage() {
             )}
           >
             <List className="h-5 w-5" />
-            <span>Tulisanmu</span>
+            <span className="text-sm font-medium">Tulisanmu</span>
           </button>
           <button
             onClick={() => setActiveView('buat-artikel')}
@@ -229,16 +235,16 @@ export default function ContributorPage() {
             )}
           >
             <PlusCircle className="h-5 w-5" />
-            <span>Buat Artikel</span>
+            <span className="text-sm font-medium">Buat Artikel</span>
           </button>
         </nav>
-        <div className="p-4 border-t border-primary-foreground/10">
+        <div className="p-4 border-t border-primary-foreground/10 bg-black/5">
           <div className="mb-4 px-3">
-            <p className="text-xs text-primary-foreground/60">Login sebagai:</p>
-            <p className="text-sm font-semibold truncate">{user.displayName || user.email}</p>
+            <p className="text-[10px] uppercase font-bold text-primary-foreground/40 mb-1">Akun Anda</p>
+            <p className="text-sm font-semibold truncate text-white">{user.displayName || user.email}</p>
           </div>
           <Button variant="destructive" className="w-full justify-start gap-3 bg-red-600 hover:bg-red-700" onClick={handleLogout}>
-            <LogOut className="h-5 w-5" /> Keluar
+            <LogOut className="h-5 w-5" /> <span className="text-sm font-medium">Keluar</span>
           </Button>
         </div>
       </aside>
