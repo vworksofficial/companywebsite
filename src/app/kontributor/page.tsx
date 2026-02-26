@@ -384,25 +384,14 @@ export default function ContributorPage() {
                         className="h-24" 
                       />
                     </div>
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="category" className="font-bold">Kategori Artikel</Label>
-                        <Select value={category} onValueChange={setCategory} required>
-                          <SelectTrigger><SelectValue placeholder="Pilih Kategori" /></SelectTrigger>
-                          <SelectContent>
-                            {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="keyword" className="font-bold text-accent-foreground bg-accent/20 px-2 py-0.5 rounded">Focus Keyword SEO</Label>
-                        <Input 
-                          id="keyword" 
-                          placeholder="Kata kunci utama artikel..." 
-                          value={focusKeyword} 
-                          onChange={(e) => setFocusKeyword(e.target.value)} 
-                        />
-                      </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="keyword" className="font-bold text-accent-foreground bg-accent/20 px-2 py-0.5 rounded">Focus Keyword SEO</Label>
+                      <Input 
+                        id="keyword" 
+                        placeholder="Kata kunci utama artikel..." 
+                        value={focusKeyword} 
+                        onChange={(e) => setFocusKeyword(e.target.value)} 
+                      />
                     </div>
                   </CardContent>
                 </Card>
@@ -461,6 +450,17 @@ export default function ContributorPage() {
                     <div>
                       <Label className="text-[10px] uppercase font-bold text-slate-400">URL Slug</Label>
                       <p className="text-xs font-mono bg-slate-100 p-2 rounded mt-1 break-all">/artikel/{slug || 'judul-anda'}</p>
+                    </div>
+                    <div>
+                      <Label className="text-[10px] uppercase font-bold text-slate-400">Kategori Artikel</Label>
+                      <Select value={category} onValueChange={setCategory} required>
+                        <SelectTrigger className="h-9 text-xs mt-1">
+                          <SelectValue placeholder="Pilih Kategori" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div>
                       <div className="flex justify-between items-center mb-1">
