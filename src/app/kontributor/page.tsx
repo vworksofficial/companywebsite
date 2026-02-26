@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Eye, Settings, BarChart3, ExternalLink, Pencil, Sparkles, Trash2 } from 'lucide-react';
+import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Eye, Settings, BarChart3, ExternalLink, Pencil, Sparkles, Trash2, Search } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
@@ -51,6 +51,7 @@ export default function ContributorPage() {
 
   // Filter state for All Articles table
   const [tableCategoryFilter, setTableCategoryFilter] = useState<string>('all');
+  const [tableAuthorFilter, setTableAuthorFilter] = useState<string>('');
 
   // Article Form State
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -157,9 +158,12 @@ export default function ContributorPage() {
 
   // Filtered list for the main table
   const filteredCombinedArticles = useMemo(() => {
-    if (tableCategoryFilter === 'all') return combinedAllArticles;
-    return combinedAllArticles.filter((art: any) => art.category === tableCategoryFilter);
-  }, [combinedAllArticles, tableCategoryFilter]);
+    return combinedAllArticles.filter((art: any) => {
+      const matchesCategory = tableCategoryFilter === 'all' || art.category === tableCategoryFilter;
+      const matchesAuthor = !tableAuthorFilter || art.author?.toLowerCase().includes(tableAuthorFilter.toLowerCase());
+      return matchesCategory && matchesAuthor;
+    });
+  }, [combinedAllArticles, tableCategoryFilter, tableAuthorFilter]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -679,22 +683,36 @@ export default function ContributorPage() {
 
         {activeView === 'semua-artikel' && (
           <div className="max-w-6xl mx-auto">
-            <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <h1 className="text-3xl font-headline font-bold text-slate-900">Semua Artikel</h1>
                 <p className="text-slate-500">Daftar seluruh artikel yang telah dipublikasikan di VWORKS.ID.</p>
               </div>
-              <div className="w-full md:w-64">
-                <Label className="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Filter Kategori</Label>
-                <Select value={tableCategoryFilter} onValueChange={setTableCategoryFilter}>
-                  <SelectTrigger className="h-9 text-xs">
-                    <SelectValue placeholder="Semua Kategori" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">Semua Kategori</SelectItem>
-                    {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+              <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+                <div className="w-full md:w-48">
+                  <Label className="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Nama Penulis</Label>
+                  <div className="relative">
+                    <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
+                    <Input 
+                      placeholder="Cari penulis..." 
+                      className="h-9 text-xs pl-8"
+                      value={tableAuthorFilter}
+                      onChange={(e) => setTableAuthorFilter(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="w-full md:w-48">
+                  <Label className="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Filter Kategori</Label>
+                  <Select value={tableCategoryFilter} onValueChange={setTableCategoryFilter}>
+                    <SelectTrigger className="h-9 text-xs">
+                      <SelectValue placeholder="Semua Kategori" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">Semua Kategori</SelectItem>
+                      {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
             </div>
 
@@ -783,7 +801,7 @@ export default function ContributorPage() {
                   ) : (
                     <TableRow>
                       <TableCell colSpan={4} className="h-32 text-center text-slate-400">
-                        Belum ada artikel yang tersedia untuk kategori ini.
+                        Belum ada artikel yang tersedia untuk kriteria pencarian ini.
                       </TableCell>
                     </TableRow>
                   )}
