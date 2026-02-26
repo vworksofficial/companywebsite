@@ -253,12 +253,15 @@ export default function ContributorPage() {
       imageUrl: imageUrl.trim() || 'https://picsum.photos/seed/' + (editingId || slug) + '/800/450',
     };
     
+    // Optimistic UI approach: Redirect and toast immediately
+    toast({ title: editingId ? 'Menyimpan Perubahan...' : 'Menerbitkan Artikel...', description: 'Proses sedang berjalan di latar belakang.' });
+    setActiveView('tulisanmu');
+
     if (editingId) {
       const docRef = doc(firestore, 'articles', editingId);
       updateDoc(docRef, { ...articleData, updatedAt: serverTimestamp() }).catch(async (error) => {
         errorEmitter.emit('permission-error', new FirestorePermissionError({ path: docRef.path, operation: 'update', requestResourceData: articleData }));
       });
-      toast({ title: 'Perubahan Disimpan', description: 'Artikel Anda telah diperbarui.' });
     } else {
       const newArticle = {
         ...articleData,
@@ -273,11 +276,9 @@ export default function ContributorPage() {
       addDoc(colRef, newArticle).catch(async (error) => {
         errorEmitter.emit('permission-error', new FirestorePermissionError({ path: colRef.path, operation: 'create', requestResourceData: newArticle }));
       });
-      toast({ title: 'Artikel Terbit!', description: 'Artikel Anda sudah publik di website.' });
     }
 
     resetForm();
-    setActiveView('tulisanmu');
   };
 
   if (!isMounted) return null;
@@ -378,8 +379,8 @@ export default function ContributorPage() {
                 <h1 className="text-3xl font-headline font-bold text-slate-900">{editingId ? 'Edit Artikel' : 'Buat Artikel Baru'}</h1>
                 <p className="text-slate-500">Gunakan sidebar kanan untuk optimasi SEO artikel Anda.</p>
               </div>
-              <div className="flex items-center gap-6">
-                <div className="w-48 space-y-1.5">
+              <div className="flex items-center gap-4">
+                <div className="w-40 space-y-1.5">
                   <div className="flex justify-between items-center px-1">
                     <span className="text-[10px] font-bold uppercase text-slate-400 whitespace-nowrap">SEO Health</span>
                     <span className={cn("text-xs font-bold", seoAnalysis.score >= 80 ? "text-green-600" : seoAnalysis.score >= 50 ? "text-amber-600" : "text-red-600")}>{seoAnalysis.score}%</span>
@@ -410,9 +411,9 @@ export default function ContributorPage() {
                     <div className="space-y-2">
                       <Label htmlFor="keyword" className="font-bold text-accent-foreground bg-accent/20 px-2 py-0.5 rounded">Focus Keyword SEO</Label>
                       <div className="flex gap-2">
-                        <Input id="keyword" placeholder="Kata kunci utama..." value={focusKeyword} onChange={(e) => setFocusKeyword(e.target.value)} className="flex-[7]" />
+                        <Input id="keyword" placeholder="Kata kunci utama artikel..." value={focusKeyword} onChange={(e) => setFocusKeyword(e.target.value)} className="flex-[7]" />
                         <Button type="button" variant="secondary" className="flex-[3] font-bold" onClick={() => toast({ title: "Fitur AI", description: "Asisten AI sedang dalam tahap pengembangan." })}>
-                          <Sparkles className="mr-2 h-4 w-4" /> Generate
+                          <Sparkles className="mr-2 h-4 w-4" /> Generate Artikel
                         </Button>
                       </div>
                     </div>
@@ -521,21 +522,11 @@ export default function ContributorPage() {
               </div>
               <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
                 <div className="w-full md:w-48">
-                  <Label className="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Penulis</Label>
+                  <Label className="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Cari Penulis</Label>
                   <div className="relative">
                     <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
-                    <Input placeholder="Cari penulis..." className="h-9 text-xs pl-8" value={tableAuthorFilter} onChange={(e) => setTableAuthorFilter(e.target.value)} />
+                    <Input placeholder="Nama penulis..." className="h-9 text-xs pl-8" value={tableAuthorFilter} onChange={(e) => setTableAuthorFilter(e.target.value)} />
                   </div>
-                </div>
-                <div className="w-full md:w-48">
-                  <Label className="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Kategori</Label>
-                  <Select value={tableCategoryFilter} onValueChange={setTableCategoryFilter}>
-                    <SelectTrigger className="h-9 text-xs"><SelectValue placeholder="Semua" /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">Semua Kategori</SelectItem>
-                      {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
-                    </SelectContent>
-                  </Select>
                 </div>
               </div>
             </div>
@@ -547,14 +538,27 @@ export default function ContributorPage() {
                     <TableHead className="font-bold w-[100px]">Image</TableHead>
                     <TableHead className="font-bold">
                       <div className="flex flex-col gap-1 py-2">
-                        <span>Judul</span>
+                        <span>Judul Artikel</span>
                         <div className="relative">
                           <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-slate-400" />
-                          <Input placeholder="Filter judul..." className="h-7 text-[10px] pl-7" value={tableTitleFilter} onChange={(e) => setTableTitleFilter(e.target.value)} />
+                          <Input placeholder="Cari judul..." className="h-7 text-[10px] pl-7" value={tableTitleFilter} onChange={(e) => setTableTitleFilter(e.target.value)} />
                         </div>
                       </div>
                     </TableHead>
-                    <TableHead className="font-bold">Kategori</TableHead>
+                    <TableHead className="font-bold">
+                      <div className="flex flex-col gap-1 py-2">
+                        <span>Kategori</span>
+                        <Select value={tableCategoryFilter} onValueChange={setTableCategoryFilter}>
+                          <SelectTrigger className="h-7 text-[10px] px-2">
+                            <SelectValue placeholder="Semua" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="all">Semua</SelectItem>
+                            {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </TableHead>
                     <TableHead className="font-bold text-right">Aksi</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -602,14 +606,27 @@ export default function ContributorPage() {
                     <TableHead className="font-bold w-[100px]">Image</TableHead>
                     <TableHead className="font-bold">
                       <div className="flex flex-col gap-1 py-2">
-                        <span>Judul</span>
+                        <span>Judul Artikel</span>
                         <div className="relative">
                           <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-slate-400" />
-                          <Input placeholder="Filter judul..." className="h-7 text-[10px] pl-7" value={tableTitleFilter} onChange={(e) => setTableTitleFilter(e.target.value)} />
+                          <Input placeholder="Cari judul..." className="h-7 text-[10px] pl-7" value={tableTitleFilter} onChange={(e) => setTableTitleFilter(e.target.value)} />
                         </div>
                       </div>
                     </TableHead>
-                    <TableHead className="font-bold">Kategori</TableHead>
+                    <TableHead className="font-bold">
+                      <div className="flex flex-col gap-1 py-2">
+                        <span>Kategori</span>
+                        <Select value={tableCategoryFilter} onValueChange={setTableCategoryFilter}>
+                          <SelectTrigger className="h-7 text-[10px] px-2">
+                            <SelectValue placeholder="Semua" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="all">Semua</SelectItem>
+                            {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </TableHead>
                     <TableHead className="font-bold text-right">Aksi</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -617,7 +634,11 @@ export default function ContributorPage() {
                   {articlesLoading ? (
                     <TableRow><TableCell colSpan={4} className="h-32 text-center"><Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" /></TableCell></TableRow>
                   ) : myArticles && myArticles.length > 0 ? (
-                    myArticles.filter((art: any) => !tableTitleFilter || art.title?.toLowerCase().includes(tableTitleFilter.toLowerCase())).map((art: any) => (
+                    myArticles.filter((art: any) => {
+                        const matchesTitle = !tableTitleFilter || art.title?.toLowerCase().includes(tableTitleFilter.toLowerCase());
+                        const matchesCategory = tableCategoryFilter === 'all' || art.category === tableCategoryFilter;
+                        return matchesTitle && matchesCategory;
+                    }).map((art: any) => (
                       <TableRow key={art.id}>
                         <TableCell><div className="relative w-16 h-10 rounded overflow-hidden border"><Image src={art.imageUrl} alt={art.title} fill className="object-cover" /></div></TableCell>
                         <TableCell><div className="flex flex-col"><span className="font-bold text-slate-900 line-clamp-1">{art.title}</span><span className="text-xs text-slate-500">{art.date}</span></div></TableCell>
