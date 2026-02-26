@@ -65,6 +65,7 @@ export default function ContributorPage() {
   // Auto-generated slug
   const slug = useMemo(() => {
     return title.toLowerCase()
+      .trim()
       .replace(/ /g, '-')
       .replace(/[^\w-]+/g, '');
   }, [title]);
@@ -217,6 +218,7 @@ export default function ContributorPage() {
     setExcerpt(art.excerpt || '');
     setContent(art.content.replace(/<br>/g, '\n'));
     setImageUrl(art.imageUrl);
+    setFocusKeyword('');
     setActiveView('buat-artikel');
     
     toast({
@@ -247,9 +249,17 @@ export default function ContributorPage() {
     setFocusKeyword('');
   };
 
-  const handleSubmitArticle = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!firestore || !user) return;
+  const handleSubmitArticle = async (e?: React.SyntheticEvent) => {
+    if (e) e.preventDefault();
+    if (!firestore || !user) {
+        toast({ variant: 'destructive', title: 'Kesalahan', description: 'Firestore atau User tidak tersedia.' });
+        return;
+    }
+
+    if (!title || !category || !content) {
+        toast({ variant: 'destructive', title: 'Data Tidak Lengkap', description: 'Judul, Kategori, dan Isi Konten wajib diisi.' });
+        return;
+    }
 
     setIsSubmitting(true);
     
@@ -258,11 +268,11 @@ export default function ContributorPage() {
         // Update existing
         const docRef = doc(firestore, 'articles', editingId);
         await updateDoc(docRef, {
-          title,
+          title: title.trim(),
           category,
-          excerpt,
+          excerpt: excerpt.trim(),
           content: content.replace(/\n/g, '<br>'),
-          imageUrl: imageUrl || 'https://picsum.photos/seed/' + slug + '/800/450',
+          imageUrl: imageUrl.trim() || 'https://picsum.photos/seed/' + slug + '/800/450',
           updatedAt: serverTimestamp(),
         });
         toast({ title: 'Artikel Diperbarui', description: 'Perubahan Anda telah disimpan.' });
@@ -271,11 +281,11 @@ export default function ContributorPage() {
         const finalSlug = slug + '-' + Math.random().toString(36).substring(2, 7);
         await addDoc(collection(firestore, 'articles'), {
           slug: finalSlug,
-          title,
+          title: title.trim(),
           category,
-          excerpt,
+          excerpt: excerpt.trim(),
           content: content.replace(/\n/g, '<br>'),
-          imageUrl: imageUrl || 'https://picsum.photos/seed/' + finalSlug + '/800/450',
+          imageUrl: imageUrl.trim() || 'https://picsum.photos/seed/' + finalSlug + '/800/450',
           imageHint: 'article cover',
           author: user.displayName || user.email?.split('@')[0] || 'Kontributor',
           date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
@@ -288,7 +298,8 @@ export default function ContributorPage() {
       resetForm();
       setActiveView('tulisanmu');
     } catch (error: any) {
-      toast({ variant: 'destructive', title: 'Gagal Menyimpan', description: error.message });
+      console.error('Error submitting article:', error);
+      toast({ variant: 'destructive', title: 'Gagal Menyimpan', description: error.message || 'Terjadi kesalahan saat menyimpan ke database.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -469,10 +480,11 @@ export default function ContributorPage() {
                     </Button>
                   )}
                   <Button 
-                    onClick={handleSubmitArticle} 
+                    type="button"
+                    onClick={() => handleSubmitArticle()} 
                     size="sm"
                     className="shadow-md"
-                    disabled={isSubmitting || !title || !content}
+                    disabled={isSubmitting || !title || !content || !category}
                   >
                     {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
                     {editingId ? 'Simpan Perubahan' : 'Terbitkan Sekarang'}
@@ -631,7 +643,7 @@ export default function ContributorPage() {
                     </div>
                     <div>
                       <Label className="text-[10px] uppercase font-bold text-slate-400">Author & Date</Label>
-                      <p className="text-xs font-medium text-slate-700 mt-1">{user.displayName || 'Anda'}</p>
+                      <p className="text-xs font-medium text-slate-700 mt-1">{user.displayName || user.email}</p>
                       <p className="text-[10px] text-slate-400 italic">Terbit: Hari ini</p>
                     </div>
                   </CardContent>
