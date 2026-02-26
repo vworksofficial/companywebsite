@@ -286,7 +286,6 @@ export default function ContributorPage() {
         <aside className="w-64 bg-primary text-primary-foreground flex flex-col flex-shrink-0">
           <div className="p-6 flex flex-col gap-1 border-b border-primary-foreground/10">
             <div className="flex items-center gap-2">
-              <Image src="https://imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={32} height={32} className="brightness-0 invert" />
               <span className="font-headline font-bold text-xl tracking-tight text-white">VWORKS.ID</span>
             </div>
             <p className="text-[10px] uppercase tracking-[0.2em] text-primary-foreground/50 font-bold px-1 mt-1">Contributor Hub</p>
