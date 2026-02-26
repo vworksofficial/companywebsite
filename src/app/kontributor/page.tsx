@@ -425,6 +425,16 @@ export default function ContributorPage() {
                     </div>
                     
                     <div className="space-y-2">
+                      <Label htmlFor="keyword" className="font-bold text-accent-foreground bg-accent/20 px-2 py-0.5 rounded">Focus Keyword SEO</Label>
+                      <Input 
+                        id="keyword" 
+                        placeholder="Kata kunci utama artikel..." 
+                        value={focusKeyword} 
+                        onChange={(e) => setFocusKeyword(e.target.value)} 
+                      />
+                    </div>
+
+                    <div className="space-y-2">
                       <Label htmlFor="content" className="font-bold">Isi Konten</Label>
                       <Textarea 
                         id="content" 
@@ -433,25 +443,6 @@ export default function ContributorPage() {
                         onChange={(e) => setContent(e.target.value)} 
                         required 
                         className="min-h-[500px] font-body leading-relaxed text-base" 
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="shadow-md">
-                   <CardHeader>
-                    <CardTitle className="text-lg flex items-center gap-2">
-                       <Info className="h-5 w-5 text-primary" /> Informasi Tambahan
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="keyword" className="font-bold text-accent-foreground bg-accent/20 px-2 py-0.5 rounded">Focus Keyword SEO</Label>
-                      <Input 
-                        id="keyword" 
-                        placeholder="Kata kunci utama artikel..." 
-                        value={focusKeyword} 
-                        onChange={(e) => setFocusKeyword(e.target.value)} 
                       />
                     </div>
                   </CardContent>
