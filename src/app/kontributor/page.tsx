@@ -12,7 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Info, Eye, Settings, BarChart3, ExternalLink, Pencil } from 'lucide-react';
-import { Alert, AlertDescription } from '@/alert';
+import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -201,7 +201,7 @@ export default function ContributorPage() {
     setEditingId(art.id);
     setTitle(art.title);
     setCategory(art.category);
-    setExcerpt(art.excerpt);
+    setExcerpt(art.excerpt || '');
     setContent(art.content.replace(/<br>/g, '\n'));
     setImageUrl(art.imageUrl);
     setActiveView('buat-artikel');
