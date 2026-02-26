@@ -1,8 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 export default function ContentSummarizer() {
+  const pathname = usePathname();
+
+  // Hide WhatsApp button on contributor dashboard
+  if (pathname === '/kontributor') return null;
+
   return (
     <a
       href="https://wa.me/6285113208900"
