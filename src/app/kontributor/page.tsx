@@ -49,6 +49,9 @@ export default function ContributorPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  // Filter state for All Articles table
+  const [tableCategoryFilter, setTableCategoryFilter] = useState<string>('all');
+
   // Article Form State
   const [editingId, setEditingId] = useState<string | null>(null);
   const [title, setTitle] = useState('');
@@ -151,6 +154,12 @@ export default function ContributorPage() {
     
     return [...dynamic, ...staticArts];
   }, [dynamicArticles]);
+
+  // Filtered list for the main table
+  const filteredCombinedArticles = useMemo(() => {
+    if (tableCategoryFilter === 'all') return combinedAllArticles;
+    return combinedAllArticles.filter((art: any) => art.category === tableCategoryFilter);
+  }, [combinedAllArticles, tableCategoryFilter]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -624,7 +633,7 @@ export default function ContributorPage() {
                   </CardContent>
                 </Card>
 
-                {/* SEO Checklist Box */}
+                {/* SEO Analysis Checklist Box */}
                 <Card>
                   <CardHeader className="bg-slate-50 py-3 px-4 border-b">
                     <CardTitle className="text-sm flex items-center gap-2">
@@ -670,9 +679,23 @@ export default function ContributorPage() {
 
         {activeView === 'semua-artikel' && (
           <div className="max-w-6xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-3xl font-headline font-bold text-slate-900">Semua Artikel</h1>
-              <p className="text-slate-500">Daftar seluruh artikel yang telah dipublikasikan di VWORKS.ID.</p>
+            <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <h1 className="text-3xl font-headline font-bold text-slate-900">Semua Artikel</h1>
+                <p className="text-slate-500">Daftar seluruh artikel yang telah dipublikasikan di VWORKS.ID.</p>
+              </div>
+              <div className="w-full md:w-64">
+                <Label className="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Filter Kategori</Label>
+                <Select value={tableCategoryFilter} onValueChange={setTableCategoryFilter}>
+                  <SelectTrigger className="h-9 text-xs">
+                    <SelectValue placeholder="Semua Kategori" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">Semua Kategori</SelectItem>
+                    {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             <Card className="shadow-md overflow-hidden">
@@ -686,9 +709,9 @@ export default function ContributorPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {combinedAllArticles.length > 0 ? (
+                  {filteredCombinedArticles.length > 0 ? (
                     <>
-                      {combinedAllArticles.map((art: any) => (
+                      {filteredCombinedArticles.map((art: any) => (
                         <TableRow key={art.id}>
                           <TableCell>
                             <div className="relative w-16 h-10 rounded overflow-hidden border">
@@ -760,7 +783,7 @@ export default function ContributorPage() {
                   ) : (
                     <TableRow>
                       <TableCell colSpan={4} className="h-32 text-center text-slate-400">
-                        Belum ada artikel yang tersedia.
+                        Belum ada artikel yang tersedia untuk kategori ini.
                       </TableCell>
                     </TableRow>
                   )}
