@@ -19,6 +19,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { ARTICLES as STATIC_ARTICLES } from '@/lib/constants';
 
 const CATEGORIES = [
   'Web Development',
@@ -104,7 +105,7 @@ export default function ContributorPage() {
 
   const { data: myArticles, loading: articlesLoading } = useCollection(userArticlesQuery);
 
-  // Fetch all articles
+  // Fetch all dynamic articles
   const allArticlesQuery = useMemo(() => {
     if (!firestore) return null;
     return query(
@@ -113,7 +114,16 @@ export default function ContributorPage() {
     );
   }, [firestore]);
 
-  const { data: allArticles, loading: allArticlesLoading } = useCollection(allArticlesQuery);
+  const { data: dynamicArticles, loading: dynamicArticlesLoading } = useCollection(allArticlesQuery);
+
+  // Combine static and dynamic articles
+  const combinedAllArticles = useMemo(() => {
+    const dynamic = (dynamicArticles || []).map(art => ({ ...art, isDynamic: true }));
+    const staticArts = STATIC_ARTICLES.map(art => ({ ...art, isDynamic: false, id: art.slug }));
+    
+    // Merge and potentially sort by date if needed, for now just dynamic first then static
+    return [...dynamic, ...staticArts];
+  }, [dynamicArticles]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -573,14 +583,14 @@ export default function ContributorPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {allArticlesLoading ? (
+                  {dynamicArticlesLoading ? (
                     <TableRow>
                       <TableCell colSpan={4} className="h-32 text-center">
                         <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto" />
                       </TableCell>
                     </TableRow>
-                  ) : allArticles && allArticles.length > 0 ? (
-                    allArticles.map((art: any) => (
+                  ) : combinedAllArticles && combinedAllArticles.length > 0 ? (
+                    combinedAllArticles.map((art: any) => (
                       <TableRow key={art.id}>
                         <TableCell>
                           <div className="relative w-16 h-10 rounded overflow-hidden border">
