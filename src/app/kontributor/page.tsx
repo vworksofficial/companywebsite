@@ -11,8 +11,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle } from 'lucide-react';
+import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Info, Eye, Settings, BarChart3 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Separator } from '@/components/ui/separator';
+import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -50,6 +52,44 @@ export default function ContributorPage() {
   const [excerpt, setExcerpt] = useState('');
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [focusKeyword, setFocusKeyword] = useState('');
+
+  // Auto-generated slug
+  const slug = useMemo(() => {
+    return title.toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/[^\w-]+/g, '');
+  }, [title]);
+
+  // SEO Analysis Logic
+  const seoAnalysis = useMemo(() => {
+    const kw = focusKeyword.toLowerCase();
+    const t = title.toLowerCase();
+    const s = slug.toLowerCase();
+    const e = excerpt.toLowerCase();
+    const c = content.toLowerCase();
+    const words = content.trim() ? content.trim().split(/\s+/).length : 0;
+    
+    // Density
+    const kwCount = kw ? (c.match(new RegExp(kw, 'gi')) || []).length : 0;
+    const density = words > 0 ? (kwCount / words) * 100 : 0;
+
+    return {
+      keywordInTitle: kw && t.includes(kw),
+      keywordInSlug: kw && s.includes(kw),
+      keywordInMeta: kw && e.includes(kw),
+      keywordInBody: kw && c.includes(kw),
+      keywordDensity: kwCount >= 3,
+      wordCount: words >= 1150,
+      titleLength: t.length >= 50 && t.length <= 60,
+      metaLength: e.length >= 145 && e.length <= 155,
+      hasImage: !!imageUrl,
+      hasSubheadings: c.includes('h2') || c.includes('h3') || c.includes('<b>') || c.includes('<strong>'),
+      hasLinks: c.includes('href') || c.includes('http'),
+      totalWords: words,
+      keywordDensityValue: density.toFixed(2)
+    };
+  }, [title, slug, excerpt, content, focusKeyword, imageUrl]);
 
   // Fetch user's articles
   const userArticlesQuery = useMemo(() => {
@@ -111,16 +151,16 @@ export default function ContributorPage() {
     if (!firestore || !user) return;
 
     setIsSubmitting(true);
-    const slug = title.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '') + '-' + Math.random().toString(36).substring(2, 7);
+    const finalSlug = slug + '-' + Math.random().toString(36).substring(2, 7);
     
     try {
       await addDoc(collection(firestore, 'articles'), {
-        slug,
+        slug: finalSlug,
         title,
         category,
         excerpt,
         content: content.replace(/\n/g, '<br>'),
-        imageUrl: imageUrl || 'https://picsum.photos/seed/' + slug + '/800/450',
+        imageUrl: imageUrl || 'https://picsum.photos/seed/' + finalSlug + '/800/450',
         imageHint: 'article cover',
         author: user.displayName || user.email?.split('@')[0] || 'Kontributor',
         date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
@@ -134,6 +174,7 @@ export default function ContributorPage() {
       setExcerpt('');
       setContent('');
       setImageUrl('');
+      setFocusKeyword('');
       setActiveView('tulisanmu');
     } catch (error: any) {
       toast({ variant: 'destructive', title: 'Gagal Mengirim', description: error.message });
@@ -200,7 +241,7 @@ export default function ContributorPage() {
 
   return (
     <div className="flex h-screen bg-slate-50 overflow-hidden">
-      {/* Sidebar */}
+      {/* Sidebar Navigation */}
       <aside className="w-64 bg-primary text-primary-foreground flex flex-col flex-shrink-0">
         <div className="p-6 flex flex-col gap-1 border-b border-primary-foreground/10">
           <div className="flex items-center gap-2">
@@ -249,51 +290,209 @@ export default function ContributorPage() {
         </div>
       </aside>
 
-      {/* Main Content */}
+      {/* Main Content Area */}
       <main className="flex-grow overflow-y-auto p-8">
         {activeView === 'buat-artikel' ? (
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-[1200px] mx-auto">
             <div className="mb-8">
               <h1 className="text-3xl font-headline font-bold text-slate-900">Buat Artikel Baru</h1>
-              <p className="text-slate-500">Berbagilah wawasan dan inspirasi Anda kepada pembaca VWORKS.ID.</p>
+              <p className="text-slate-500">Gunakan sidebar kanan untuk optimasi SEO artikel Anda.</p>
             </div>
-            <Card className="shadow-lg border-t-4 border-primary">
-              <CardContent className="pt-6">
-                <form onSubmit={handleSubmitArticle} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Main Editor Section */}
+              <div className="lg:col-span-8 space-y-6">
+                <Card className="shadow-lg border-t-4 border-primary">
+                  <CardHeader>
+                    <CardTitle className="text-lg flex items-center gap-2">
+                       <PenLine className="h-5 w-5 text-primary" /> Konten Utama
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="title">Judul Artikel</Label>
-                      <Input id="title" placeholder="Contoh: Strategi Bisnis 2024" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                      <Label htmlFor="title" className="font-bold">Judul Artikel</Label>
+                      <Input 
+                        id="title" 
+                        placeholder="Masukkan judul yang menarik..." 
+                        value={title} 
+                        onChange={(e) => setTitle(e.target.value)} 
+                        required 
+                        className="text-lg font-bold h-12"
+                      />
                     </div>
+                    
                     <div className="space-y-2">
-                      <Label htmlFor="category">Kategori</Label>
-                      <Select value={category} onValueChange={setCategory} required>
-                        <SelectTrigger><SelectValue placeholder="Pilih Kategori" /></SelectTrigger>
-                        <SelectContent>
-                          {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
-                        </SelectContent>
-                      </Select>
+                      <Label htmlFor="content" className="font-bold">Isi Konten</Label>
+                      <Textarea 
+                        id="content" 
+                        placeholder="Tulis artikel Anda di sini... Gunakan tag HTML <h2> atau <h3> untuk subjudul." 
+                        value={content} 
+                        onChange={(e) => setContent(e.target.value)} 
+                        required 
+                        className="min-h-[500px] font-body leading-relaxed text-base" 
+                      />
                     </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="image">URL Gambar Sampul (Opsional)</Label>
-                    <Input id="image" placeholder="https://unsplash.com/..." value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="excerpt">Ringkasan (Excerpt)</Label>
-                    <Textarea id="excerpt" placeholder="Berikan ringkasan singkat..." value={excerpt} onChange={(e) => setExcerpt(e.target.value)} required className="h-20" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="content">Konten Artikel</Label>
-                    <Textarea id="content" placeholder="Tulis artikel Anda di sini..." value={content} onChange={(e) => setContent(e.target.value)} required className="min-h-[400px]" />
-                  </div>
-                  <Button type="submit" className="w-full h-12 text-lg" disabled={isSubmitting}>
-                    {isSubmitting ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Send className="mr-2 h-5 w-5" />}
-                    Terbitkan Sekarang
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                  </CardContent>
+                </Card>
+
+                <Card className="shadow-md">
+                   <CardHeader>
+                    <CardTitle className="text-lg flex items-center gap-2">
+                       <Info className="h-5 w-5 text-primary" /> Informasi Tambahan
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="excerpt" className="font-bold">Ringkasan Pendek (Excerpt / Meta Desc)</Label>
+                      <Textarea 
+                        id="excerpt" 
+                        placeholder="Ringkasan singkat yang akan tampil di halaman depan..." 
+                        value={excerpt} 
+                        onChange={(e) => setExcerpt(e.target.value)} 
+                        required 
+                        className="h-24" 
+                      />
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="category" className="font-bold">Kategori Artikel</Label>
+                        <Select value={category} onValueChange={setCategory} required>
+                          <SelectTrigger><SelectValue placeholder="Pilih Kategori" /></SelectTrigger>
+                          <SelectContent>
+                            {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="keyword" className="font-bold text-accent-foreground bg-accent/20 px-2 py-0.5 rounded">Focus Keyword SEO</Label>
+                        <Input 
+                          id="keyword" 
+                          placeholder="Kata kunci utama artikel..." 
+                          value={focusKeyword} 
+                          onChange={(e) => setFocusKeyword(e.target.value)} 
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Button 
+                  onClick={handleSubmitArticle} 
+                  className="w-full h-14 text-lg font-bold shadow-xl" 
+                  disabled={isSubmitting || !title || !content}
+                >
+                  {isSubmitting ? <Loader2 className="mr-2 h-6 w-6 animate-spin" /> : <Send className="mr-2 h-6 w-6" />}
+                  Terbitkan Artikel Sekarang
+                </Button>
+              </div>
+
+              {/* SEO & Metadata Sidebar */}
+              <div className="lg:col-span-4 space-y-6 sticky top-8">
+                {/* Image Preview Box */}
+                <Card className="overflow-hidden">
+                  <CardHeader className="bg-slate-50 py-3 px-4 border-b">
+                    <CardTitle className="text-sm flex items-center gap-2">
+                      <Eye className="h-4 w-4" /> Featured Image Preview
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-0">
+                    <div className="relative aspect-video bg-slate-100 flex items-center justify-center overflow-hidden">
+                      {imageUrl ? (
+                        <Image src={imageUrl} alt="Preview" fill className="object-cover" />
+                      ) : (
+                        <div className="text-center p-6 text-slate-400">
+                          <PlusCircle className="h-10 w-10 mx-auto mb-2 opacity-20" />
+                          <p className="text-xs">Masukkan URL gambar di bawah untuk melihat preview</p>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-4 bg-white border-t">
+                      <Label htmlFor="imageUrl" className="text-xs font-bold uppercase text-slate-500 mb-1 block">Image URL</Label>
+                      <Input 
+                        id="imageUrl" 
+                        placeholder="https://..." 
+                        value={imageUrl} 
+                        onChange={(e) => setImageUrl(e.target.value)}
+                        className="text-xs h-8"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Metadata Summary Box */}
+                <Card>
+                  <CardHeader className="bg-slate-50 py-3 px-4 border-b">
+                    <CardTitle className="text-sm flex items-center gap-2">
+                      <Settings className="h-4 w-4" /> Metadata Dashboard
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 space-y-4">
+                    <div>
+                      <Label className="text-[10px] uppercase font-bold text-slate-400">URL Slug</Label>
+                      <p className="text-xs font-mono bg-slate-100 p-2 rounded mt-1 break-all">/artikel/{slug || 'judul-anda'}</p>
+                    </div>
+                    <div>
+                      <Label className="text-[10px] uppercase font-bold text-slate-400">Meta Title Length</Label>
+                      <div className="flex justify-between items-center mt-1">
+                        <span className={cn("text-xs font-bold", seoAnalysis.titleLength ? "text-green-600" : "text-amber-600")}>
+                          {title.length} / 60 chars
+                        </span>
+                        {seoAnalysis.titleLength ? <CheckCircle2 className="h-3 w-3 text-green-600" /> : <Info className="h-3 w-3 text-amber-600" />}
+                      </div>
+                    </div>
+                    <div>
+                      <Label className="text-[10px] uppercase font-bold text-slate-400">Meta Desc Length</Label>
+                      <div className="flex justify-between items-center mt-1">
+                        <span className={cn("text-xs font-bold", seoAnalysis.metaLength ? "text-green-600" : "text-amber-600")}>
+                          {excerpt.length} / 155 chars
+                        </span>
+                        {seoAnalysis.metaLength ? <CheckCircle2 className="h-3 w-3 text-green-600" /> : <Info className="h-3 w-3 text-amber-600" />}
+                      </div>
+                    </div>
+                    <div>
+                      <Label className="text-[10px] uppercase font-bold text-slate-400">Author & Date</Label>
+                      <p className="text-xs font-medium text-slate-700 mt-1">{user.displayName || 'Anda'}</p>
+                      <p className="text-[10px] text-slate-400 italic">Terbit: Hari ini</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* SEO Checklist Box */}
+                <Card>
+                  <CardHeader className="bg-slate-50 py-3 px-4 border-b">
+                    <CardTitle className="text-sm flex items-center gap-2">
+                      <BarChart3 className="h-4 w-4" /> SEO Analysis Checklist
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4">
+                    <div className="space-y-3">
+                      <SEORequirement label="Keyword in Title" met={seoAnalysis.keywordInTitle} />
+                      <SEORequirement label="Keyword in Slug" met={seoAnalysis.keywordInSlug} />
+                      <SEORequirement label="Keyword in Meta Desc" met={seoAnalysis.keywordInMeta} />
+                      <SEORequirement label="Keyword in Body" met={seoAnalysis.keywordInBody} />
+                      <SEORequirement label="Keyword Density (>3x)" met={seoAnalysis.keywordDensity} />
+                      <SEORequirement label="Use Subheadings (H2/H3)" met={seoAnalysis.hasSubheadings} />
+                      <SEORequirement label="Featured Image" met={seoAnalysis.hasImage} />
+                      <SEORequirement label="Internal/External Links" met={seoAnalysis.hasLinks} />
+                      <SEORequirement label="Length (>1150 words)" met={seoAnalysis.wordCount} />
+                      
+                      <Separator className="my-4" />
+                      
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-slate-50 p-2 rounded text-center">
+                          <p className="text-[10px] uppercase font-bold text-slate-400">Total Words</p>
+                          <p className="text-lg font-bold text-primary">{seoAnalysis.totalWords}</p>
+                        </div>
+                        <div className="bg-slate-50 p-2 rounded text-center">
+                          <p className="text-[10px] uppercase font-bold text-slate-400">Density</p>
+                          <p className="text-lg font-bold text-primary">{seoAnalysis.keywordDensityValue}%</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </div>
         ) : (
           <div className="max-w-5xl mx-auto">
@@ -350,6 +549,19 @@ export default function ContributorPage() {
           </div>
         )}
       </main>
+    </div>
+  );
+}
+
+function SEORequirement({ label, met }: { label: string, met: boolean | string }) {
+  return (
+    <div className="flex items-center justify-between gap-2">
+      <span className={cn("text-xs", met ? "text-slate-700" : "text-slate-400")}>{label}</span>
+      {met ? (
+        <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
+      ) : (
+        <XCircle className="h-4 w-4 text-slate-200 flex-shrink-0" />
+      )}
     </div>
   );
 }
