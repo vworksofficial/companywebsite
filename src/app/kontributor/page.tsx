@@ -374,7 +374,7 @@ export default function ContributorPage() {
             )}
           >
             <FileText className="h-5 w-5" />
-            <span className="text-sm font-medium">Artikel Utama</span>
+            <span className="text-sm font-medium">Semua Artikel</span>
           </button>
           <div className="pt-4 pb-2 px-3">
             <p className="text-[10px] uppercase font-bold text-primary-foreground/40 tracking-wider">Navigasi</p>
