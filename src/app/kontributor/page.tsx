@@ -118,10 +118,10 @@ export default function ContributorPage() {
 
   // Combine static and dynamic articles
   const combinedAllArticles = useMemo(() => {
-    const dynamic = (dynamicArticles || []).map(art => ({ ...art, isDynamic: true }));
+    const dynamic = (dynamicArticles || []).map(art => ({ ...art, isDynamic: true, id: art.id }));
     const staticArts = STATIC_ARTICLES.map(art => ({ ...art, isDynamic: false, id: art.slug }));
     
-    // Merge and potentially sort by date if needed, for now just dynamic first then static
+    // Menampilkan artikel dinamis di atas, kemudian artikel statis
     return [...dynamic, ...staticArts];
   }, [dynamicArticles]);
 
@@ -467,7 +467,7 @@ export default function ContributorPage() {
                   </CardContent>
                 </Card>
 
-                {/* Metadata Summary Box */}
+                {/* Metadata Dashboard Box */}
                 <Card>
                   <CardHeader className="bg-slate-50 py-3 px-4 border-b">
                     <CardTitle className="text-sm flex items-center gap-2">
@@ -583,39 +583,51 @@ export default function ContributorPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {dynamicArticlesLoading ? (
+                  {combinedAllArticles.length > 0 ? (
+                    <>
+                      {combinedAllArticles.map((art: any) => (
+                        <TableRow key={art.id}>
+                          <TableCell>
+                            <div className="relative w-16 h-10 rounded overflow-hidden border">
+                              <Image src={art.imageUrl} alt={art.title} fill className="object-cover" />
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex flex-col">
+                              <span className="font-bold text-slate-900 line-clamp-1">{art.title}</span>
+                              <span className="text-xs text-slate-500">Oleh {art.author} • {art.date}</span>
+                            </div>
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant="outline" className="text-[10px] uppercase">{art.category}</Badge>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <Button asChild variant="ghost" size="sm" className="h-8 w-8 p-0">
+                              <Link href={`/artikel/${art.slug}`} target="_blank">
+                                <ExternalLink className="h-4 w-4 text-primary" />
+                                <span className="sr-only">Buka</span>
+                              </Link>
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                      {dynamicArticlesLoading && (
+                        <TableRow>
+                          <TableCell colSpan={4} className="py-4 text-center">
+                            <div className="flex items-center justify-center gap-2 text-slate-400 text-sm">
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                              Memuat artikel terbaru dari database...
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      )}
+                    </>
+                  ) : dynamicArticlesLoading ? (
                     <TableRow>
                       <TableCell colSpan={4} className="h-32 text-center">
                         <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto" />
                       </TableCell>
                     </TableRow>
-                  ) : combinedAllArticles && combinedAllArticles.length > 0 ? (
-                    combinedAllArticles.map((art: any) => (
-                      <TableRow key={art.id}>
-                        <TableCell>
-                          <div className="relative w-16 h-10 rounded overflow-hidden border">
-                            <Image src={art.imageUrl} alt={art.title} fill className="object-cover" />
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <div className="flex flex-col">
-                            <span className="font-bold text-slate-900 line-clamp-1">{art.title}</span>
-                            <span className="text-xs text-slate-500">Oleh {art.author} • {art.date}</span>
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant="outline" className="text-[10px] uppercase">{art.category}</Badge>
-                        </TableCell>
-                        <TableCell className="text-right">
-                          <Button asChild variant="ghost" size="sm" className="h-8 w-8 p-0">
-                            <Link href={`/artikel/${art.slug}`} target="_blank">
-                              <ExternalLink className="h-4 w-4 text-primary" />
-                              <span className="sr-only">Buka</span>
-                            </Link>
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))
                   ) : (
                     <TableRow>
                       <TableCell colSpan={4} className="h-32 text-center text-slate-400">
