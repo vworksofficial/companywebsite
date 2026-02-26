@@ -667,7 +667,11 @@ export default function ContributorPage() {
             </Button>
           </form>
           <div className="mt-6 text-center pt-4 border-t">
-            <button onClick={() => { setIsRegisterMode(!isRegisterMode); setErrorMessage(null); }} className="text-sm text-primary font-bold hover:underline">
+            <button 
+              onClick={() => { setIsRegisterMode(!isRegisterMode); setErrorMessage(null); }} 
+              className="text-sm text-primary font-bold hover:underline"
+              suppressHydrationWarning
+            >
               {isRegisterMode ? 'Sudah punya akun? Masuk' : 'Belum punya akun? Daftar jadi kontributor'}
             </button>
           </div>
