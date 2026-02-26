@@ -11,10 +11,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Info, Eye, Settings, BarChart3 } from 'lucide-react';
+import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Info, Eye, Settings, BarChart3, ExternalLink } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -29,7 +30,7 @@ const CATEGORIES = [
   'Keuangan & Pajak',
 ];
 
-type View = 'tulisanmu' | 'buat-artikel';
+type View = 'tulisanmu' | 'buat-artikel' | 'semua-artikel';
 
 export default function ContributorPage() {
   const auth = useAuth();
@@ -102,6 +103,17 @@ export default function ContributorPage() {
   }, [firestore, user]);
 
   const { data: myArticles, loading: articlesLoading } = useCollection(userArticlesQuery);
+
+  // Fetch all articles
+  const allArticlesQuery = useMemo(() => {
+    if (!firestore) return null;
+    return query(
+      collection(firestore, 'articles'),
+      orderBy('createdAt', 'desc')
+    );
+  }, [firestore]);
+
+  const { data: allArticles, loading: allArticlesLoading } = useCollection(allArticlesQuery);
 
   useEffect(() => {
     setIsMounted(true);
@@ -282,10 +294,16 @@ export default function ContributorPage() {
           <p className="text-[10px] uppercase tracking-[0.2em] text-primary-foreground/50 font-bold px-1 mt-1">Contributor Hub</p>
         </div>
         <nav className="flex-grow p-4 space-y-2">
-          <Link href="/artikel" className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary-foreground/10 transition-colors">
+          <button
+            onClick={() => setActiveView('semua-artikel')}
+            className={cn(
+              "w-full flex items-center gap-3 p-3 rounded-lg transition-colors",
+              activeView === 'semua-artikel' ? "bg-white/20" : "hover:bg-primary-foreground/10"
+            )}
+          >
             <FileText className="h-5 w-5" />
             <span className="text-sm font-medium">Artikel Utama</span>
-          </Link>
+          </button>
           <div className="pt-4 pb-2 px-3">
             <p className="text-[10px] uppercase font-bold text-primary-foreground/40 tracking-wider">Navigasi</p>
           </div>
@@ -323,7 +341,7 @@ export default function ContributorPage() {
 
       {/* Main Content Area */}
       <main className="flex-grow overflow-y-auto p-8">
-        {activeView === 'buat-artikel' ? (
+        {activeView === 'buat-artikel' && (
           <div className="max-w-[1200px] mx-auto">
             <div className="mb-8">
               <h1 className="text-3xl font-headline font-bold text-slate-900">Buat Artikel Baru</h1>
@@ -535,7 +553,66 @@ export default function ContributorPage() {
               </div>
             </div>
           </div>
-        ) : (
+        )}
+
+        {activeView === 'semua-artikel' && (
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-8">
+              <h1 className="text-3xl font-headline font-bold text-slate-900">Semua Artikel</h1>
+              <p className="text-slate-500">Daftar seluruh artikel yang telah dipublikasikan di VWORKS.ID.</p>
+            </div>
+
+            <Card className="shadow-md overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-slate-50">
+                    <TableHead className="font-bold">Judul Artikel</TableHead>
+                    <TableHead className="font-bold">Kategori</TableHead>
+                    <TableHead className="font-bold">Penulis</TableHead>
+                    <TableHead className="font-bold">Tanggal</TableHead>
+                    <TableHead className="font-bold text-right">Aksi</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {allArticlesLoading ? (
+                    <TableRow>
+                      <TableCell colSpan={5} className="h-32 text-center">
+                        <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto" />
+                      </TableCell>
+                    </TableRow>
+                  ) : allArticles && allArticles.length > 0 ? (
+                    allArticles.map((art: any) => (
+                      <TableRow key={art.id}>
+                        <TableCell className="font-medium">{art.title}</TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className="text-[10px] uppercase">{art.category}</Badge>
+                        </TableCell>
+                        <TableCell className="text-sm text-slate-600">{art.author}</TableCell>
+                        <TableCell className="text-sm text-slate-500">{art.date}</TableCell>
+                        <TableCell className="text-right">
+                          <Button asChild variant="ghost" size="sm" className="h-8 w-8 p-0">
+                            <Link href={`/artikel/${art.slug}`} target="_blank">
+                              <ExternalLink className="h-4 w-4 text-primary" />
+                              <span className="sr-only">Buka</span>
+                            </Link>
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={5} className="h-32 text-center text-slate-400">
+                        Belum ada artikel yang tersedia.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </Card>
+          </div>
+        )}
+
+        {activeView === 'tulisanmu' && (
           <div className="max-w-5xl mx-auto">
             <div className="flex justify-between items-center mb-8">
               <div>
