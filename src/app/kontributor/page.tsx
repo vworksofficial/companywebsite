@@ -77,9 +77,21 @@ export default function ContributorPage() {
     const kwCount = kw ? (c.match(new RegExp(kw, 'gi')) || []).length : 0;
     const density = words > 0 ? (kwCount / words) * 100 : 0;
 
+    // Check first paragraph
+    const firstParagraph = c.split(/<br>|\n/)[0] || '';
+    
+    // Check for sources/bibliography
+    const sourcesKeywords = ['sumber', 'referensi', 'daftar pustaka', 'bibliography', 'sources'];
+    const hasSources = sourcesKeywords.some(keyword => c.includes(keyword));
+
+    // Check for links
+    const hasInternalLinks = c.includes('href="/') || c.includes('vworks.id');
+    const hasExternalLinks = c.includes('href="http') && !c.includes('vworks.id');
+
     return {
       keywordInTitle: kw && t.includes(kw),
       keywordInSlug: kw && s.includes(kw),
+      keywordInFirstParagraph: kw && firstParagraph.includes(kw),
       keywordInMeta: kw && e.includes(kw),
       keywordInBody: kw && c.includes(kw),
       keywordDensity: kwCount >= 3,
@@ -88,7 +100,9 @@ export default function ContributorPage() {
       metaLength: e.length >= 145 && e.length <= 155,
       hasImage: !!imageUrl,
       hasSubheadings: c.includes('h2') || c.includes('h3') || c.includes('<b>') || c.includes('<strong>'),
-      hasLinks: c.includes('href') || c.includes('http'),
+      hasSources,
+      hasInternalLinks,
+      hasExternalLinks,
       totalWords: words,
       keywordDensityValue: density.toFixed(2)
     };
@@ -561,13 +575,18 @@ export default function ContributorPage() {
                     <div className="space-y-3">
                       <SEORequirement label="Keyword in Title" met={seoAnalysis.keywordInTitle} />
                       <SEORequirement label="Keyword in Slug" met={seoAnalysis.keywordInSlug} />
-                      <SEORequirement label="Keyword in Meta Desc" met={seoAnalysis.keywordInMeta} />
-                      <SEORequirement label="Keyword in Body" met={seoAnalysis.keywordInBody} />
-                      <SEORequirement label="Keyword Density (>3x)" met={seoAnalysis.keywordDensity} />
-                      <SEORequirement label="Use Subheadings (H2/H3)" met={seoAnalysis.hasSubheadings} />
-                      <SEORequirement label="Featured Image" met={seoAnalysis.hasImage} />
-                      <SEORequirement label="Internal/External Links" met={seoAnalysis.hasLinks} />
-                      <SEORequirement label="Length (>1150 words)" met={seoAnalysis.wordCount} />
+                      <SEORequirement label="Keyword in First Paragraph" met={seoAnalysis.keywordInFirstParagraph} />
+                      <SEORequirement label="Keyword in Meta Description" met={seoAnalysis.keywordInMeta} />
+                      <SEORequirement label="Keyword in Content Body" met={seoAnalysis.keywordInBody} />
+                      <SEORequirement label="Keyword Density (>3 times)" met={seoAnalysis.keywordDensity} />
+                      <SEORequirement label="Subheadings (H2/H3) used" met={seoAnalysis.hasSubheadings} />
+                      <SEORequirement label="Content Length (>1150 words)" met={seoAnalysis.wordCount} />
+                      <SEORequirement label="Meta Title (50-60 chars)" met={seoAnalysis.titleLength} />
+                      <SEORequirement label="Meta Desc (145-155 chars)" met={seoAnalysis.metaLength} />
+                      <SEORequirement label="Featured Image present" met={seoAnalysis.hasImage} />
+                      <SEORequirement label="Sources/Bibliography present" met={seoAnalysis.hasSources} />
+                      <SEORequirement label="Internal Links present" met={seoAnalysis.hasInternalLinks} />
+                      <SEORequirement label="External Links present" met={seoAnalysis.hasExternalLinks} />
                       
                       <Separator className="my-4" />
                       
@@ -738,7 +757,7 @@ export default function ContributorPage() {
 function SEORequirement({ label, met }: { label: string, met: boolean | string }) {
   return (
     <div className="flex items-center justify-between gap-2">
-      <span className={cn("text-xs", met ? "text-slate-700" : "text-slate-400")}>{label}</span>
+      <span className={cn("text-[11px] leading-tight", met ? "text-slate-700" : "text-slate-400")}>{label}</span>
       {met ? (
         <CheckCircle2 className="h-4 w-4 text-green-500 flex-shrink-0" />
       ) : (
