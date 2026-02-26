@@ -586,7 +586,7 @@ export default function ContributorPage() {
         )}
 
         {activeView === 'tulisanmu' && (
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="flex justify-between items-center mb-8">
               <div>
                 <h1 className="text-3xl font-headline font-bold text-slate-900">Tulisanmu</h1>
@@ -594,29 +594,57 @@ export default function ContributorPage() {
               </div>
               <Button onClick={() => { resetForm(); setActiveView('buat-artikel'); }}><PlusCircle className="mr-2 h-4 w-4" /> Baru</Button>
             </div>
-            {articlesLoading ? <div className="flex justify-center py-20"><Loader2 className="h-10 w-10 animate-spin text-primary" /></div> : myArticles && myArticles.length > 0 ? (
-              <div className="grid gap-6">
-                {myArticles.map((art: any) => (
-                  <Card key={art.id} className="overflow-hidden hover:shadow-md transition-shadow">
-                    <div className="flex flex-col md:flex-row">
-                      <div className="relative w-full md:w-48 h-32"><Image src={art.imageUrl} alt={art.title} fill className="object-cover" /></div>
-                      <div className="p-4 flex-grow flex flex-col justify-center">
-                        <div className="flex items-center gap-2 mb-1"><span className="text-xs font-bold text-primary uppercase">{art.category}</span><span className="text-xs text-slate-400">• {art.date}</span></div>
-                        <h3 className="text-xl font-bold mb-2 line-clamp-1">{art.title}</h3>
-                        <p className="text-sm text-slate-500 line-clamp-2">{art.excerpt}</p>
+            
+            <Card className="shadow-md overflow-hidden">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-slate-50">
+                    <TableHead className="font-bold w-[100px]">Image</TableHead>
+                    <TableHead className="font-bold">
+                      <div className="flex flex-col gap-1 py-2">
+                        <span>Judul</span>
+                        <div className="relative">
+                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-slate-400" />
+                          <Input placeholder="Filter judul..." className="h-7 text-[10px] pl-7" value={tableTitleFilter} onChange={(e) => setTableTitleFilter(e.target.value)} />
+                        </div>
                       </div>
-                      <div className="p-4 flex items-center gap-2 border-t md:border-t-0 md:border-l">
-                         <Button variant="outline" size="sm" onClick={() => handleEdit(art)}><Pencil className="h-4 w-4 mr-2" /> Edit</Button>
-                         <Button variant="outline" size="sm" className="text-red-600 hover:bg-red-50" onClick={() => handleDelete(art.id)}><Trash2 className="h-4 w-4 mr-2" /> Hapus</Button>
-                         <Button asChild variant="outline" size="sm"><Link href={`/artikel/${art.slug}`} target="_blank">Lihat</Link></Button>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            ) : (
-              <Card className="py-20 text-center"><CardContent><PenLine className="h-12 w-12 text-slate-300 mx-auto mb-4" /><h3 className="text-xl font-semibold mb-2">Belum ada tulisan</h3><Button onClick={() => { resetForm(); setActiveView('buat-artikel'); }}>Mulai Menulis</Button></CardContent></Card>
-            )}
+                    </TableHead>
+                    <TableHead className="font-bold">Kategori</TableHead>
+                    <TableHead className="font-bold text-right">Aksi</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {articlesLoading ? (
+                    <TableRow><TableCell colSpan={4} className="h-32 text-center"><Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" /></TableCell></TableRow>
+                  ) : myArticles && myArticles.length > 0 ? (
+                    myArticles.filter((art: any) => !tableTitleFilter || art.title?.toLowerCase().includes(tableTitleFilter.toLowerCase())).map((art: any) => (
+                      <TableRow key={art.id}>
+                        <TableCell><div className="relative w-16 h-10 rounded overflow-hidden border"><Image src={art.imageUrl} alt={art.title} fill className="object-cover" /></div></TableCell>
+                        <TableCell><div className="flex flex-col"><span className="font-bold text-slate-900 line-clamp-1">{art.title}</span><span className="text-xs text-slate-500">{art.date}</span></div></TableCell>
+                        <TableCell><Badge variant="outline" className="text-[10px] uppercase">{art.category}</Badge></TableCell>
+                        <TableCell className="text-right">
+                          <div className="flex justify-end gap-1">
+                            <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-500 hover:text-primary" onClick={() => handleEdit(art)} title="Edit"><Pencil className="h-4 w-4" /></Button>
+                            <Button variant="ghost" size="icon" className="h-8 w-8 text-slate-500 hover:text-red-600" onClick={() => handleDelete(art.id)} title="Hapus"><Trash2 className="h-4 w-4" /></Button>
+                            <Button asChild variant="ghost" size="icon" className="h-8 w-8 text-slate-500 hover:text-primary" title="Buka"><Link href={`/artikel/${art.slug}`} target="_blank"><ExternalLink className="h-4 w-4" /></Link></Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={4} className="h-64 text-center">
+                        <div className="flex flex-col items-center justify-center gap-2">
+                           <PenLine className="h-10 w-10 text-slate-300" />
+                           <p className="text-slate-500">Belum ada tulisan.</p>
+                           <Button variant="outline" size="sm" onClick={() => { resetForm(); setActiveView('buat-artikel'); }}>Mulai Menulis</Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </Card>
           </div>
         )}
       </main>
