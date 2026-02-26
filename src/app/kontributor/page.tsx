@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
@@ -52,12 +51,10 @@ export default function ContributorPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Filter state for All Articles table
   const [tableCategoryFilter, setTableCategoryFilter] = useState<string>('all');
   const [tableAuthorFilter, setTableAuthorFilter] = useState<string>('');
   const [tableTitleFilter, setTableTitleFilter] = useState<string>('');
 
-  // Article Form State
   const [editingId, setEditingId] = useState<string | null>(null);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
@@ -66,18 +63,16 @@ export default function ContributorPage() {
   const [imageUrl, setImageUrl] = useState('');
   const [focusKeyword, setFocusKeyword] = useState('');
 
-  // Reset filters when switching views
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   useEffect(() => {
     setTableCategoryFilter('all');
     setTableAuthorFilter('');
     setTableTitleFilter('');
   }, [activeView]);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  // Auto-generated slug
   const slug = useMemo(() => {
     return title.toLowerCase()
       .trim()
@@ -85,7 +80,6 @@ export default function ContributorPage() {
       .replace(/[^\w-]+/g, '');
   }, [title]);
 
-  // SEO Analysis Logic
   const seoAnalysis = useMemo(() => {
     const kw = focusKeyword.toLowerCase();
     const t = title.toLowerCase();
@@ -133,7 +127,6 @@ export default function ContributorPage() {
     return { ...analysis, score };
   }, [title, slug, excerpt, content, focusKeyword, imageUrl]);
 
-  // Fetch user's articles
   const userArticlesQuery = useMemo(() => {
     if (!firestore || !user) return null;
     return query(
@@ -145,7 +138,6 @@ export default function ContributorPage() {
 
   const { data: myArticles, loading: articlesLoading } = useCollection(userArticlesQuery);
 
-  // Fetch all dynamic articles
   const allArticlesQuery = useMemo(() => {
     if (!firestore) return null;
     return query(
@@ -156,7 +148,6 @@ export default function ContributorPage() {
 
   const { data: dynamicArticles, loading: dynamicArticlesLoading } = useCollection(allArticlesQuery);
 
-  // Combine static and dynamic articles
   const combinedAllArticles = useMemo(() => {
     const dynamic = (dynamicArticles || []).map(art => ({ ...art, isDynamic: true, id: art.id }));
     const staticArts = STATIC_ARTICLES.map(art => ({ ...art, isDynamic: false, id: art.slug }));
@@ -260,7 +251,6 @@ export default function ContributorPage() {
       imageUrl: imageUrl.trim() || 'https://picsum.photos/seed/' + (editingId || slug) + '/800/450',
     };
     
-    // Optimistic UI approach: Redirect and toast immediately
     toast({ title: editingId ? 'Menyimpan Perubahan...' : 'Menerbitkan Artikel...', description: 'Proses sedang berjalan di latar belakang.' });
     setActiveView('tulisanmu');
 
@@ -288,7 +278,6 @@ export default function ContributorPage() {
     resetForm();
   };
 
-  // Only show dashboard if auth is confirmed AND component is mounted
   const showDashboard = isMounted && !authLoading && user;
 
   if (showDashboard) {
@@ -634,15 +623,13 @@ export default function ContributorPage() {
     );
   }
 
-  // Initial State / Login View (Renders immediately for SSR)
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4" suppressHydrationWarning>
       <div className="flex flex-col items-center gap-2 mb-8">
         <Image src="https://imgur.com/lC5Y4YF.png" alt="Vworks Logo" width={60} height={60} />
         <span className="font-headline text-3xl font-bold text-primary tracking-tight">VWORKS.ID</span>
       </div>
-      <Card className="w-full max-w-md shadow-2xl border-t-4 border-primary overflow-hidden relative">
-        {/* Subtle loading overlay if auth is still processing on the client */}
+      <Card className="w-full max-w-md shadow-2xl border-t-4 border-primary overflow-hidden relative" suppressHydrationWarning>
         {isMounted && authLoading && (
           <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px] z-10 flex items-center justify-center">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
