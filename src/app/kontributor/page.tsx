@@ -415,14 +415,28 @@ export default function ContributorPage() {
       <main className="flex-grow overflow-y-auto p-8">
         {activeView === 'buat-artikel' && (
           <div className="max-w-[1200px] mx-auto">
-            <div className="mb-8 flex justify-between items-start">
+            <div className="mb-8 flex justify-between items-center">
               <div>
                 <h1 className="text-3xl font-headline font-bold text-slate-900">
                   {editingId ? 'Edit Artikel' : 'Buat Artikel Baru'}
                 </h1>
                 <p className="text-slate-500">Gunakan sidebar kanan untuk optimasi SEO artikel Anda.</p>
               </div>
-              <div className="flex flex-col items-end gap-3">
+              <div className="flex items-center gap-6">
+                {/* SEO Health Percentage INDICATOR */}
+                <div className="w-48 space-y-1.5">
+                  <div className="flex justify-between items-center px-1">
+                    <span className="text-[10px] font-bold uppercase text-slate-400 whitespace-nowrap">SEO Health</span>
+                    <span className={cn(
+                      "text-xs font-bold",
+                      seoAnalysis.score >= 80 ? "text-green-600" : seoAnalysis.score >= 50 ? "text-amber-600" : "text-red-600"
+                    )}>
+                      {seoAnalysis.score}%
+                    </span>
+                  </div>
+                  <Progress value={seoAnalysis.score} className="h-1.5" />
+                </div>
+
                 <div className="flex gap-2">
                   {editingId && (
                     <Button variant="outline" size="sm" onClick={resetForm}>
@@ -438,20 +452,6 @@ export default function ContributorPage() {
                     {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
                     {editingId ? 'Simpan Perubahan' : 'Terbitkan Sekarang'}
                   </Button>
-                </div>
-                
-                {/* SEO Health Percentage */}
-                <div className="w-full max-w-[200px] space-y-1.5">
-                  <div className="flex justify-between items-center px-1">
-                    <span className="text-[10px] font-bold uppercase text-slate-400">SEO Health</span>
-                    <span className={cn(
-                      "text-xs font-bold",
-                      seoAnalysis.score >= 80 ? "text-green-600" : seoAnalysis.score >= 50 ? "text-amber-600" : "text-red-600"
-                    )}>
-                      {seoAnalysis.score}%
-                    </span>
-                  </div>
-                  <Progress value={seoAnalysis.score} className="h-1.5" />
                 </div>
               </div>
             </div>
