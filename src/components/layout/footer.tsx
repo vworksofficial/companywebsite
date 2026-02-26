@@ -1,9 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 import { NAV_LINKS, SERVICES } from '@/lib/constants';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Hide footer on contributor dashboard
+  if (pathname === '/kontributor') return null;
+
   return (
     <footer className="bg-card border-t">
       <div className="container mx-auto py-12">
