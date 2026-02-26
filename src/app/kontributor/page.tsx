@@ -54,6 +54,7 @@ export default function ContributorPage() {
   // Filter state for All Articles table
   const [tableCategoryFilter, setTableCategoryFilter] = useState<string>('all');
   const [tableAuthorFilter, setTableAuthorFilter] = useState<string>('');
+  const [tableTitleFilter, setTableTitleFilter] = useState<string>('');
 
   // Article Form State
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -164,9 +165,10 @@ export default function ContributorPage() {
     return combinedAllArticles.filter((art: any) => {
       const matchesCategory = tableCategoryFilter === 'all' || art.category === tableCategoryFilter;
       const matchesAuthor = !tableAuthorFilter || art.author?.toLowerCase().includes(tableAuthorFilter.toLowerCase());
-      return matchesCategory && matchesAuthor;
+      const matchesTitle = !tableTitleFilter || art.title?.toLowerCase().includes(tableTitleFilter.toLowerCase());
+      return matchesCategory && matchesAuthor && matchesTitle;
     });
-  }, [combinedAllArticles, tableCategoryFilter, tableAuthorFilter]);
+  }, [combinedAllArticles, tableCategoryFilter, tableAuthorFilter, tableTitleFilter]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -749,7 +751,20 @@ export default function ContributorPage() {
                 <TableHeader>
                   <TableRow className="bg-slate-50">
                     <TableHead className="font-bold w-[100px]">Image</TableHead>
-                    <TableHead className="font-bold">Judul Artikel</TableHead>
+                    <TableHead className="font-bold">
+                      <div className="flex flex-col gap-1 py-2">
+                        <span>Judul Artikel</span>
+                        <div className="relative">
+                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-slate-400" />
+                          <Input 
+                            placeholder="Cari judul..." 
+                            className="h-7 text-[10px] pl-7 font-normal"
+                            value={tableTitleFilter}
+                            onChange={(e) => setTableTitleFilter(e.target.value)}
+                          />
+                        </div>
+                      </div>
+                    </TableHead>
                     <TableHead className="font-bold">Kategori</TableHead>
                     <TableHead className="font-bold text-right">Aksi</TableHead>
                   </TableRow>
