@@ -402,18 +402,29 @@ export default function ContributorPage() {
       <main className="flex-grow overflow-y-auto p-8">
         {activeView === 'buat-artikel' && (
           <div className="max-w-[1200px] mx-auto">
-            <div className="mb-8 flex justify-between items-end">
+            <div className="mb-8 flex justify-between items-start">
               <div>
                 <h1 className="text-3xl font-headline font-bold text-slate-900">
                   {editingId ? 'Edit Artikel' : 'Buat Artikel Baru'}
                 </h1>
                 <p className="text-slate-500">Gunakan sidebar kanan untuk optimasi SEO artikel Anda.</p>
               </div>
-              {editingId && (
-                <Button variant="outline" size="sm" onClick={resetForm} className="mb-1">
-                  Batal Edit & Buat Baru
+              <div className="flex gap-2">
+                {editingId && (
+                  <Button variant="outline" size="sm" onClick={resetForm}>
+                    Batal Edit & Buat Baru
+                  </Button>
+                )}
+                <Button 
+                  onClick={handleSubmitArticle} 
+                  size="sm"
+                  className="shadow-md"
+                  disabled={isSubmitting || !title || !content}
+                >
+                  {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
+                  {editingId ? 'Simpan Perubahan' : 'Terbitkan Sekarang'}
                 </Button>
-              )}
+              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -461,15 +472,6 @@ export default function ContributorPage() {
                     </div>
                   </CardContent>
                 </Card>
-
-                <Button 
-                  onClick={handleSubmitArticle} 
-                  className="w-full h-14 text-lg font-bold shadow-xl" 
-                  disabled={isSubmitting || !title || !content}
-                >
-                  {isSubmitting ? <Loader2 className="mr-2 h-6 w-6 animate-spin" /> : <Send className="mr-2 h-6 w-6" />}
-                  {editingId ? 'Simpan Perubahan' : 'Terbitkan Artikel Sekarang'}
-                </Button>
               </div>
 
               {/* SEO & Metadata Sidebar */}
