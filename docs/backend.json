@@ -15,9 +15,11 @@
         "imageHint": { "type": "string" },
         "author": { "type": "string" },
         "date": { "type": "string", "format": "date" },
-        "createdAt": { "type": "string", "format": "date-time" }
+        "userId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
       },
-      "required": ["slug", "title", "category", "excerpt", "content", "imageUrl", "author", "date"]
+      "required": ["slug", "title", "category", "excerpt", "content", "imageUrl", "author", "date", "userId"]
     }
   },
   "auth": {
