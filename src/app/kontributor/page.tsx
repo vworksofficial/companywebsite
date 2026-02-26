@@ -66,6 +66,13 @@ export default function ContributorPage() {
   const [imageUrl, setImageUrl] = useState('');
   const [focusKeyword, setFocusKeyword] = useState('');
 
+  // Reset filters when switching views
+  useEffect(() => {
+    setTableCategoryFilter('all');
+    setTableAuthorFilter('');
+    setTableTitleFilter('');
+  }, [activeView]);
+
   // Auto-generated slug
   const slug = useMemo(() => {
     return title.toLowerCase()
@@ -563,7 +570,9 @@ export default function ContributorPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {filteredCombinedArticles.length > 0 ? (
+                  {dynamicArticlesLoading ? (
+                    <TableRow><TableCell colSpan={4} className="h-32 text-center"><Loader2 className="h-8 w-8 animate-spin mx-auto text-primary" /></TableCell></TableRow>
+                  ) : filteredCombinedArticles.length > 0 ? (
                     filteredCombinedArticles.map((art: any) => (
                       <TableRow key={art.id}>
                         <TableCell><div className="relative w-16 h-10 rounded overflow-hidden border"><Image src={art.imageUrl} alt={art.title} fill className="object-cover" /></div></TableCell>
@@ -582,7 +591,7 @@ export default function ContributorPage() {
                         </TableCell>
                       </TableRow>
                     ))
-                  ) : <TableRow><TableCell colSpan={4} className="h-32 text-center text-slate-400">Kosong.</TableCell></TableRow>}
+                  ) : <TableRow><TableCell colSpan={4} className="h-32 text-center text-slate-400">Tidak ada artikel ditemukan.</TableCell></TableRow>}
                 </TableBody>
               </Table>
             </Card>
@@ -657,7 +666,7 @@ export default function ContributorPage() {
                       <TableCell colSpan={4} className="h-64 text-center">
                         <div className="flex flex-col items-center justify-center gap-2">
                            <PenLine className="h-10 w-10 text-slate-300" />
-                           <p className="text-slate-500">Belum ada tulisan.</p>
+                           <p className="text-slate-500">Belum ada tulisan tersimpan.</p>
                            <Button variant="outline" size="sm" onClick={() => { resetForm(); setActiveView('buat-artikel'); }}>Mulai Menulis</Button>
                         </div>
                       </TableCell>
