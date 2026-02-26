@@ -12,10 +12,11 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Info, Eye, Settings, BarChart3, ExternalLink, Pencil } from 'lucide-react';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Alert, AlertDescription } from '@/alert';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Progress } from '@/components/ui/progress';
 import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
@@ -88,12 +89,12 @@ export default function ContributorPage() {
     const hasInternalLinks = c.includes('href="/') || c.includes('vworks.id');
     const hasExternalLinks = c.includes('href="http') && !c.includes('vworks.id');
 
-    return {
-      keywordInTitle: kw && t.includes(kw),
-      keywordInSlug: kw && s.includes(kw),
-      keywordInFirstParagraph: kw && firstParagraph.includes(kw),
-      keywordInMeta: kw && e.includes(kw),
-      keywordInBody: kw && c.includes(kw),
+    const analysis = {
+      keywordInTitle: !!(kw && t.includes(kw)),
+      keywordInSlug: !!(kw && s.includes(kw)),
+      keywordInFirstParagraph: !!(kw && firstParagraph.includes(kw)),
+      keywordInMeta: !!(kw && e.includes(kw)),
+      keywordInBody: !!(kw && c.includes(kw)),
       keywordDensity: kwCount >= 3,
       wordCount: words >= 1150,
       titleLength: t.length >= 50 && t.length <= 60,
@@ -106,6 +107,18 @@ export default function ContributorPage() {
       totalWords: words,
       keywordDensityValue: density.toFixed(2)
     };
+
+    // Calculate score
+    const criteria = [
+      analysis.keywordInTitle, analysis.keywordInSlug, analysis.keywordInFirstParagraph,
+      analysis.keywordInMeta, analysis.keywordInBody, analysis.keywordDensity,
+      analysis.wordCount, analysis.titleLength, analysis.metaLength,
+      analysis.hasImage, analysis.hasSubheadings, analysis.hasSources,
+      analysis.hasInternalLinks, analysis.hasExternalLinks
+    ];
+    const score = Math.round((criteria.filter(Boolean).length / criteria.length) * 100);
+
+    return { ...analysis, score };
   }, [title, slug, excerpt, content, focusKeyword, imageUrl]);
 
   // Fetch user's articles
@@ -409,21 +422,37 @@ export default function ContributorPage() {
                 </h1>
                 <p className="text-slate-500">Gunakan sidebar kanan untuk optimasi SEO artikel Anda.</p>
               </div>
-              <div className="flex gap-2">
-                {editingId && (
-                  <Button variant="outline" size="sm" onClick={resetForm}>
-                    Batal Edit & Buat Baru
+              <div className="flex flex-col items-end gap-3">
+                <div className="flex gap-2">
+                  {editingId && (
+                    <Button variant="outline" size="sm" onClick={resetForm}>
+                      Batal Edit
+                    </Button>
+                  )}
+                  <Button 
+                    onClick={handleSubmitArticle} 
+                    size="sm"
+                    className="shadow-md"
+                    disabled={isSubmitting || !title || !content}
+                  >
+                    {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
+                    {editingId ? 'Simpan Perubahan' : 'Terbitkan Sekarang'}
                   </Button>
-                )}
-                <Button 
-                  onClick={handleSubmitArticle} 
-                  size="sm"
-                  className="shadow-md"
-                  disabled={isSubmitting || !title || !content}
-                >
-                  {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
-                  {editingId ? 'Simpan Perubahan' : 'Terbitkan Sekarang'}
-                </Button>
+                </div>
+                
+                {/* SEO Health Percentage */}
+                <div className="w-full max-w-[200px] space-y-1.5">
+                  <div className="flex justify-between items-center px-1">
+                    <span className="text-[10px] font-bold uppercase text-slate-400">SEO Health</span>
+                    <span className={cn(
+                      "text-xs font-bold",
+                      seoAnalysis.score >= 80 ? "text-green-600" : seoAnalysis.score >= 50 ? "text-amber-600" : "text-red-600"
+                    )}>
+                      {seoAnalysis.score}%
+                    </span>
+                  </div>
+                  <Progress value={seoAnalysis.score} className="h-1.5" />
+                </div>
               </div>
             </div>
 
