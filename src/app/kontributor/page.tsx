@@ -21,6 +21,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import { ARTICLES as STATIC_ARTICLES } from '@/lib/constants';
+import { errorEmitter } from '@/firebase/error-emitter';
+import { FirestorePermissionError } from '@/firebase/errors';
 
 const CATEGORIES = [
   'Web Development',
@@ -227,16 +229,20 @@ export default function ContributorPage() {
     });
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = (id: string) => {
     if (!firestore) return;
     if (!confirm('Apakah Anda yakin ingin menghapus artikel ini?')) return;
     
-    try {
-      await deleteDoc(doc(firestore, 'articles', id));
-      toast({ title: 'Artikel Dihapus', description: 'Artikel telah dihapus dari database.' });
-    } catch (error: any) {
-      toast({ variant: 'destructive', title: 'Gagal Menghapus', description: error.message });
-    }
+    const docRef = doc(firestore, 'articles', id);
+    deleteDoc(docRef).catch(async (error) => {
+      const permissionError = new FirestorePermissionError({
+        path: docRef.path,
+        operation: 'delete',
+      });
+      errorEmitter.emit('permission-error', permissionError);
+    });
+    
+    toast({ title: 'Artikel Dihapus', description: 'Artikel sedang dihapus dari database.' });
   };
 
   const resetForm = () => {
@@ -249,7 +255,7 @@ export default function ContributorPage() {
     setFocusKeyword('');
   };
 
-  const handleSubmitArticle = async (e?: React.SyntheticEvent) => {
+  const handleSubmitArticle = (e?: React.SyntheticEvent) => {
     if (e) e.preventDefault();
     if (!firestore || !user) {
         toast({ variant: 'destructive', title: 'Kesalahan', description: 'Firestore atau User tidak tersedia.' });
@@ -261,48 +267,58 @@ export default function ContributorPage() {
         return;
     }
 
-    setIsSubmitting(true);
+    // Prepare shared data
+    const articleData = {
+      title: title.trim(),
+      category,
+      excerpt: excerpt.trim(),
+      content: content.replace(/\n/g, '<br>'),
+      imageUrl: imageUrl.trim() || 'https://picsum.photos/seed/' + (editingId || slug) + '/800/450',
+    };
     
-    try {
-      if (editingId) {
-        // Update existing
-        const docRef = doc(firestore, 'articles', editingId);
-        await updateDoc(docRef, {
-          title: title.trim(),
-          category,
-          excerpt: excerpt.trim(),
-          content: content.replace(/\n/g, '<br>'),
-          imageUrl: imageUrl.trim() || 'https://picsum.photos/seed/' + slug + '/800/450',
-          updatedAt: serverTimestamp(),
+    if (editingId) {
+      // Update existing - Optimistic
+      const docRef = doc(firestore, 'articles', editingId);
+      updateDoc(docRef, {
+        ...articleData,
+        updatedAt: serverTimestamp(),
+      }).catch(async (error) => {
+        const permissionError = new FirestorePermissionError({
+          path: docRef.path,
+          operation: 'update',
+          requestResourceData: articleData,
         });
-        toast({ title: 'Artikel Diperbarui', description: 'Perubahan Anda telah disimpan.' });
-      } else {
-        // Create new
-        const finalSlug = slug + '-' + Math.random().toString(36).substring(2, 7);
-        await addDoc(collection(firestore, 'articles'), {
-          slug: finalSlug,
-          title: title.trim(),
-          category,
-          excerpt: excerpt.trim(),
-          content: content.replace(/\n/g, '<br>'),
-          imageUrl: imageUrl.trim() || 'https://picsum.photos/seed/' + finalSlug + '/800/450',
-          imageHint: 'article cover',
-          author: user.displayName || user.email?.split('@')[0] || 'Kontributor',
-          date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
-          createdAt: serverTimestamp(),
-          userId: user.uid,
+        errorEmitter.emit('permission-error', permissionError);
+      });
+      toast({ title: 'Perubahan Disimpan', description: 'Pembaruan artikel Anda sedang diproses.' });
+    } else {
+      // Create new - Optimistic
+      const finalSlug = slug + '-' + Math.random().toString(36).substring(2, 7);
+      const newArticle = {
+        ...articleData,
+        slug: finalSlug,
+        imageHint: 'article cover',
+        author: user.displayName || user.email?.split('@')[0] || 'Kontributor',
+        date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+        createdAt: serverTimestamp(),
+        userId: user.uid,
+      };
+      
+      const colRef = collection(firestore, 'articles');
+      addDoc(colRef, newArticle).catch(async (error) => {
+        const permissionError = new FirestorePermissionError({
+          path: colRef.path,
+          operation: 'create',
+          requestResourceData: newArticle,
         });
-        toast({ title: 'Artikel Terbit!', description: 'Artikel Anda telah berhasil dipublikasikan.' });
-      }
-
-      resetForm();
-      setActiveView('tulisanmu');
-    } catch (error: any) {
-      console.error('Error submitting article:', error);
-      toast({ variant: 'destructive', title: 'Gagal Menyimpan', description: error.message || 'Terjadi kesalahan saat menyimpan ke database.' });
-    } finally {
-      setIsSubmitting(false);
+        errorEmitter.emit('permission-error', permissionError);
+      });
+      toast({ title: 'Artikel Terbit!', description: 'Artikel Anda telah berhasil dipublikasikan.' });
     }
+
+    // Reset and navigate immediately (Optimistic UI)
+    resetForm();
+    setActiveView('tulisanmu');
   };
 
   if (!isMounted) return null;
