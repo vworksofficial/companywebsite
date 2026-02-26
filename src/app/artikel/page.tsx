@@ -47,7 +47,13 @@ export default function ArtikelPage() {
   // Combine static and dynamic articles
   const allArticles = useMemo(() => {
     const dynamic = (dynamicArticles || []) as Article[];
-    return [...dynamic, ...STATIC_ARTICLES];
+    // Filter out dynamic articles that might have the same slug as static ones (to avoid duplicates)
+    const staticSlugs = new Set(STATIC_ARTICLES.map(a => a.slug));
+    const uniqueDynamic = dynamic.filter(a => !staticSlugs.has(a.slug));
+    
+    // Sort combined articles by date/createdAt if possible
+    // For now, dynamic articles from Firestore come first as they are likely newer
+    return [...uniqueDynamic, ...STATIC_ARTICLES];
   }, [dynamicArticles]);
 
   const allCategories = [...new Set(allArticles.map(a => a.category))];

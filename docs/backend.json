@@ -1,3 +1,4 @@
+
 {
   "entities": {
     "Article": {
@@ -27,7 +28,7 @@
   "firestore": {
     "/articles/{articleId}": {
       "schema": "Article",
-      "description": "Collection of articles with ownership validation via userId"
+      "description": "Collection of articles with ownership validation via userId. Rules: Allow read for all, write for authenticated owners."
     }
   }
 }

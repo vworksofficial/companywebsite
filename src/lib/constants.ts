@@ -1,3 +1,4 @@
+
 import { LineChart, Megaphone, PenSquare, Target, Code, LucideIcon, Palette, Video, Landmark, Camera } from 'lucide-react';
 
 type NavLink = {
@@ -27,6 +28,7 @@ export type PortfolioItem = {
 };
 
 export type Article = {
+  id?: string;
   slug: string;
   title: string;
   category: 'Web Development' | 'Social Media Management' | 'Branding & Design' | 'SEO' | 'Content Marketing' | 'Ads Service' | 'Keuangan & Pajak';
@@ -36,6 +38,9 @@ export type Article = {
   imageHint: string;
   author: string;
   date: string;
+  userId?: string;
+  createdAt?: any;
+  updatedAt?: any;
 };
 
 export const NAV_LINKS: NavLink[] = [
@@ -612,7 +617,7 @@ export const ARTICLES: Article[] = [
     title: 'Psikologi Warna dalam Branding: Lebih dari Sekadar Estetika',
     category: 'Branding & Design',
     excerpt: 'Warna memiliki dampak psikologis yang kuat pada persepsi brand. Pelajari cara memilih palet warna yang tepat untuk bisnis Anda.',
-    content: '<p>Setiap warna membangkitkan emosi dan asosiasi yang berbeda. Merah sering dikaitkan dengan energi dan gairah, biru dengan kepercayaan dan profesionalisme, sementara hijau melambangkan pertumbuhan dan kesehatan. Memahami psikologi warna akan membantu Anda membangun identitas brand yang lebih dalam dan beresonansi dengan target pasar Anda.</p>',
+    content: '<p>Setiap warna membangkitkan emosi and asosiasi yang berbeda. Merah sering dikaitkan dengan energi dan gairah, biru dengan kepercayaan dan profesionalisme, sementara hijau melambangkan pertumbuhan dan kesehatan. Memahami psikologi warna akan membantu Anda membangun identitas brand yang lebih dalam dan beresonansi dengan target pasar Anda.</p>',
     imageUrl: 'https://picsum.photos/seed/artikel5/800/450',
     imageHint: 'color palette design',
     author: 'Rina Wijaya',
