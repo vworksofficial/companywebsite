@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Info, Eye, Settings, BarChart3, ExternalLink, Pencil } from 'lucide-react';
+import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Info, Eye, Settings, BarChart3, ExternalLink, Pencil, Sparkles } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
@@ -480,12 +480,29 @@ export default function ContributorPage() {
                     
                     <div className="space-y-2">
                       <Label htmlFor="keyword" className="font-bold text-accent-foreground bg-accent/20 px-2 py-0.5 rounded">Focus Keyword SEO</Label>
-                      <Input 
-                        id="keyword" 
-                        placeholder="Kata kunci utama artikel..." 
-                        value={focusKeyword} 
-                        onChange={(e) => setFocusKeyword(e.target.value)} 
-                      />
+                      <div className="flex gap-2">
+                        <Input 
+                          id="keyword" 
+                          placeholder="Kata kunci utama artikel..." 
+                          value={focusKeyword} 
+                          onChange={(e) => setFocusKeyword(e.target.value)} 
+                          className="flex-[7]"
+                        />
+                        <Button 
+                          type="button" 
+                          variant="secondary"
+                          className="flex-[3] font-bold whitespace-nowrap"
+                          onClick={() => {
+                            toast({ 
+                              title: "AI Generation", 
+                              description: "Fitur asisten penulisan AI sedang disiapkan untuk membantu Anda membuat konten berkualitas lebih cepat!",
+                            });
+                          }}
+                        >
+                          <Sparkles className="mr-2 h-4 w-4" />
+                          Generate Artikel
+                        </Button>
+                      </div>
                     </div>
 
                     <div className="space-y-2">
