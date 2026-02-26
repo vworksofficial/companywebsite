@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useAuth, useFirestore, useUser, useCollection } from '@/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
-import { collection, addDoc, updateDoc, doc, serverTimestamp, query, where, orderBy } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, deleteDoc, doc, serverTimestamp, query, where, orderBy } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Info, Eye, Settings, BarChart3, ExternalLink, Pencil, Sparkles } from 'lucide-react';
+import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Eye, Settings, BarChart3, ExternalLink, Pencil, Sparkles, Trash2 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
@@ -210,6 +210,18 @@ export default function ContributorPage() {
       title: "Mode Edit Aktif",
       description: `Sekarang menyunting: ${art.title}`,
     });
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!firestore) return;
+    if (!confirm('Apakah Anda yakin ingin menghapus artikel ini?')) return;
+    
+    try {
+      await deleteDoc(doc(firestore, 'articles', id));
+      toast({ title: 'Artikel Dihapus', description: 'Artikel telah dihapus dari database.' });
+    } catch (error: any) {
+      toast({ variant: 'destructive', title: 'Gagal Menghapus', description: error.message });
+    }
   };
 
   const resetForm = () => {
@@ -693,17 +705,35 @@ export default function ContributorPage() {
                             <Badge variant="outline" className="text-[10px] uppercase">{art.category}</Badge>
                           </TableCell>
                           <TableCell className="text-right">
-                            <div className="flex justify-end gap-2">
+                            <div className="flex justify-end gap-1">
                               {art.isDynamic && (
-                                <Button variant="outline" size="sm" className="h-8 gap-1" onClick={() => handleEdit(art)}>
-                                  <Pencil className="h-3.5 w-3.5" />
-                                  <span>Edit</span>
-                                </Button>
+                                <>
+                                  <Button 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="h-8 w-8 text-slate-500 hover:text-primary" 
+                                    onClick={() => handleEdit(art)}
+                                    title="Edit Artikel"
+                                  >
+                                    <Pencil className="h-4 w-4" />
+                                    <span className="sr-only">Edit</span>
+                                  </Button>
+                                  <Button 
+                                    variant="ghost" 
+                                    size="icon" 
+                                    className="h-8 w-8 text-slate-500 hover:text-red-600" 
+                                    onClick={() => handleDelete(art.id)}
+                                    title="Hapus Artikel"
+                                  >
+                                    <Trash2 className="h-4 w-4" />
+                                    <span className="sr-only">Hapus</span>
+                                  </Button>
+                                </>
                               )}
-                              <Button asChild variant="ghost" size="sm" className="h-8 gap-1">
+                              <Button asChild variant="ghost" size="icon" className="h-8 w-8 text-slate-500 hover:text-primary" title="Buka Artikel">
                                 <Link href={`/artikel/${art.slug}`} target="_blank">
-                                  <ExternalLink className="h-3.5 w-3.5" />
-                                  <span>Buka</span>
+                                  <ExternalLink className="h-4 w-4" />
+                                  <span className="sr-only">Buka</span>
                                 </Link>
                               </Button>
                             </div>
@@ -776,6 +806,9 @@ export default function ContributorPage() {
                       <div className="p-4 flex items-center gap-2 border-t md:border-t-0 md:border-l">
                          <Button variant="outline" size="sm" onClick={() => handleEdit(art)}>
                             <Pencil className="h-4 w-4 mr-2" /> Edit
+                         </Button>
+                         <Button variant="outline" size="sm" className="text-red-600 hover:text-red-700 hover:bg-red-50" onClick={() => handleDelete(art.id)}>
+                            <Trash2 className="h-4 w-4 mr-2" /> Hapus
                          </Button>
                          <Button asChild variant="outline" size="sm">
                             <Link href={`/artikel/${art.slug}`} target="_blank">Lihat</Link>
