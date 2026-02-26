@@ -130,7 +130,9 @@ export default function ContributorPage() {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       if (userCredential.user) {
-        await updateProfile(userCredential.user, { displayName });
+        await updateProfile(userCredential.user, { 
+          displayName: displayName
+        });
       }
       toast({ title: 'Pendaftaran Berhasil', description: 'Akun kontributor Anda telah dibuat.' });
     } catch (error: any) {
@@ -212,24 +214,53 @@ export default function ContributorPage() {
               {isRegisterMode && (
                 <div className="space-y-2">
                   <Label htmlFor="name">Nama Lengkap</Label>
-                  <Input id="name" placeholder="Nama Anda" value={displayName} onChange={(e) => setDisplayName(e.target.value)} required />
+                  <Input 
+                    id="name" 
+                    placeholder="Nama Anda" 
+                    value={displayName} 
+                    onChange={(e) => setDisplayName(e.target.value)} 
+                    required 
+                  />
                 </div>
               )}
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="name@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                <Input 
+                  id="email" 
+                  type="email" 
+                  placeholder="name@example.com" 
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)} 
+                  required 
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" type="password" placeholder="Min. 6 karakter" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <Input 
+                  id="password" 
+                  type="password" 
+                  placeholder="Min. 6 karakter" 
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)} 
+                  required 
+                />
               </div>
               <Button type="submit" className="w-full h-11" disabled={isSubmitting}>
-                {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : isRegisterMode ? <UserPlus className="mr-2 h-4 w-4" /> : <LogIn className="mr-2 h-4 w-4" />}
+                {isSubmitting ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                ) : isRegisterMode ? (
+                  <UserPlus className="mr-2 h-4 w-4" />
+                ) : (
+                  <LogIn className="mr-2 h-4 w-4" />
+                )}
                 {isRegisterMode ? 'Daftar' : 'Masuk'}
               </Button>
             </form>
             <div className="mt-6 text-center pt-4 border-t">
-              <button onClick={() => { setIsRegisterMode(!isRegisterMode); setErrorMessage(null); }} className="text-sm text-primary font-bold hover:underline">
+              <button 
+                onClick={() => { setIsRegisterMode(!isRegisterMode); setErrorMessage(null); }} 
+                className="text-sm text-primary font-bold hover:underline"
+              >
                 {isRegisterMode ? 'Sudah punya akun? Masuk' : 'Belum punya akun? Daftar jadi kontributor'}
               </button>
             </div>
@@ -432,22 +463,32 @@ export default function ContributorPage() {
                       <p className="text-xs font-mono bg-slate-100 p-2 rounded mt-1 break-all">/artikel/{slug || 'judul-anda'}</p>
                     </div>
                     <div>
-                      <Label className="text-[10px] uppercase font-bold text-slate-400">Meta Title Length</Label>
-                      <div className="flex justify-between items-center mt-1">
-                        <span className={cn("text-xs font-bold", seoAnalysis.titleLength ? "text-green-600" : "text-amber-600")}>
-                          {title.length} / 60 chars
+                      <div className="flex justify-between items-center mb-1">
+                        <Label className="text-[10px] uppercase font-bold text-slate-400">Meta Title</Label>
+                        <span className={cn("text-[10px] font-bold", seoAnalysis.titleLength ? "text-green-600" : "text-amber-600")}>
+                          {title.length} / 60
                         </span>
-                        {seoAnalysis.titleLength ? <CheckCircle2 className="h-3 w-3 text-green-600" /> : <Info className="h-3 w-3 text-amber-600" />}
                       </div>
+                      <Input 
+                        value={title} 
+                        onChange={(e) => setTitle(e.target.value)} 
+                        placeholder="Masukkan Judul SEO..." 
+                        className="h-9 text-xs"
+                      />
                     </div>
                     <div>
-                      <Label className="text-[10px] uppercase font-bold text-slate-400">Meta Desc Length</Label>
-                      <div className="flex justify-between items-center mt-1">
-                        <span className={cn("text-xs font-bold", seoAnalysis.metaLength ? "text-green-600" : "text-amber-600")}>
-                          {excerpt.length} / 155 chars
+                      <div className="flex justify-between items-center mb-1">
+                        <Label className="text-[10px] uppercase font-bold text-slate-400">Meta Description</Label>
+                        <span className={cn("text-[10px] font-bold", seoAnalysis.metaLength ? "text-green-600" : "text-amber-600")}>
+                          {excerpt.length} / 155
                         </span>
-                        {seoAnalysis.metaLength ? <CheckCircle2 className="h-3 w-3 text-green-600" /> : <Info className="h-3 w-3 text-amber-600" />}
                       </div>
+                      <Textarea 
+                        value={excerpt} 
+                        onChange={(e) => setExcerpt(e.target.value)} 
+                        placeholder="Masukkan Meta Deskripsi..." 
+                        className="h-20 text-xs min-h-[80px]"
+                      />
                     </div>
                     <div>
                       <Label className="text-[10px] uppercase font-bold text-slate-400">Author & Date</Label>
