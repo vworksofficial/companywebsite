@@ -566,29 +566,36 @@ export default function ContributorPage() {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-slate-50">
+                    <TableHead className="font-bold w-[100px]">Image</TableHead>
                     <TableHead className="font-bold">Judul Artikel</TableHead>
                     <TableHead className="font-bold">Kategori</TableHead>
-                    <TableHead className="font-bold">Penulis</TableHead>
-                    <TableHead className="font-bold">Tanggal</TableHead>
                     <TableHead className="font-bold text-right">Aksi</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {allArticlesLoading ? (
                     <TableRow>
-                      <TableCell colSpan={5} className="h-32 text-center">
+                      <TableCell colSpan={4} className="h-32 text-center">
                         <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto" />
                       </TableCell>
                     </TableRow>
                   ) : allArticles && allArticles.length > 0 ? (
                     allArticles.map((art: any) => (
                       <TableRow key={art.id}>
-                        <TableCell className="font-medium">{art.title}</TableCell>
+                        <TableCell>
+                          <div className="relative w-16 h-10 rounded overflow-hidden border">
+                            <Image src={art.imageUrl} alt={art.title} fill className="object-cover" />
+                          </div>
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex flex-col">
+                            <span className="font-bold text-slate-900 line-clamp-1">{art.title}</span>
+                            <span className="text-xs text-slate-500">Oleh {art.author} • {art.date}</span>
+                          </div>
+                        </TableCell>
                         <TableCell>
                           <Badge variant="outline" className="text-[10px] uppercase">{art.category}</Badge>
                         </TableCell>
-                        <TableCell className="text-sm text-slate-600">{art.author}</TableCell>
-                        <TableCell className="text-sm text-slate-500">{art.date}</TableCell>
                         <TableCell className="text-right">
                           <Button asChild variant="ghost" size="sm" className="h-8 w-8 p-0">
                             <Link href={`/artikel/${art.slug}`} target="_blank">
@@ -601,7 +608,7 @@ export default function ContributorPage() {
                     ))
                   ) : (
                     <TableRow>
-                      <TableCell colSpan={5} className="h-32 text-center text-slate-400">
+                      <TableCell colSpan={4} className="h-32 text-center text-slate-400">
                         Belum ada artikel yang tersedia.
                       </TableCell>
                     </TableRow>
