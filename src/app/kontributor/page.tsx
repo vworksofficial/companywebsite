@@ -446,17 +446,6 @@ export default function ContributorPage() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="excerpt" className="font-bold">Ringkasan Pendek (Excerpt / Meta Desc)</Label>
-                      <Textarea 
-                        id="excerpt" 
-                        placeholder="Ringkasan singkat yang akan tampil di halaman depan..." 
-                        value={excerpt} 
-                        onChange={(e) => setExcerpt(e.target.value)} 
-                        required 
-                        className="h-24" 
-                      />
-                    </div>
-                    <div className="space-y-2">
                       <Label htmlFor="keyword" className="font-bold text-accent-foreground bg-accent/20 px-2 py-0.5 rounded">Focus Keyword SEO</Label>
                       <Input 
                         id="keyword" 
