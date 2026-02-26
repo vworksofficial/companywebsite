@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useAuth, useFirestore, useUser, useCollection } from '@/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
-import { collection, addDoc, serverTimestamp, query, where, orderBy } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, doc, serverTimestamp, query, where, orderBy } from 'firebase/firestore';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Info, Eye, Settings, BarChart3, ExternalLink } from 'lucide-react';
+import { Loader2, LogOut, PenLine, Send, UserPlus, LogIn, AlertCircle, FileText, List, PlusCircle, CheckCircle2, XCircle, Info, Eye, Settings, BarChart3, ExternalLink, Pencil } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
@@ -49,6 +49,7 @@ export default function ContributorPage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Article Form State
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [excerpt, setExcerpt] = useState('');
@@ -121,7 +122,6 @@ export default function ContributorPage() {
     const dynamic = (dynamicArticles || []).map(art => ({ ...art, isDynamic: true, id: art.id }));
     const staticArts = STATIC_ARTICLES.map(art => ({ ...art, isDynamic: false, id: art.slug }));
     
-    // Menampilkan artikel dinamis di atas, kemudian artikel statis
     return [...dynamic, ...staticArts];
   }, [dynamicArticles]);
 
@@ -170,38 +170,68 @@ export default function ContributorPage() {
     toast({ title: 'Logout Berhasil', description: 'Sampai jumpa kembali!' });
   };
 
+  const handleEdit = (art: any) => {
+    setEditingId(art.id);
+    setTitle(art.title);
+    setCategory(art.category);
+    setExcerpt(art.excerpt);
+    setContent(art.content.replace(/<br>/g, '\n'));
+    setImageUrl(art.imageUrl);
+    setActiveView('buat-artikel');
+  };
+
+  const resetForm = () => {
+    setEditingId(null);
+    setTitle('');
+    setCategory('');
+    setExcerpt('');
+    setContent('');
+    setImageUrl('');
+    setFocusKeyword('');
+  };
+
   const handleSubmitArticle = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!firestore || !user) return;
 
     setIsSubmitting(true);
-    const finalSlug = slug + '-' + Math.random().toString(36).substring(2, 7);
     
     try {
-      await addDoc(collection(firestore, 'articles'), {
-        slug: finalSlug,
-        title,
-        category,
-        excerpt,
-        content: content.replace(/\n/g, '<br>'),
-        imageUrl: imageUrl || 'https://picsum.photos/seed/' + finalSlug + '/800/450',
-        imageHint: 'article cover',
-        author: user.displayName || user.email?.split('@')[0] || 'Kontributor',
-        date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
-        createdAt: serverTimestamp(),
-        userId: user.uid,
-      });
+      if (editingId) {
+        // Update existing
+        const docRef = doc(firestore, 'articles', editingId);
+        await updateDoc(docRef, {
+          title,
+          category,
+          excerpt,
+          content: content.replace(/\n/g, '<br>'),
+          imageUrl: imageUrl || 'https://picsum.photos/seed/' + slug + '/800/450',
+          updatedAt: serverTimestamp(),
+        });
+        toast({ title: 'Artikel Diperbarui', description: 'Perubahan Anda telah disimpan.' });
+      } else {
+        // Create new
+        const finalSlug = slug + '-' + Math.random().toString(36).substring(2, 7);
+        await addDoc(collection(firestore, 'articles'), {
+          slug: finalSlug,
+          title,
+          category,
+          excerpt,
+          content: content.replace(/\n/g, '<br>'),
+          imageUrl: imageUrl || 'https://picsum.photos/seed/' + finalSlug + '/800/450',
+          imageHint: 'article cover',
+          author: user.displayName || user.email?.split('@')[0] || 'Kontributor',
+          date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+          createdAt: serverTimestamp(),
+          userId: user.uid,
+        });
+        toast({ title: 'Artikel Terbit!', description: 'Artikel Anda telah berhasil dipublikasikan.' });
+      }
 
-      toast({ title: 'Artikel Terbit!', description: 'Artikel Anda telah berhasil dipublikasikan.' });
-      setTitle('');
-      setCategory('');
-      setExcerpt('');
-      setContent('');
-      setImageUrl('');
-      setFocusKeyword('');
+      resetForm();
       setActiveView('tulisanmu');
     } catch (error: any) {
-      toast({ variant: 'destructive', title: 'Gagal Mengirim', description: error.message });
+      toast({ variant: 'destructive', title: 'Gagal Menyimpan', description: error.message });
     } finally {
       setIsSubmitting(false);
     }
@@ -328,7 +358,7 @@ export default function ContributorPage() {
             <span className="text-sm font-medium">Tulisanmu</span>
           </button>
           <button
-            onClick={() => setActiveView('buat-artikel')}
+            onClick={() => { resetForm(); setActiveView('buat-artikel'); }}
             className={cn(
               "w-full flex items-center gap-3 p-3 rounded-lg transition-colors",
               activeView === 'buat-artikel' ? "bg-white/20" : "hover:bg-primary-foreground/10"
@@ -354,7 +384,9 @@ export default function ContributorPage() {
         {activeView === 'buat-artikel' && (
           <div className="max-w-[1200px] mx-auto">
             <div className="mb-8">
-              <h1 className="text-3xl font-headline font-bold text-slate-900">Buat Artikel Baru</h1>
+              <h1 className="text-3xl font-headline font-bold text-slate-900">
+                {editingId ? 'Edit Artikel' : 'Buat Artikel Baru'}
+              </h1>
               <p className="text-slate-500">Gunakan sidebar kanan untuk optimasi SEO artikel Anda.</p>
             </div>
 
@@ -430,8 +462,13 @@ export default function ContributorPage() {
                   disabled={isSubmitting || !title || !content}
                 >
                   {isSubmitting ? <Loader2 className="mr-2 h-6 w-6 animate-spin" /> : <Send className="mr-2 h-6 w-6" />}
-                  Terbitkan Artikel Sekarang
+                  {editingId ? 'Simpan Perubahan' : 'Terbitkan Artikel Sekarang'}
                 </Button>
+                {editingId && (
+                  <Button variant="ghost" onClick={resetForm} className="w-full mt-2">
+                    Batal Edit & Buat Baru
+                  </Button>
+                )}
               </div>
 
               {/* SEO & Metadata Sidebar */}
@@ -602,12 +639,20 @@ export default function ContributorPage() {
                             <Badge variant="outline" className="text-[10px] uppercase">{art.category}</Badge>
                           </TableCell>
                           <TableCell className="text-right">
-                            <Button asChild variant="ghost" size="sm" className="h-8 w-8 p-0">
-                              <Link href={`/artikel/${art.slug}`} target="_blank">
-                                <ExternalLink className="h-4 w-4 text-primary" />
-                                <span className="sr-only">Buka</span>
-                              </Link>
-                            </Button>
+                            <div className="flex justify-end gap-1">
+                              {art.isDynamic && (
+                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => handleEdit(art)}>
+                                  <Pencil className="h-4 w-4 text-slate-600" />
+                                  <span className="sr-only">Edit</span>
+                                </Button>
+                              )}
+                              <Button asChild variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                <Link href={`/artikel/${art.slug}`} target="_blank">
+                                  <ExternalLink className="h-4 w-4 text-primary" />
+                                  <span className="sr-only">Buka</span>
+                                </Link>
+                              </Button>
+                            </div>
                           </TableCell>
                         </TableRow>
                       ))}
@@ -648,7 +693,7 @@ export default function ContributorPage() {
                 <h1 className="text-3xl font-headline font-bold text-slate-900">Tulisanmu</h1>
                 <p className="text-slate-500">Daftar artikel yang telah Anda terbitkan.</p>
               </div>
-              <Button onClick={() => setActiveView('buat-artikel')}>
+              <Button onClick={() => { resetForm(); setActiveView('buat-artikel'); }}>
                 <PlusCircle className="mr-2 h-4 w-4" /> Buat Artikel Baru
               </Button>
             </div>
@@ -675,8 +720,11 @@ export default function ContributorPage() {
                         <p className="text-sm text-slate-500 line-clamp-2">{art.excerpt}</p>
                       </div>
                       <div className="p-4 flex items-center gap-2 border-t md:border-t-0 md:border-l">
+                         <Button variant="outline" size="sm" onClick={() => handleEdit(art)}>
+                            <Pencil className="h-4 w-4 mr-2" /> Edit
+                         </Button>
                          <Button asChild variant="outline" size="sm">
-                            <Link href={`/artikel/${art.slug}`}>Lihat</Link>
+                            <Link href={`/artikel/${art.slug}`} target="_blank">Lihat</Link>
                          </Button>
                       </div>
                     </div>
@@ -689,7 +737,7 @@ export default function ContributorPage() {
                   <PenLine className="h-12 w-12 text-slate-300 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2">Belum ada tulisan</h3>
                   <p className="text-slate-500 mb-6">Anda belum pernah menerbitkan artikel. Mulailah menulis sekarang!</p>
-                  <Button onClick={() => setActiveView('buat-artikel')}>Mulai Menulis</Button>
+                  <Button onClick={() => { resetForm(); setActiveView('buat-artikel'); }}>Mulai Menulis</Button>
                 </CardContent>
               </Card>
             )}
