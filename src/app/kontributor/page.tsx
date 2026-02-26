@@ -349,7 +349,7 @@ export default function ContributorPage() {
                 <div className="lg:col-span-8 space-y-6">
                   <Card className="shadow-lg border-t-4 border-primary">
                     <CardHeader>
-                      <CardTitle className="text-lg flex items-center gap-2"><PenLine className="h-5 w-5 text-primary" /> Konten Utama</CardTitle>
+                      <CardTitle className="text-lg">Konten Utama</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
                       <div className="space-y-2">
@@ -376,7 +376,7 @@ export default function ContributorPage() {
                 <div className="lg:col-span-4 space-y-6 sticky top-8">
                   <Card className="overflow-hidden">
                     <CardHeader className="bg-slate-50 py-3 px-4 border-b">
-                      <CardTitle className="text-sm flex items-center gap-2"><Eye className="h-4 w-4" /> Featured Image</CardTitle>
+                      <CardTitle className="text-sm">Featured Image</CardTitle>
                     </CardHeader>
                     <CardContent className="p-0">
                       <div className="relative aspect-video bg-slate-100 flex items-center justify-center overflow-hidden">
@@ -391,7 +391,7 @@ export default function ContributorPage() {
 
                   <Card>
                     <CardHeader className="bg-slate-50 py-3 px-4 border-b">
-                      <CardTitle className="text-sm flex items-center gap-2"><Settings className="h-4 w-4" /> Metadata Dashboard</CardTitle>
+                      <CardTitle className="text-sm">Metadata Dashboard</CardTitle>
                     </CardHeader>
                     <CardContent className="p-4 space-y-4">
                       <div>
@@ -424,7 +424,7 @@ export default function ContributorPage() {
 
                   <Card>
                     <CardHeader className="bg-slate-50 py-3 px-4 border-b">
-                      <CardTitle className="text-sm flex items-center gap-2"><BarChart3 className="h-4 w-4" /> SEO Analysis Checklist</CardTitle>
+                      <CardTitle className="text-sm">SEO Analysis Checklist</CardTitle>
                     </CardHeader>
                     <CardContent className="p-4">
                       <div className="space-y-3">
@@ -472,8 +472,7 @@ export default function ContributorPage() {
                   <div className="w-full md:w-48">
                     <Label className="text-[10px] uppercase font-bold text-slate-400 mb-1 block">Cari Penulis</Label>
                     <div className="relative">
-                      <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400" />
-                      <Input placeholder="Nama penulis..." className="h-9 text-xs pl-8" value={tableAuthorFilter} onChange={(e) => setTableAuthorFilter(e.target.value)} />
+                      <Input placeholder="Nama penulis..." className="h-9 text-xs px-2" value={tableAuthorFilter} onChange={(e) => setTableAuthorFilter(e.target.value)} />
                     </div>
                   </div>
                 </div>
@@ -488,8 +487,7 @@ export default function ContributorPage() {
                         <div className="flex flex-col gap-1 py-2">
                           <span>Judul Artikel</span>
                           <div className="relative">
-                            <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-slate-400" />
-                            <Input placeholder="Cari judul..." className="h-7 text-[10px] pl-7" value={tableTitleFilter} onChange={(e) => setTableTitleFilter(e.target.value)} />
+                            <Input placeholder="Cari judul..." className="h-7 text-[10px] px-2" value={tableTitleFilter} onChange={(e) => setTableTitleFilter(e.target.value)} />
                           </div>
                         </div>
                       </TableHead>
@@ -558,8 +556,7 @@ export default function ContributorPage() {
                         <div className="flex flex-col gap-1 py-2">
                           <span>Judul Artikel</span>
                           <div className="relative">
-                            <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-slate-400" />
-                            <Input placeholder="Cari judul..." className="h-7 text-[10px] pl-7" value={tableTitleFilter} onChange={(e) => setTableTitleFilter(e.target.value)} />
+                            <Input placeholder="Cari judul..." className="h-7 text-[10px] px-2" value={tableTitleFilter} onChange={(e) => setTableTitleFilter(e.target.value)} />
                           </div>
                         </div>
                       </TableHead>
@@ -661,7 +658,7 @@ export default function ContributorPage() {
               <Label htmlFor="password">Password</Label>
               <Input id="password" type="password" placeholder="Min. 6 karakter" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
-            <Button type="submit" className="w-full h-11" disabled={isSubmitting || (isMounted && authLoading)}>
+            <Button type="submit" className="w-full h-11" disabled={isSubmitting || (isMounted && authLoading)} suppressHydrationWarning>
               {isSubmitting ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : isRegisterMode ? <UserPlus className="mr-2 h-4 w-4" /> : <LogIn className="mr-2 h-4 w-4" />}
               {isRegisterMode ? 'Daftar' : 'Masuk'}
             </Button>
